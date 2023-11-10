@@ -210,7 +210,7 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Pacijent odabire opciju za zakazivanje termina
+							\item Pacijent odabire opciju za otkazivanje termina
 							\item Pacijent na kalendaru odabire zakazani termin koji želi otkazati
 							\item Pacijent odabire opciju za otkazivanje odabranog termina
 							\item Pacijent pritišće dugme za potvrdu otkazivanja termina
@@ -543,19 +543,59 @@
 						\caption{Dijagram obrasca uporabe koji prikazuje funkcionalnost administratora}
 						\label{fig:promjene}
 					\end{figure}
-				
+			
+			\newpage
 			\subsection{Sekvencijski dijagrami}
 				
-				\textbf{\textit{dio 1. revizije}}\\
+				\textbf{\text{UC2 - Prijava u sustav}}\\
 				
-				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
-				\eject
-	
+				Korisnik želi pristupiti uslugama koje pruža naš sustav. Poslužitelj mu to omogućava te ga traži korisničko ime i lozinku. Korisnik unosi svoje osobne podatke koje poslužitelj provjerava i vraća povratnu informaciju. Ako je korisnik unio odgovarajuće korisničko ime i lozinku, poslužitelj mu omogućava pristup uslugama. Ako je korisnik unio krivo korisničko ime i/ili lozinku, poslužitelj ne odobrava prijavu u sustav te mu šalje odgovarajuću poruku.
+				
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{slike/UC2_Prijava_u_sustav}
+					\centering
+					\caption{Sekvencijski dijagram za UC2}
+				\end{figure}
+				
+			\newpage
+				
+				\textbf{\text{UC3.1. - Zakazivanje termina}}\\
+				
+				Korisnik, prijavljen kao pacijent, želi odabrati novi slobodni termin. Poslužitelj dohvaća trenutne termine te korisniku prikazuje kalendar. Pacijent navodi informacije o oboljenju, zahtijevanom postupku liječenja i liječnika koji ga je uputio te poslužitelj provjerava je li to ponovljena terapija i ako jest, prikazuje to korisniku. Pacijent odabire referencu na ponovljenu terapiju te potvrđuje odabrani termin. Poslužitelj zaprima korisnikovu potvrdu i provjerava pacijentov status. Ako je njegov status u redu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina, osvježava kalendar i šalje e-mail potvrdu pacijentu. Ako se pacijent nije pojavio na zakazanom terminu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina te šalje odgovarajuću poruku. Ako se pacijent 2. put nije pojavio na zakazanom terminu, on dobiva zabranu zakazivanja termina na određeno vrijeme te mu poslužitelj šalje odgovarajuću poruku. Ako je pacijent zakazao 3 termina u istom tjednu, pacijentu se zabranjuje zakazivanje više od 2 termina tjedno i dobiva odgovarajuću poruku.\newline Ako je pacijent unio podatke o novoj terapiji, poslužitelj te informacije sprema u bazu podataka. Pacijent potvrđuje odabrani termin te dolazi do provjere statusa pacijenta. Ako je sve u redu sa statusom pacijenta, poslužitelj upisuje novi termin u bazu podataka i nakon potvrde o uspješnom upisu, osvježava kalendar i šalje e-mail potvrdu pacijentu. Ako se pacijent nije pojavio na zakazanom terminu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina te šalje odgovarajuću poruku. Ako se pacijent 2. put nije pojavio na zakazanom terminu, on dobiva zabranu zakazivanja termina na određeno vrijeme te mu poslužitelj šalje odgovarajuću poruku. Ako je pacijent zakazao 3 termina u istom tjednu, pacijentu se zabranjuje zakazivanje više od 2 termina tjedno i dobiva odgovarajuću poruku.
+				
+				\begin{figure}[H]
+					\includegraphics[scale=0.37]{slike/UC3.1_Zakazivanje_termina}
+					\centering
+					\caption{Sekvencijski dijagram za UC3.1.}
+				\end{figure}
+				
+			\newpage
+				
+				\textbf{\text{UC3.2. - Otkazivanje termina}}\\
+				
+				Korisnik, prijavljen kao pacijent, želi odabrati termin kako bi ga mogao otkazati. Poslužitelj dohvaća sve zakazane termine od tog pacijenta i prikazuje ih u kalendaru. Pacijent otkazuje odabrani termin. Poslužitelj ispituje ispravnost odabranog termina te ako je on ispravan, briše ga iz baze podataka, osvježava kalendar i šalje e-mail poruku pacijentu. Ako pacijent prekasno pokušava otkazati termin, odnosno ako to čini 24 sata prije zakazanog termina, poslužitelj ne briše termin i šalje odgovarajuću poruku pacijentu.
+				
+				\begin{figure}[H]
+					\includegraphics[scale=0.5]{slike/UC3.2_Otkazivanje_termina}
+					\centering
+					\caption{Sekvencijski dijagram za UC3.2.}
+				\end{figure}
+				
+				\newpage
+				
 		\section{Ostali zahtjevi}
 		
-			\textbf{\textit{dio 1. revizije}}\\
-		 
-			 \textit{Nefunkcionalni zahtjevi i zahtjevi domene primjene dopunjuju funkcionalne zahtjeve. Oni opisuju \textbf{kako se sustav treba ponašati} i koja \textbf{ograničenja} treba poštivati (performanse, korisničko iskustvo, pouzdanost, standardi kvalitete, sigurnost...). Primjeri takvih zahtjeva u Vašem projektu mogu biti: podržani jezici korisničkog sučelja, vrijeme odziva, najveći mogući podržani broj korisnika, podržane web/mobilne platforme, razina zaštite (protokoli komunikacije, kriptiranje...)... Svaki takav zahtjev potrebno je navesti u jednoj ili dvije rečenice.}
+		 	\begin{packed_item}
+		 		\item Korisničko sučelje mora biti intuitivno i prilagođeno, olakšavajući korisnicima njenu upotrebu
+		 		\item Sustav mora omogućiti istovremeni rad većem broju korisnika
+		 		\item Sustav treba omogućiti brzu i učinkovitu prijavu pacijenata te raspoređivanje termina unutar radnog vremena
+		 		\item Prilikom komunikacije s bazom podataka, svi osobni podaci moraju biti prikladno zaštićeni
+		 		\item Korisnicko sučelje i sustav moraju podržavati hrvatsku abecedu (dijakritičke znakove) pri unosu i prikazu tekstualnog sadrzaja 
+		 		\item Apikacija mora biti oblikovana poštivajući načela objektno-orijentiranog programiranja
+		 		\item Neispravno koristenje korisničkog sučelja ne smije narušiti funkcionalnost i rad sustava
+		 		\item Sustav treba omogućiti obavještavanje pacijenata putem elektroničke pošte o promjenama u rasporedu ili drugim važnim informacijama
+		 		\item Sistemski administrator treba imati potpuni pristup svim podacima i mogućnost definiranja postavki sustava
+		 	\end{packed_item}
 			 
 			 
 			 
