@@ -6,12 +6,15 @@
 		
 		\textit{Glavna motivacija bila nam je modernizacija hrvatskog zdravstva. Vjerujemo kako pacijentima nije drago zvati mobitelom svoje doktore znajući da su pretrpani poslom, a također im je dosta čekanje na odgovor zdravstvenog djelatnika kada im se pošalje mail. S druge strane nije ni zdravstvenim djelatnicima lako odgovarati na sve te silne poruke. Ovom aplikacijom bismo omogućili pacijentima da biraju dostupan termin koji njima najbolje odgovara, a doktore poštedili dodatnog posla.}
 		
-		\textit{Između ostalog ova bi aplikacija omogućivala liječnicima praćenje poboljšanja zdravstvenog stanja pacijenata. Ako se pacijenti prvi puta naručuju za terapiju potrebna je registracija, a svaki sljedeći put je nužna prijava u sustav. Za registraciju potrebni su \textbf{sljedeći podaci}: }
+		\textit{Između ostalog ova bi aplikacija omogućivala liječnicima praćenje poboljšanja zdravstvenog stanja pacijenata. Ako se pacijenti prvi puta naručuju za terapiju potrebna je registracija, a svaki sljedeći put je nužna prijava u sustav. Za registraciju potrebni su sljedeći podaci: }
 		\begin{packed_item}
 			\item \textit{ime i prezime}
+			\item \textit{korisničko ime}
 			\item \textit{lozinka}
 			\item \textit{e-mail adresa}
 			\item \textit{OIB}
+			\item \textit{spol}
+			\item \textit{datum rođenja}
 		\end{packed_item}
 		
 		\textit{Administrator gornje podatke mora verificirati iz središnjeg informacijskog sustava zdravstvene zaštite. Bolesnici prilikom prijave moraju navesti vrstu i opis svojih oboljenja, zahtijevani postupak liječenja te liječnika koji ih je uputio na rehabilitaciju. Nakon toga moraju odabrati neki od dostupnih termina. Ako se ne radi o prvom dolasku u ustanovu zahtijeva se i prikaz reference na već obavljeni postupak u toj ustanovi. Zdravstveni djelatnici dodjeljuju termine tako da vode brigu o ukupnom kapacitetu opreme/uređaja, kapacitetu prostorija, broju dostupnih djelatnika te trajanju svakog zahvata. Nakon dobivenog termina bolesniku dolazi e-pošta sa terminom te ostalim dodatnim informacijama. U slučaju neočekivanih promjena djelatnik može kontaktirati bolesnika putem e-pošte. Radno vrijeme ustanove u kojoj se provodi rehabilitacija je svakim radnim danom od 8 do 20 sati. Ustanova ima pravo odrediti određene slobodne dane na temelju blagdana ili praznika.}\\
@@ -41,7 +44,7 @@
 		\textit{Na kraju nam preostaje odabir dostupnih termina. Naravno ovdje slobodni termini ovise isključivo o radnom vremenu salona, zauzeću od nekog drugog klijenta te trajanju samog zahvata. Kod naše aplikacije termini ovise dodatno o kapacitetu opreme/uređaja, kapacitetu prostorija i broju dostupnih djelatnika.}
 		
 		\begin{figure}[H]
-			\includegraphics[scale=0.4]{slike/Buker-odabir-termina.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\includegraphics[scale=0.6]{slike/Buker-odabir-termina.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 			\centering
 			\caption{Odabir termina}
 			\label{fig:promjene}
@@ -63,7 +66,7 @@
 		
 		\textit{Opreme, odnosno uređaji koje posjeduje ustanova se kategoriziraju. Spomenuli smo da slobodni termini ovise o ukupnom kapacitetu opreme/uređaja. Naravno da nije isto ako je čovjeku oštećena ruka ili noga. Tu se radi o drugoj opremi koju će zdravstveni djelatnik morati upotrijebiti za liječenja pacijenta. Dakle, korisnik kojemu je ozljeđena ruka neće zauzimati opremu korisniku kojemu je ozljeđena noga. Očekujemo da će broj oprema/uređaja za određeni dio tijela ipak biti veći od jedan, no svakako će biti ograničen.}
 		
-		\textit{Korisnik se u sustav prijavljuje upisivanjem e-mail adrese te svoje lozinke koja mora zadovoljavati određena pravila. Lozinka mora imati minimalno 8 znakova, od čega mora biti minimalno jedno veliko slovo te jedna znamenka. Ako korisnik prilikom registracije i smišljanja lozinke nije zadovoljio navedena pravila, dobit će upozorenje što mu nedostaje za ispravnu lozinku.}\\
+		\textit{Korisnik se u sustav prijavljuje upisivanjem korisničkog imena te svoje lozinke koja mora zadovoljavati određena pravila. Lozinka mora imati minimalno 8 znakova, od čega mora biti minimalno jedno veliko slovo te jedna znamenka. Ako korisnik prilikom registracije i smišljanja lozinke nije zadovoljio navedena pravila, dobit će upozorenje što mu nedostaje za ispravnu lozinku.}\\
 		
 		\textit{Aplikacija će imati \textbf{n} stranica. Te stranice su redom: Naslovna stranica, stranica za registraciju, stranica za prijavu, \textbf{stranica za promjenu lozinke}, stranica za odabir termina, stranica za administratora gdje administrator održava sustav i potvrđuje registracije, stranica gdje djelatnik potvrđuje termine, \textbf{"help page" koja objašnjava funkcionalnost aplikacije} i stranica u kojoj se provjerava status pacijenta (odnosno njihovu povijest sa tom ustanovom)}.\\
 		

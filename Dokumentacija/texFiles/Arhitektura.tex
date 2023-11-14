@@ -1,17 +1,37 @@
 \chapter{Arhitektura i dizajn sustava}
-		
-		\textbf{\textit{dio 1. revizije}}\\
 
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
+		\textit{Arhitekturu sustava općenito (pa tako i našeg) možemo podijeliti na tri dijela:}
 	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
+		\item 	\textit{Web poslužitelj}
+		\item 	\textit{Web aplikacija}
+		\item 	\textit{Baza podataka}		
 	\end{itemize}
-
 	
+	\textit{\textbf{Internetski preglednik (web preglednik, web browser)} je dio arhitekture koji korisniku omogućuje pregled web-stranica pa tako i samoga sadržaja koji se nalazi na njoj. Korisnik putem web preglednika šalje HTTP zahtjev poslužitelju za dohvat željenog sadržaja i čeka HTTP odgovor. HTTP je protokol bez stanja što znači da primatelj ne smije zadržati stanje sesije iz prethodnih zahtjeva. Neki od popularnijih web preglednika su "Google Chrome" ili "Opera".}
+	
+	\textit{\textbf{Web poslužitelj} je osnova svake web aplikacije. On šalje klijentu HTTP odgovor na određeni HTTP zahtjev. Korisnik koristi web aplikaciju na način da web aplikacija obrađuje zahtjev te ovisno o potrebi pristupa bazi podataka. Poslužitelj vraća odgovor u obliku HTML dokumenta koji je vidljiv korisniku.}
 		
-
+    \begin{figure}[H]
+    	\includegraphics[scale=1.2]{slike/HTTP.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    	\centering
+    	\caption{Prikaz HTTP komunikacije između klijenta i poslužitelja}
+    	\label{fig:promjene}
+    \end{figure}
+    
+    \textit{\newline \newline}
+    
+    \textit{Naša grupa je za projekt na predmetu Programsko inženjerstvo (ak.god. 2023./2024.) odabrala React sustav za potrebe frontenda. Odabrali smo React zbog njegove jednostavne i moćne arhitekture koja omogućuje brz i održiv razvoj web aplikacija. React se temelji na principu komponenata, što znači da aplikaciju gradimo kao skup neovisnih dijelova sučelja, svaki s vlastitom logikom i stilovima. Time svaka komponenta postaje ponovno upotrebljiva i lako zamjenjiva što olakšava razvoj aplikacije.}
+    
+    \textit{Za backend smo odabrali raditi u programskom jeziku Java i to u Spring Boot-u. Koristili smo Maven alat za izgradnju programskog koda. Spring Boot nam se svidio zbog dvije karakteristike: inverzija kontrole gdje sam Spring Boot kontrolira izvršavanje programskog koda te injektiranje objekata o kojima ovisi rad koda. Neke od karakteristika Spring Boot-a su: unaprijed pripremljene funkcionalnosti, nema generiranja klasa i koda već se koriste unaprijed definirane biblioteke. U svakom slučaju Spring Boot zna dosta olakšati programeru posao. Također olakšava i spajanje na bazu podataka o kojoj će biti više riječi u sljedećoj cjelini.}
+    
+    \textit{Razvojno okruženje koje smo koristili zavisilo je od člana do člana ekipe, neki su radili u Eclipse-u, neki u IntelliJ. Koristili smo GitHub sustav za upravljanje verzijama programske potpore te TeXstudio za pisanje dokumentacije.}
+    
+    \begin{figure}[H]
+    	\includegraphics[scale=0.5]{slike/SpringBoot.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+    	\centering
+    	\caption{Neke od koristi Spring Boot-a}
+    	\label{fig:promjene}
+    \end{figure}
 		
 
 				
