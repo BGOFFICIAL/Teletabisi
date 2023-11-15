@@ -25,9 +25,16 @@ public ResponseEntity<AuthenticationResponse>  register (
 
 @PostMapping("/authenticate")
 public ResponseEntity<AuthenticationResponse>  authenticate (
-        @RequestBody AuthenticationRequest request )
+        @RequestBody AuthenticationRequest request)
 {
     return ResponseEntity.ok(service.authenticate(request));
+}
+
+@PostMapping("/update")
+public ResponseEntity<AuthenticationResponse> update(
+        @RequestBody UpdateRequest request)
+{
+    return ResponseEntity.ok(service.update(request));
 }
 
 

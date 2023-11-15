@@ -6,10 +6,14 @@ import com.teletabisi.MedInstitutionApp.repository.UserRepository;
 import com.teletabisi.MedInstitutionApp.security.auth.AuthenticationRequest;
 import com.teletabisi.MedInstitutionApp.security.auth.AuthenticationResponse;
 import com.teletabisi.MedInstitutionApp.security.auth.RegisterRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.UpdateRequest;
 import com.teletabisi.MedInstitutionApp.security.jwt.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +42,6 @@ public class AuthenticationService {
 
         repository.save(user);
 
-
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
 
@@ -54,5 +57,35 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
 
+    }
+
+    public AuthenticationResponse update(UpdateRequest request){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)){
+            throw new IllegalStateException("User not authenticated");
+        }
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        if(!(userDetails instanceof User)){
+            throw new IllegalStateException("User details are not of type User");
+        }
+
+        var user = (User) userDetails;
+
+        if (request.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+
+        if (request.getEmail() != null) {
+            user.setEmail(request.getEmail());
+        }
+
+        if (request.getUsername() != null) {
+            user.setUsername(request.getUsername());
+        }
+        repository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }
