@@ -24,7 +24,7 @@
 				\begin{packed_enum}
 					
 					\item se registrirati u sustav kao pacijent te tako stvoriti novi korisnički račun za koji su mu potrebni ime, prezime, korisničko ime, e-mail adresa, OIB, lozinka, spol i datum rođenja.
-					\item pregledati naslovnu stranicu i stranicu koja objašnjava funkcionalnost aplikacije
+					\item pregledati naslovnu stranicu koja ga može uputiti na stranicu za registraciju
 					
 					
 				\end{packed_enum}
@@ -36,7 +36,7 @@
 					\item prijaviti se u sustav
 					\item odabrati željeni termin dolazaka, a ukoliko se radi o ponovljenoj terapiji i referencu na već obavljeni postupak terapije u ustanovi
 					\item navesti opis svog oboljenja te odabrati liječnika koji će ga liječiti
-					\item otkazati zakazani termin u roku 24 sata prije samoga termina te potvrditi ili odbiti pomaknuti termin zbog novonastale okolnosti
+					\item otkazati zakazani termin u roku od 24 sata prije samoga termina te potvrditi ili odbiti pomaknuti termin zbog novonastale okolnosti
 					\item primati elektroničku poštu o zakazanom terminu i novonastalim okolnostima
 					
 				\end{packed_enum}
@@ -47,9 +47,10 @@
 			\begin{packed_enum}
 				
 				\item prijaviti se u sustav
-				\item pregledavati prijave i dodjeljivati pacijentima termine
-				\item direktno kontaktirati pacijenta putem elektroničke pošte u slučaju neočekivanih promjena
-				\item vidjeti sve pacijente i sve tretmane koji su im dodijeljeni
+				\item pregledavati prijave za vlastite termine
+				\item kontrolirati dostupnost termina
+				\item direktno kontaktirati pacijenta putem elektroničke pošte u slučaju neočekivanih promjena (i predložiti im novi termin)
+				\item vidjeti sve pacijente (uključujući njihove osobne podatke) i sve tretmane koji su im dodijeljeni
 				\item nakon obavljenog postupka rehabilitacije registrirati dolazak pacijenta
 				\item nakon završenog ciklusa upisati postignute rezultate s pacijentom
 				
@@ -62,8 +63,10 @@
 			\begin{packed_enum}
 				
 				\item verificirati podatke iz središnjeg informacijskog sustava zdravstvene zaštite
-				\item pristupiti popisu korisnika, zdravstvenih djelatnika te njihovim osobnim podacima
+				\item pristupiti popisu korisnika te njihovim osobnim podacima
 				\item stvoriti zdravstvenog djelatnika u sustavu
+				\item maknuti korisnika iz sustava
+				\item pregledavati statistiku sustava (npr. broj muških/ženskih pacijenata ili koliko dugo pojedini zdravstveni djelatnik radi u ustanovi)
 				
 			\end{packed_enum}
 			
@@ -106,7 +109,7 @@
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] Odabir zauzetog e-maila i/ili korisničkog imena, unos neispravnog e-maila, unos korisničkog podatka u zabranjenom formatu ili pogrešno napisana ponovljena lozinka (polje "Potvrdi lozinku")
+							\item[2.a] Odabir zauzetog e-maila i/ili korisničkog imena i/ili OIBa, unos neispravnog e-maila ili unos korisničkog podatka u zabranjenom formatu
 							\item[] \begin{packed_enum}
 								
 								\item Korisnik dobiva obavijest o neuspješnoj registraciji i vraća ga na stranicu za registraciju
@@ -120,7 +123,7 @@
 					\noindent \underbar{\textbf{UC2 - Prijava u sustav}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }Pacijent
+						\item \textbf{Glavni sudionici: }Pacijent, Zdravstveni djelatnik, Administrator
 						\item  \textbf{Cilj:} Pristupiti uslugama koje pruža naš sustav
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Registracija u sustav
@@ -128,10 +131,10 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Pacijent odabire opciju za prijavu
-							\item Pacijent unosi korisničko ime i lozinku
-							\item Pacijent pritišće dugme da potvrdi prijavu
-							\item Pacijent pristupa uslugama za koje ima dopuštenje 
+							\item Korisnik odabire opciju za prijavu
+							\item Korisnik unosi korisničko ime i lozinku
+							\item Korisnik pritišće dugme da potvrdi prijavu
+							\item Korisnik pristupa uslugama za koje ima dopuštenje 
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -150,7 +153,7 @@
 					\end{packed_item}
 					
 					\noindent \underbar{\textbf{UC3 - Upravljanje terminima}}\\
-					\textit{Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termina, UC3.3. Pregled termina i UC3.4 Potvrđivanje novih termina.}\\
+					Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termina, UC3.3. Pregled termina i UC3.4 Potvrđivanje novih termina.\\
 					
 					\noindent \underbar{\textbf{UC3.1. - Zakazivanje termina}}
 					\begin{packed_item}
@@ -178,23 +181,10 @@
 							\item[2.a] Pacijent se nije pojavio na zakazanom terminu
 							\item[] \begin{packed_enum}
 								
-								\item Pacijent dobiva e-mail poruku upozorenja da sljedeći put ako se ponovi će dobiti zabranu zakazivanja termina
+								\item Pacijent dobiva e-mail poruku upozorenja da pripazi na dogovorene termine
 								
 							\end{packed_enum}
 							
-							\item[2.b] Pacijent se nije pojavio na zakazanom terminu drugi put
-							\item[] \begin{packed_enum}
-								
-								\item Pacijentu se zabranjuje zakazivanje termina na određeno vrijeme te dobiva tu obavijest na e-mailu
-								
-							\end{packed_enum}
-							
-							\item[2.c] Pacijent je zakazao 3 termina u istom tjednu
-							\item[] \begin{packed_enum}
-								
-								\item Pacijentu se zabranjuje zakazivanje više od 2 termina tjedno te bude u tome onemogućen
-								
-							\end{packed_enum}
 							
 						\end{packed_item}
 					\end{packed_item}
@@ -221,7 +211,7 @@
 						
 						\item[] \begin{packed_item}
 							
-							\item[3.a] Pacijent prekasno pokušava otkazati termin (24 sata prije zakazanog termina)
+							\item[3.a] Pacijent prekasno pokušava otkazati termin (unutar 24 sata kada je zakazani termin)
 							\item[] \begin{packed_enum}
 								
 								\item Sustav onemogućuje pacijentu otkazivanje tog termina
@@ -269,7 +259,7 @@
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }-
-						\item  \textbf{Cilj:} Slanje e-mail podsjetnik za zakazani termin (24 sata prije termina)
+						\item  \textbf{Cilj:} Slanje e-mail podsjetnika za zakazani termin (24 sata prije termina)
 						\item  \textbf{Sudionici:} Baza podataka, pacijent
 						\item  \textbf{Preduvjet:} Korisnik prijavljen kao pacijent i postoji zakazani termin
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -316,16 +306,16 @@
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-						\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da pomakne rezervirani termin zbog novonastale okolnosti te čeka potvrdu ili odbijanje od strane pacijenta (to ne smije činiti u istom danu kada je taj termin zakazan, mora biti na vrijeme organiziran)
+						\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da pomakne rezervirane termine zbog novonastale okolnosti te čeka potvrdu ili odbijanje od strane pacijenta (to ne smije činiti u istom danu kada je taj termin zakazan, mora biti na vrijeme organiziran)
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 							
-							\item Zdravstveni djelatnik na kalendaru odabire zakazani termin koji želi pomaknuti
-							\item Zdravstveni djelatnik bira opciju za otkazivanje tog termina i predlaže pacijentu novi termin
-							\item Zdravstveni djelatnik pritiskom na dugme potvrđuje promjenu termina
+							\item Zdravstveni djelatnik na kalendaru odabire zakazani termin (ili zakazane termine) koje želi pomaknuti
+							\item Zdravstveni djelatnik bira opciju za otkazivanje tog termina (ili tih termina) i predlaže svakom pacijentu kojemu je otkazao termin novi termin
+							\item Zdravstveni djelatnik pritiskom na dugme potvrđuje novonastale promjene
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -338,7 +328,7 @@
 								\item Zdravstveni djelatnik ponavlja postupak pomicanja svojih rezerviranih termina (dok se pacijent ne složi sa prijedlogom)
 								
 							\end{packed_enum}
-							\item[2.a] Zdravstveni djelatnik pokušava pomaknuti zakazani termin u vremenu od 24 sata prije termina
+							\item[2.a] Zdravstveni djelatnik pokušava pomaknuti zakazani termin u vremenu unutar 24 sata kada je zakazani termina
 							\item[] \begin{packed_enum}
 								
 								\item Sustav onemogućuje pomicanje termina i šalje zdravstvenom djelatniku odgovarajuću poruku (zdravstveni djelatnik mora odraditi zakazani termin zbog kasne reakcije)

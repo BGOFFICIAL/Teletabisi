@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  14 NOV 2023 12:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  15 NOV 2023 21:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -972,6 +972,9 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
 ) (./Specifikacija_programske_potpore.aux
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
@@ -1456,6 +1459,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
+
+Overfull \hbox (12.98482pt too wide) in paragraph at lines 5--6
+\OT1/jkp/m/n/12 ra-nje is-to-imene web apli-ka-cije koja []ce omogu[]citi ko-ri
+s-ni-cima jed-nos-tavno naru[]civanje
+ []
+
 LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 1
 1.
 (c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
@@ -1483,22 +1492,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-
-Overfull \hbox (23.59746pt too wide) in paragraph at lines 24--25
-[]\OT1/jkp/m/it/12 Primjer sli[]cnog rje[]senja je apli-ka-cija "Bu-ker". To je
- apli-ka-cija koja omogu[]cuje naru[]civanje
- []
-
-<slike/Buker-registracija.PNG, id=171, 526.3665pt x 464.33475pt>
-File: slike/Buker-registracija.PNG Graphic file (type png)
-<use slike/Buker-registracija.PNG>
-Package pdftex.def Info: slike/Buker-registracija.PNG  used on input line 29.
-(pdftex.def)             Requested size: 315.82234pt x 278.60298pt.
-<slike/Buker-odabir.PNG, id=173, 522.753pt x 529.98pt>
-File: slike/Buker-odabir.PNG Graphic file (type png)
-<use slike/Buker-odabir.PNG>
-Package pdftex.def Info: slike/Buker-odabir.PNG  used on input line 38.
-(pdftex.def)             Requested size: 313.65422pt x 317.99043pt.
+<slike/YouCanBookMe-Naslovna.PNG, id=171, 1086.459pt x 510.10574pt>
+File: slike/YouCanBookMe-Naslovna.PNG Graphic file (type png)
+<use slike/YouCanBookMe-Naslovna.PNG>
+Package pdftex.def Info: slike/YouCanBookMe-Naslovna.PNG  used on input line 27
+.
+(pdftex.def)             Requested size: 391.12494pt x 183.63792pt.
+<slike/YouCanBookMe-Registracija1.PNG, id=173, 1062.97125pt x 481.19775pt>
+File: slike/YouCanBookMe-Registracija1.PNG Graphic file (type png)
+<use slike/YouCanBookMe-Registracija1.PNG>
+Package pdftex.def Info: slike/YouCanBookMe-Registracija1.PNG  used on input li
+ne 38.
+(pdftex.def)             Requested size: 425.18097pt x 192.4757pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1512,14 +1517,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.42 		\end{figure}
-                    <./slike/Buker-registracija.png>]
-<slike/Buker-odabir-termina.PNG, id=182, 257.763pt x 492.03825pt>
-File: slike/Buker-odabir-termina.PNG Graphic file (type png)
-<use slike/Buker-odabir-termina.PNG>
-Package pdftex.def Info: slike/Buker-odabir-termina.PNG  used on input line 47.
+l.43 		
+        <./slike/YouCanBookMe-Naslovna.png>]
+<slike/YouCanBookMe-Termin1.PNG, id=182, 752.8125pt x 352.9185pt>
+File: slike/YouCanBookMe-Termin1.PNG Graphic file (type png)
+<use slike/YouCanBookMe-Termin1.PNG>
+Package pdftex.def Info: slike/YouCanBookMe-Termin1.PNG  used on input line 47.
 
-(pdftex.def)             Requested size: 154.659pt x 295.22522pt.
+(pdftex.def)             Requested size: 451.69098pt x 211.75273pt.
+
+Overfull \hbox (16.08018pt too wide) in paragraph at lines 47--49
+ [][] 
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1534,9 +1543,23 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.52 		
-        <./slike/Buker-odabir.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+l.54 		
+       
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.54 		
+        <./slike/YouCanBookMe-Registracija1.png> <./slike/YouCanBookMe-Termin1.
+png>]
+<slike/YouCanBookMe-Termin3.PNG, id=192, 393.8715pt x 307.1475pt>
+File: slike/YouCanBookMe-Termin3.PNG Graphic file (type png)
+<use slike/YouCanBookMe-Termin3.PNG>
+Package pdftex.def Info: slike/YouCanBookMe-Termin3.PNG  used on input line 56.
+
+(pdftex.def)             Requested size: 236.3247pt x 184.28992pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
@@ -1549,23 +1572,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [8
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) 
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.68 		
-        <./slike/Buker-odabir-termina.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
+l.77 		
+        <./slike/YouCanBookMe-Termin3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
@@ -1583,7 +1601,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
  (./Specifikacija_programske_potpore.tex
 Poglavlje 3.
 
-Overfull \hbox (40.04517pt too wide) in paragraph at lines 51--52
+Overfull \hbox (40.04517pt too wide) in paragraph at lines 52--53
 []\OT1/jkp/m/n/12 direktno kon-tak-ti-rati pa-ci-jenta pu-tem elek-troni[]cke p
 o[]ste u slu[]caju neo[]cekivanih
  []
@@ -1602,7 +1620,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
-Overfull \hbox (14.31715pt too wide) in paragraph at lines 64--65
+Overfull \hbox (14.31715pt too wide) in paragraph at lines 65--66
 []\OT1/jkp/m/n/12 verificirati po-datke iz sredi[]snjeg in-for-ma-cij-skog sus-
 tava zdrav-s-tvene za[]stite 
  []
@@ -1616,13 +1634,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [11]
-Overfull \hbox (0.16946pt too wide) in paragraph at lines 145--146
+Overfull \hbox (0.16946pt too wide) in paragraph at lines 148--149
 []\OT1/jkp/m/n/12 Korisnik mi-je-nja krivo une[]sene po-datke ili odus-taje od 
 pri-jave (vra[]ca
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--154
+Underfull \hbox (badness 10000) in paragraph at lines 155--157
 
  []
 
@@ -1644,7 +1662,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [13]
-Overfull \hbox (0.30785pt too wide) in paragraph at lines 255--256
+Overfull \hbox (0.30785pt too wide) in paragraph at lines 245--246
 []\OT1/jkp/b/n/12 Preduvjet: \OT1/jkp/m/n/12 Ko-ris-nik pri-jav-ljen kao pa-ci-
 jent, zdrav-s-tveni dje-lat-nik je predlo[]zio
  []
@@ -1676,7 +1694,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 416--418
+Underfull \hbox (badness 10000) in paragraph at lines 406--408
 
  []
 
@@ -1698,13 +1716,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [18]
-<slike/KorisnikIPacijent.PNG, id=338, 823.57687pt x 732.48656pt>
+<slike/KorisnikIPacijent.PNG, id=344, 823.57687pt x 732.48656pt>
 File: slike/KorisnikIPacijent.PNG Graphic file (type png)
 <use slike/KorisnikIPacijent.PNG>
-Package pdftex.def Info: slike/KorisnikIPacijent.PNG  used on input line 527.
+Package pdftex.def Info: slike/KorisnikIPacijent.PNG  used on input line 517.
 (pdftex.def)             Requested size: 494.14993pt x 439.49532pt.
 
-Overfull \hbox (58.53914pt too wide) in paragraph at lines 527--529
+Overfull \hbox (58.53914pt too wide) in paragraph at lines 517--519
  [][] 
  []
 
@@ -1717,14 +1735,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [19]
-<slike/ZdravstveniDjelatnik.PNG, id=350, 853.68938pt x 798.73407pt>
+<slike/ZdravstveniDjelatnik.PNG, id=354, 853.68938pt x 798.73407pt>
 File: slike/ZdravstveniDjelatnik.PNG Graphic file (type png)
 <use slike/ZdravstveniDjelatnik.PNG>
-Package pdftex.def Info: slike/ZdravstveniDjelatnik.PNG  used on input line 534
+Package pdftex.def Info: slike/ZdravstveniDjelatnik.PNG  used on input line 524
 .
 (pdftex.def)             Requested size: 512.21759pt x 479.24414pt.
 
-Overfull \hbox (76.6068pt too wide) in paragraph at lines 534--536
+Overfull \hbox (76.6068pt too wide) in paragraph at lines 524--526
  [][] 
  []
 
@@ -1741,15 +1759,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.539 					
+l.529 					
             <./slike/KorisnikIPacijent.png>]
-<slike/Administrator.PNG, id=359, 852.93657pt x 732.48656pt>
+<slike/Administrator.PNG, id=363, 811.53188pt x 762.59906pt>
 File: slike/Administrator.PNG Graphic file (type png)
 <use slike/Administrator.PNG>
-Package pdftex.def Info: slike/Administrator.PNG  used on input line 541.
-(pdftex.def)             Requested size: 511.7659pt x 439.49532pt.
+Package pdftex.def Info: slike/Administrator.PNG  used on input line 531.
+(pdftex.def)             Requested size: 486.92288pt x 457.56297pt.
 
-Overfull \hbox (76.1551pt too wide) in paragraph at lines 541--543
+Overfull \hbox (51.31209pt too wide) in paragraph at lines 531--533
  [][] 
  []
 
@@ -1766,7 +1784,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.546 			
+l.536 			
           <./slike/ZdravstveniDjelatnik.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1781,26 +1799,26 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.547 			\newpage
+l.537 			\newpage
                   <./slike/Administrator.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 550--551
+Underfull \hbox (badness 10000) in paragraph at lines 540--541
 
  []
 
 
-Overfull \hbox (25.01358pt too wide) in paragraph at lines 552--553
+Overfull \hbox (25.01358pt too wide) in paragraph at lines 542--543
 []\OT1/jkp/m/n/12 Korisnik []zeli pris-tu-piti us-lu-gama koje pru[]za na[]s su
 s-tav. Poslu[]zitelj mu to omogu[]cava
  []
 
-<slike/UC2_Prijava_u_sustav.png, id=374, 773.89125pt x 522.45187pt>
+<slike/UC2_Prijava_u_sustav.png, id=378, 773.89125pt x 522.45187pt>
 File: slike/UC2_Prijava_u_sustav.png Graphic file (type png)
 <use slike/UC2_Prijava_u_sustav.png>
-Package pdftex.def Info: slike/UC2_Prijava_u_sustav.png  used on input line 555
+Package pdftex.def Info: slike/UC2_Prijava_u_sustav.png  used on input line 545
 .
 (pdftex.def)             Requested size: 464.33833pt x 313.47354pt.
 
-Overfull \hbox (28.72754pt too wide) in paragraph at lines 555--557
+Overfull \hbox (28.72754pt too wide) in paragraph at lines 545--547
  [][] 
  []
 
@@ -1817,17 +1835,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.560 			\newpage
+l.550 			\newpage
                   <./slike/UC2_Prijava_u_sustav.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 562--563
+Underfull \hbox (badness 10000) in paragraph at lines 552--553
 
  []
 
-<slike/UC3.1_Zakazivanje_termina.png, id=382, 1031.35312pt x 1672.74937pt>
+<slike/UC3.1_Zakazivanje_termina.png, id=386, 1031.35312pt x 1672.74937pt>
 File: slike/UC3.1_Zakazivanje_termina.png Graphic file (type png)
 <use slike/UC3.1_Zakazivanje_termina.png>
 Package pdftex.def Info: slike/UC3.1_Zakazivanje_termina.png  used on input lin
-e 567.
+e 557.
 (pdftex.def)             Requested size: 381.59468pt x 618.9076pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1851,20 +1869,20 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.572 			\newpage
+l.562 			\newpage
                   <./slike/UC3.1_Zakazivanje_termina.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 574--575
+Underfull \hbox (badness 10000) in paragraph at lines 564--565
 
  []
 
-<slike/UC3.2_Otkazivanje_termina.png, id=396, 901.11656pt x 737.75626pt>
+<slike/UC3.2_Otkazivanje_termina.png, id=400, 901.11656pt x 737.75626pt>
 File: slike/UC3.2_Otkazivanje_termina.png Graphic file (type png)
 <use slike/UC3.2_Otkazivanje_termina.png>
 Package pdftex.def Info: slike/UC3.2_Otkazivanje_termina.png  used on input lin
-e 579.
+e 569.
 (pdftex.def)             Requested size: 450.55717pt x 368.87723pt.
 
-Overfull \hbox (14.94638pt too wide) in paragraph at lines 579--581
+Overfull \hbox (14.94638pt too wide) in paragraph at lines 569--571
  [][] 
  []
 
@@ -1881,9 +1899,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.584 				\newpage
+l.574 				\newpage
                    <./slike/UC3.2_Otkazivanje_termina.png>]
-Overfull \hbox (15.62358pt too wide) in paragraph at lines 597--598
+Overfull \hbox (15.62358pt too wide) in paragraph at lines 587--588
 []\OT1/jkp/m/n/12 Sistemski ad-mi-nis-tra-tor treba imati pot-puni pris-tup svi
 m po-da-cima i mogu[]cnost
  []
@@ -1902,7 +1920,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
  (./Arhitektura.tex
 Poglavlje 4.
-<slike/HTTP.PNG, id=410, 419.76825pt x 143.93774pt>
+<slike/HTTP.PNG, id=414, 419.76825pt x 143.93774pt>
 File: slike/HTTP.PNG Graphic file (type png)
 <use slike/HTTP.PNG>
 Package pdftex.def Info: slike/HTTP.PNG  used on input line 15.
@@ -1940,14 +1958,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.23 ...jenjiva što olakšava razvoj aplikacije.}
-                                                   <./slike/HTTP.png>]
-Overfull \hbox (1.85359pt too wide) in paragraph at lines 23--24
-[]\OT1/jkp/m/it/12 Na[]sa grupa je za pro-jekt na pred-metu Pro-gram-sko in[]ze
-njerstvo (ak.god. 2023./2024.)
+l.23     N
+          aša grupa je za projekt na predmetu Programsko inženjerstvo (ak....
+ <./slike/HTTP.png>]
+Overfull \hbox (28.5056pt too wide) in paragraph at lines 23--24
+[]\OT1/jkp/m/n/12 Na[]sa grupa je za pro-jekt na pred-metu Pro-gram-sko in[]zen
+jerstvo (ak.god. 2023./2024.)
  []
 
-<slike/SpringBoot.PNG, id=418, 552.0625pt x 501.875pt>
+<slike/SpringBoot.PNG, id=422, 552.0625pt x 501.875pt>
 File: slike/SpringBoot.PNG Graphic file (type png)
 <use slike/SpringBoot.PNG>
 Package pdftex.def Info: slike/SpringBoot.PNG  used on input line 30.
@@ -2285,10 +2304,10 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17782 strings out of 474397
- 313153 string characters out of 5754184
+ 17791 strings out of 474397
+ 313548 string characters out of 5754184
  2063036 words of memory out of 5000000
- 39330 multiletter control sequences out of 15000+600000
+ 39337 multiletter control sequences out of 15000+600000
  613657 words of font info for 150 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,115p,2119b,1145s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2302,10 +2321,10 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkptt
 mn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (46 pages, 1293220 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (46 pages, 936320 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 529 compressed objects within 6 object streams
- 189 named destinations out of 1000 (max. 500000)
- 264 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 624 PDF objects out of 1000 (max. 8388607)
+ 534 compressed objects within 6 object streams
+ 191 named destinations out of 1000 (max. 500000)
+ 269 words of extra memory for PDF output out of 10000 (max. 10000000)
 
