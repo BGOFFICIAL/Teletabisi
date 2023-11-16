@@ -1,23 +1,76 @@
 import React from "react";
 import './admin.css';
 
-import {Button, Table, Form, InputGroup} from 'react-bootstrap';
+import {Button, Table, Form, InputGroup, Alert} from 'react-bootstrap';
 
 import Employees from './emlpoyees';
-import {Link, useNavigate} from 'react-router-dom';
-import {useState} from 'react';
+
 function Admin(){
-    let history = useNavigate();
-    const handleDelete = (id) =>{
-        var index = Employees.map(function(e){
-            return e.id;
-            /* Promijeni da više nije zaposlenik */
-        }).indexOf(id);
-        Employees.splice(index,1);
-        history('/admin');   
+    
+    const handleDelete = async (e) =>{      
+        e.preventDefault();
+
+        const buttonid = e.currentTarget.id;
+        
+        const response = await fetch('http://localhost:8080/api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({buttonid}),
+        });
     }
-    /*dodati funkciju za dodavanje novih zaposlenika*/
-    /*Dodati funkciju za filtriranje*/
+
+    const AddEmploy = async (e) => { /*Slanje dodavanja zaposlenika*/
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        const jsonObject = {};
+
+        formData.forEach((value, key) => {
+            jsonObject[key] = value;
+
+        });
+        
+        const response = await fetch('http://localhost:8080/api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonObject),
+        });
+
+    }
+
+    const handleSubmit = async (e) => { /*Traženje filtera*/
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        try {
+            const jsonObject = {};
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+            const response = await fetch('http://localhost:8080/api/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonObject),
+            });
+
+            if (response.ok) {
+                console.log('Uspijesno filtrirano');
+            } else {
+                console.error('Nema tog korisnika');
+            }
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+      };
+    
+
     return (
         <div calss="container">
             <div class="header"> 
@@ -29,11 +82,11 @@ function Admin(){
                 <Table>
                     <thead>
                         <tr>
-                            <th colspan="4" class="tablename">
+                            <th colspan="5" class="tablename">
                                 Zaposlenici
                             </th>                            
                             <th colspan="2" >
-                                <form action="" method="post" > {/*Povezati onSubmit sa funkcijomn za dodavanje zaposlenika*/}
+                                <form action="" method="post" onSubmit={AddEmploy}> {/*Povezati onSubmit sa funkcijomn za dodavanje zaposlenika*/}
                                     <label for="imeprez">Pretraži:  </label>
                                     <input type="text" id="employSearch" name="imeprez"/>
                                     <button type="submit" class="removebutton">Dodaj</button>
@@ -43,6 +96,7 @@ function Admin(){
                         <tr>
                             <th>Ime</th>
                             <th>Prezime</th>
+                            <th>E-mail</th>
                             <th>Datum rođenja</th>
                             <th>Datum zapošljivanja</th>
                             <th>Spol</th>
@@ -52,15 +106,15 @@ function Admin(){
                     <tbody>
                         {
                             Employees && Employees.length > 0 ? (
-                                Employees.map((item) => (
-                                  <tr key={item.id}>
+                                Employees.map((item) => (   
+                                  <tr key={item.id}>    {/*Dodati filter da je zaposlenik*/}
                                     <td>{item.Name}</td>
                                     <td>{item.Surname}</td>
+                                    <td>{item.Mail}</td>
                                     <td>{item.DateOfBirth}</td>
                                     <td>{item.DateOfEmployement}</td>
                                     <td>{item.Sex}</td>
-                                    <td><button class="removebutton" onClick={() => handleDelete(item.id)}>Ukloni</button> {/*Zove funkciju HandleDelete za micanje korisnika iz zaposlenika*/}
-                                    </td>
+                                    <td><button class="removebutton" id={item.id} onClick={handleDelete}>Ukloni</button> {/*Zove funkciju HandleDelete za micanje korisnika iz zaposlenika*/}</td>
                                   </tr>
                                 ))
                               ) : (
@@ -82,7 +136,7 @@ function Admin(){
                             </th>
                             
                             <th colspan="5" >
-                                <form method="get" onSubmit={(e) => setSearch(e.target.value)}> {/*Povezuje na funkciju za filtriranje*/}
+                                <form method="get" onSubmit={handleSubmit}> {/*Povezuje na funkciju za filtriranje*/}
                                     <div class="filters">
                                         <label for="sex">Spol:  </label>                                 
                                         <label><input type="radio" value="Male" name="sex"/>Muško </label>
@@ -106,20 +160,21 @@ function Admin(){
                         <tr>
                             <th>Ime</th>
                             <th>Prezime</th>
+                            <th>E-mail</th>
                             <th>Datum rođenja</th>
                             <th>Datum zapošljivanja</th>
                             <th>Spol</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         {
                             Employees && Employees.length > 0 ? (
-                                Employees.filter((item) => {
-                                    {/*Filter da gleda spol, godina rođenja, godina zapošljivanja*/}
-                                }).map((item) => (
+                                Employees.map((item) => (
                                   <tr key={item.id}>
                                     <td>{item.Name}</td>
                                     <td>{item.Surname}</td>
+                                    <td>{item.Mail}</td>
                                     <td>{item.DateOfBirth}</td>
                                     <td>{item.DateOfEmployement}</td>
                                     <td>{item.Sex}</td>
