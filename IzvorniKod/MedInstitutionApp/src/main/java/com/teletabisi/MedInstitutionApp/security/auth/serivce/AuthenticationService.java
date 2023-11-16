@@ -34,6 +34,7 @@ public class AuthenticationService {
                 .lastname(request.getLastname())
                 .OIB(request.getOIB())
                 .username(request.getUsername())
+                .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .StartDate(LocalDate.now())

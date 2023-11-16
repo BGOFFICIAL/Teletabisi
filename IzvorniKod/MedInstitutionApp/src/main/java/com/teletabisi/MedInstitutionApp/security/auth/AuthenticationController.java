@@ -1,8 +1,10 @@
 package com.teletabisi.MedInstitutionApp.security.auth;
 
 
+import com.teletabisi.MedInstitutionApp.security.auth.serivce.CsvService;
 import com.teletabisi.MedInstitutionApp.security.auth.serivce.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +18,28 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
+    @Autowired
+    private CsvService csvService;
+
 @PostMapping("/register")
 public ResponseEntity<AuthenticationResponse>  register (
         @RequestBody RegisterRequest request)
 {
- return ResponseEntity.ok(service.register(request));
+    // ako je osoba u .csv file-u, može se upisati u bazu, u suprotnom ne
+    if (csvService.getPersonByOib(request.getOIB()) != null &&
+        csvService.getPersonByFirstname(request.getFirstname()) != null &&
+        csvService.getPersonByLastname(request.getLastname()) != null)
+    {
+        return ResponseEntity.ok(service.register(request));
+    }
+    else {
+        // trenutno postaljva token na null
+        AuthenticationResponse errorResponse = AuthenticationResponse.builder()
+                .token(null)
+                .build();
+
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
 }
 
 @PostMapping("/authenticate")
