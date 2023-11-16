@@ -1,15 +1,15 @@
 \chapter{Arhitektura i dizajn sustava}
 
-		\textit{Arhitekturu sustava općenito (pa tako i našeg) možemo podijeliti na tri dijela:}
+		Arhitekturu sustava općenito (pa tako i našeg) možemo podijeliti na tri dijela:
 	\begin{itemize}
 		\item 	\textit{Web poslužitelj}
 		\item 	\textit{Web aplikacija}
 		\item 	\textit{Baza podataka}		
 	\end{itemize}
 	
-	\textit{\textbf{Internetski preglednik (web preglednik, web browser)} je dio arhitekture koji korisniku omogućuje pregled web-stranica pa tako i samoga sadržaja koji se nalazi na njoj. Korisnik putem web preglednika šalje HTTP zahtjev poslužitelju za dohvat željenog sadržaja i čeka HTTP odgovor. HTTP je protokol bez stanja što znači da primatelj ne smije zadržati stanje sesije iz prethodnih zahtjeva. Neki od popularnijih web preglednika su "Google Chrome" ili "Opera".}
+	\textbf{Internetski preglednik (web preglednik, web browser)} je dio arhitekture koji korisniku omogućuje pregled web-stranica pa tako i samoga sadržaja koji se nalazi na njoj. Korisnik putem web preglednika šalje HTTP zahtjev poslužitelju za dohvat željenog sadržaja i čeka HTTP odgovor. HTTP je protokol bez stanja što znači da primatelj ne smije zadržati stanje sesije iz prethodnih zahtjeva. Neki od popularnijih web preglednika su "Google Chrome" ili "Opera".
 	
-	\textit{\textbf{Web poslužitelj} je osnova svake web aplikacije. On šalje klijentu HTTP odgovor na određeni HTTP zahtjev. Korisnik koristi web aplikaciju na način da web aplikacija obrađuje zahtjev te ovisno o potrebi pristupa bazi podataka. Poslužitelj vraća odgovor u obliku HTML dokumenta koji je vidljiv korisniku.}
+	\textbf{Web poslužitelj} je osnova svake web aplikacije. On šalje klijentu HTTP odgovor na određeni HTTP zahtjev. Korisnik koristi web aplikaciju na način da web aplikacija obrađuje zahtjev te ovisno o potrebi pristupa bazi podataka. Poslužitelj vraća odgovor u obliku HTML dokumenta koji je vidljiv korisniku.
 		
     \begin{figure}[H]
     	\includegraphics[scale=1.2]{slike/HTTP.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
@@ -20,11 +20,11 @@
     
     \textit{\newline \newline}
     
-    \textit{Naša grupa je za projekt na predmetu Programsko inženjerstvo (ak.god. 2023./2024.) odabrala React sustav za potrebe frontenda. Odabrali smo React zbog njegove jednostavne i moćne arhitekture koja omogućuje brz i održiv razvoj web aplikacija. React se temelji na principu komponenata, što znači da aplikaciju gradimo kao skup neovisnih dijelova sučelja, svaki s vlastitom logikom i stilovima. Time svaka komponenta postaje ponovno upotrebljiva i lako zamjenjiva što olakšava razvoj aplikacije.}
+    Naša grupa je za projekt na predmetu Programsko inženjerstvo (ak.god. 2023./2024.) odabrala React sustav za potrebe frontenda. Odabrali smo React zbog njegove jednostavne i moćne arhitekture koja omogućuje brz i održiv razvoj web aplikacija. React se temelji na principu komponenata, što znači da aplikaciju gradimo kao skup neovisnih dijelova sučelja, svaki s vlastitom logikom i stilovima. Time svaka komponenta postaje ponovno upotrebljiva i lako zamjenjiva što olakšava razvoj aplikacije.
     
-    \textit{Za backend smo odabrali raditi u programskom jeziku Java i to u Spring Boot-u. Koristili smo Maven alat za izgradnju programskog koda. Spring Boot nam se svidio zbog dvije karakteristike: inverzija kontrole gdje sam Spring Boot kontrolira izvršavanje programskog koda te injektiranje objekata o kojima ovisi rad koda. Neke od karakteristika Spring Boot-a su: unaprijed pripremljene funkcionalnosti, nema generiranja klasa i koda već se koriste unaprijed definirane biblioteke. U svakom slučaju Spring Boot zna dosta olakšati programeru posao. Također olakšava i spajanje na bazu podataka o kojoj će biti više riječi u sljedećoj cjelini.}
+    Za backend smo odabrali raditi u programskom jeziku Java i to u Spring Boot-u. Koristili smo Maven alat za izgradnju programskog koda. Spring Boot nam se svidio zbog dvije karakteristike: inverzija kontrole gdje sam Spring Boot kontrolira izvršavanje programskog koda te injektiranje objekata o kojima ovisi rad koda. Neke od karakteristika Spring Boot-a su: unaprijed pripremljene funkcionalnosti, nema generiranja klasa i koda već se koriste unaprijed definirane biblioteke. U svakom slučaju Spring Boot zna dosta olakšati programeru posao. Također olakšava i spajanje na bazu podataka o kojoj će biti više riječi u sljedećoj cjelini.
     
-    \textit{Razvojno okruženje koje smo koristili zavisilo je od člana do člana ekipe, neki su radili u Eclipse-u, neki u IntelliJ. Koristili smo GitHub sustav za upravljanje verzijama programske potpore te TeXstudio za pisanje dokumentacije.}
+    Razvojno okruženje koje smo koristili zavisilo je od člana do člana ekipe, neki su radili u Eclipse-u, neki u IntelliJ. Koristili smo GitHub sustav za upravljanje verzijama programske potpore te TeXstudio za pisanje dokumentacije.
     
     \begin{figure}[H]
     	\includegraphics[scale=0.5]{slike/SpringBoot.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
@@ -35,18 +35,40 @@
 		
 
 				
-		\section{Baza podataka}
+	\section{Baza podataka}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-		\textit{Za bazu podataka odabrali smo SQL vrstu baze podataka točnije MySql software zbog svoje jednostavnosti i kvalitetne usluge. MySql je besplatni open-source sistem za upravljanje bazama podataka. Također ga podržava velika i aktivna zajednica korisnika što nam omogućava brz pronalazak potrebnih resursa, tutorijala i riješenja za moguće probleme. Što se performanse tiče, MySql je poznat po brzini i efikasnosti te se koristi kako za manje web aplikacije tako i za velike poslovne sisteme. Lako se integrira u različite programske jezike i razvojne okoline.}
+		\hspace*{2em}
+     	Za bazu podataka odabrali smo SQL vrstu baze podataka, točnije MySql software zbog svoje jednostavnosti i kvalitetne usluge. MySql je besplatni open-source sistem za upravljanje bazama podataka. Također ga podržava velika i aktivna zajednica korisnika što nam omogućava brz pronalazak potrebnih resursa, tutorijala i rješenja za moguće probleme. Što se performanse tiče, MySql je poznat po brzini i efikasnosti te se koristi kako za manje web aplikacije tako i za velike poslovne sisteme. Lako se integrira u različite programske jezike i razvojne okoline.
+     	
+     	\begin{figure}[H]
+     		\includegraphics[scale=1]{slike/MySql.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+     		\centering
+     		\caption{MySql}
+     		\label{fig:promjene}
+     	\end{figure}
+     	
 		
 		
 			\subsection{Opis tablica}
 			
 				
-				
-				\textit{Glavni cilj: Baza podataka osigurava pregled i pohranu podataka o svim faktorima procesa bookiranja termina u medicinsko rehabilitacijskoj klinici. Kako bi se osiguralo pravilno rukovanje bazom podataka potrebne su pojedine tablice tj. entiteti od kojih svaki sadrži svoje atribute te odnosi među pojedinim entitetima koji se u struci nazivaju „relationships“. Entiteti: Našu bazu podataka tvori nekoliko entiteta, preciznije: User (korisnik), Appointment (dogovoreni sastanak), Equipment (oprema) te Room (prostorija/radna sala). Entitet User: Entitet User je najbitniji entitet jer sadrži podatke o svim djelatnicima medicinsko rehabilitacijske klinike, pacijentima i ostalim djelatnicima. Za ostvarivanje funkcionalnosti potrebni su sljedeći atributi: idUser(primary key), imeUser, prezime, oib, username, password, email, datum rođenja, spol, start date(unosi se pri stvaranju tj kad je napravljen korisnički račun), te na kraju enum koji specijalizira entitet Usera na jedno od dvije opcije. To su Patient ili Employee. Employee-u se dalje bilježi status, tj. gleda li se na njega kao aktivnog zaposlenika, neaktivnog ili admin. Entitet Appointment: Entitet Appointment prikazuje sve dogovorene sastanke te omogućava uspješno dogovaranje novih bez da dođe do nekih problema kao što su kolizije ili nedostatak opreme. Atributi u entitetu Appointment su: idApp(primary key), vrijeme termina (od kad do kad je zakazan termin), user, opis termina, oprema i prostorija. Entitet Equipment: Entitet Equipment sadrži podatke o svoj opremi. Osigurava da ne dođe do problema rezerviranja više opreme nego što je dostupno, na primjer pacijent A je rezervirao zadnje štake te pacijent B u istom terminu nema pristup tom komadu opreme. Atributi koji čine entitet Equipment su: idEqu(primary key), ime, opis i status(radi li ili ne). Entitet Prostorija: Entitet Prostorija prikazuje podatke o mogućim prostorijama za rehabilitaciju. Osigurava da određena prostorija ne može biti zauzeta više puta odjednom. Atributi koji sačinjavaju entitet Prostorija su: idPro(primary key), ime i kapacitet. Veze (relationships) među entitetima: Veze među entitetima osiguravanju pravilnu i predviđenu funkcionalnost cijelog sustava (web aplikacije), povezuju sve entitete na način koji tvori logiku povezanosti. Uspostavljene su tri veze u našoj bazi podataka: User  Appointment. Veza User - Appointment je one to many(jedan na više, 1 - N) tip veze. Jedan User može zatražiti više sastanaka. Appointment - Prostorija. Veza Appointment  Prostorija je one to many(jedan na više, 1 - N) tip veze. Više sastanaka se može održavati u isto vrijeme u istoj prostoriji. Prostorija - Equipment. Veza Prostorija  Equipment je one to many(jedan na više, 1 - N) tip veze. Više opreme se može držati u jednoj prostoriji.}
+				\hspace*{2em}
+				Glavni cilj: Baza podataka osigurava pregled i pohranu podataka o svim faktorima procesa zauzimanja termina u medicinsko rehabilitacijskoj klinici. Kako bi se osiguralo pravilno rukovanje bazom podataka potrebne su pojedine tablice tj. entiteti od kojih svaki sadrži svoje atribute te odnose među pojedinim entitetima koji se u struci nazivaju „relationships“. Entiteti: Našu bazu podataka tvori nekoliko entiteta, preciznije: User (korisnik), Appointment (dogovoreni sastanak), Equipment (oprema) te Room (prostorija/radna sala). 
+				\newline
+				\hspace*{2em}
+				Entitet User: To je najbitniji entitet jer sadrži podatke o svim djelatnicima medicinsko rehabilitacijske klinike, pacijentima i ostalim djelatnicima. Za ostvarivanje funkcionalnosti potrebni su sljedeći atributi: idUser(primary key), imeUser, prezime, oib, username, password, email, datum rođenja, spol, start date(unosi se pri stvaranju tj. kad je napravljen korisnički račun) te na kraju enum koji specijalizira entitet Usera na jedno od dvije opcije. To su Patient ili Employee. Employee-u se dalje bilježi status, tj. gleda li se na njega kao aktivnog zaposlenika, neaktivnog ili admin.
+				\newline
+				\hspace*{2em}
+				Entitet Appointment: Entitet Appointment prikazuje sve dogovorene sastanke te omogućava uspješno dogovaranje novih bez da dođe do nekih problema kao što su kolizije ili nedostatak opreme. Atributi u entitetu Appointment su: idApp(primary key), vrijeme termina (od kad do kad je zakazan termin), user, opis termina, oprema i prostorija. 
+				\newline
+				\hspace*{2em}
+				Entitet Equipment: Entitet Equipment sadrži podatke o svoj opremi. Osigurava da ne dođe do problema rezerviranja više opreme nego što je dostupno, na primjer pacijent A je rezervirao zadnje štake te pacijent B u istom terminu nema pristup tom komadu opreme. Atributi koji čine entitet Equipment su: idEqu(primary key), ime, opis i status(radi li ili ne). 
+				\newline
+				\hspace*{2em}
+				Entitet Prostorija: Entitet Prostorija prikazuje podatke o mogućim prostorijama za rehabilitaciju. Osigurava da određena prostorija ne može biti zauzeta više puta odjednom. Atributi koji sačinjavaju entitet Prostorija su: idPro(primary key), ime i kapacitet. 
+				\newline
+				\hspace*{2em}
+				Veze (relationships) među entitetima: Veze među entitetima osiguravanju pravilnu i predviđenu funkcionalnost cijelog sustava (web aplikacije), povezuju sve entitete na način koji tvori logiku povezanosti. Uspostavljene su tri veze u našoj bazi podataka: User  Appointment. Veza User - Appointment je one to many(jedan na više, 1 - N) tip veze. Jedan User može zatražiti više sastanaka. Appointment - Prostorija. Veza Appointment  Prostorija je one to many(jedan na više, 1 - N) tip veze. Više sastanaka se može održavati u isto vrijeme u istoj prostoriji. Prostorija - Equipment. Veza Prostorija  Equipment je one to many(jedan na više, 1 - N) tip veze. Više opreme se može držati u jednoj prostoriji.
 				
 				
 				\begin{longtblr}[
@@ -54,7 +76,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{korisnik - User tablica}} \\ \hline[3pt]
@@ -76,7 +98,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2.5,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{prostorija - Prostorija tablica}} \\ \hline[3pt]
@@ -91,7 +113,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2.5,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{patient - Patient tablica}} \\ \hline[3pt]
@@ -104,7 +126,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2.5,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{employee - Employee tablica}} \\ \hline[3pt]
@@ -118,7 +140,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2.5,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{appointment - Appointment tablica}} \\ \hline[3pt]
@@ -136,7 +158,7 @@
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[2,l]|X[2,l]|X[6,l]|}, 
+						colspec={|X[2.5,l]|X[3.5,l]|X[6,l]|}, 
 						rowhead = 1,
 					}
 					\hline \SetCell[c=3]{c}{\textbf{equipment - Equipment tablica}} \\ \hline[3pt]
@@ -147,10 +169,10 @@
 					idPro & INT & Jedinstveni identifikator prostorije \\ \hline
 				\end{longtblr}
 				
-				
+			\newpage
 			
 			\subsection{Dijagram baze podataka}
-				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
+				 U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".
 				
 				\begin{figure}[H]
 					\includegraphics[scale=0.14]{slike/bp_rel.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
