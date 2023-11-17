@@ -5,16 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/UpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/jwt_security.uHscVQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/jwt_security.uHscVQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/jwt_security.uHscVQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/jwt_security.uHscVQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9760e805-5389-4e78-af09-dd02f3b4252f/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/dto/EmployeeDTO$EmployeeDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/dto/EmployeeDTO$EmployeeDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/dto/EmployeeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/dto/EmployeeDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/EmployeeRequest$EmployeeRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/EmployeeRequest$EmployeeRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/EmployeeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/EmployeeRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest$RegisterRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest$RegisterRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/EmployeeResponse$EmployeeResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/EmployeeResponse$EmployeeResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/EmployeeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/EmployeeResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/PromotionResponse$PromotionResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/PromotionResponse$PromotionResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/PromotionResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/response/PromotionResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/serivce/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/serivce/EmployeeService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -53,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v2dev",
+    "git-widget-placeholder": "finalniDev",
     "last_opened_file_path": "C:/Users/npral/OneDrive/Radna površina/SpringPokusaj/spring-boot-3-jwt-security-main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,6 +106,7 @@
       <workItem from="1699987632667" duration="1429000" />
       <workItem from="1699989721772" duration="11416000" />
       <workItem from="1700081588830" duration="7706000" />
+      <workItem from="1700242305644" duration="2764000" />
     </task>
     <servers />
   </component>
