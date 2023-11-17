@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  16 NOV 2023 01:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  17 NOV 2023 03:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2337,15 +2337,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 \openout2 = `Literatura.aux'.
 
  (./Literatura.tex
-Overfull \hbox (8.89293pt too wide) in paragraph at lines 12--13
+Overfull \hbox (8.89293pt too wide) in paragraph at lines 7--8
 []\OT1/jkp/m/n/12 Programsko in[]zenjerstvo, FER ZE-MRIS, [][]$\OT1/jkptt/m/n/1
 2 http : / / www . fer . hr / predmet / proinz$[][] 
  []
 
 
-Overfull \hbox (7.06pt too wide) in paragraph at lines 18--19
-\OT1/jkp/m/n/12 ter En-gi-ne-ering, Rut-gers Uni-ver-sity, [][]$\OT1/jkptt/m/n/
-12 http : / / www . ece . rutgers . edu / []marsic /
+Overfull \hbox (18.10034pt too wide) in paragraph at lines 11--12
+[]\OT1/jkp/m/n/12 Nikolina Frid, Alan Jovi[]c, "Mo-de-li-ra-nje pro-gram-ske po
+t-pore UML-dijagramima",
+ []
+
+
+Overfull \hbox (7.42879pt too wide) in paragraph at lines 13--15
+\OT1/jkp/m/n/12 ciju ser-visa SOAP i REST", [][]$\OT1/jkptt/m/n/12 https : / / 
+repozitorij . foi . unizg . hr / islandora /
  []
 
 )
@@ -2425,7 +2431,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
  []
 
@@ -2457,13 +2463,13 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17834 strings out of 474397
- 314659 string characters out of 5754184
- 2063036 words of memory out of 5000000
- 39372 multiletter control sequences out of 15000+600000
- 619504 words of font info for 165 fonts, out of 8000000 for 9000
+ 17991 strings out of 474397
+ 320618 string characters out of 5754184
+ 2071036 words of memory out of 5000000
+ 39529 multiletter control sequences out of 15000+600000
+ 620230 words of font info for 165 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,13n,115p,1499b,1154s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,13n,115p,1499b,1159s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
@@ -2474,7 +2480,7 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkptt
 mn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (51 pages, 1537075 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (51 pages, 1538945 bytes).
 PDF statistics:
  664 PDF objects out of 1000 (max. 8388607)
  563 compressed objects within 6 object streams
