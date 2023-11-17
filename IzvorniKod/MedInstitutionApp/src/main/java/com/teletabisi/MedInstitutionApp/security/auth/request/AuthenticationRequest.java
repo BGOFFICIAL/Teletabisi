@@ -1,4 +1,4 @@
-package com.teletabisi.MedInstitutionApp.security.auth;
+package com.teletabisi.MedInstitutionApp.security.auth.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class UpdateRequest {
-    private String email;
+@AllArgsConstructor
+public class AuthenticationRequest {
     private String username;
     private String password;
+
 }

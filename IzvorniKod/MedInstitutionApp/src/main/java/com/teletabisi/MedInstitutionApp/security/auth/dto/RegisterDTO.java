@@ -1,4 +1,4 @@
-package com.teletabisi.MedInstitutionApp.security.auth;
+package com.teletabisi.MedInstitutionApp.security.auth.dto;
 
 
 import com.opencsv.bean.CsvBindByName;
