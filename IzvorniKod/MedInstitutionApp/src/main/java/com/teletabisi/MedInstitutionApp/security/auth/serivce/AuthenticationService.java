@@ -3,10 +3,10 @@ package com.teletabisi.MedInstitutionApp.security.auth.serivce;
 import com.teletabisi.MedInstitutionApp.entity.Role;
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.repository.UserRepository;
-import com.teletabisi.MedInstitutionApp.security.auth.AuthenticationRequest;
-import com.teletabisi.MedInstitutionApp.security.auth.AuthenticationResponse;
-import com.teletabisi.MedInstitutionApp.security.auth.RegisterRequest;
-import com.teletabisi.MedInstitutionApp.security.auth.UpdateRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.request.AuthenticationRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.response.AuthenticationResponse;
+import com.teletabisi.MedInstitutionApp.security.auth.request.RegisterRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.request.UpdateRequest;
 import com.teletabisi.MedInstitutionApp.security.jwt.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,6 +37,8 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
+                .gender(request.getGender())
+                .dateOfBirth(request.getDateOfBirth())
                 .StartDate(LocalDate.now())
                 .build();
 
@@ -63,6 +65,7 @@ public class AuthenticationService {
     public AuthenticationResponse update(UpdateRequest request){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.print(authentication);
         if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)){
             throw new IllegalStateException("User not authenticated");
         }

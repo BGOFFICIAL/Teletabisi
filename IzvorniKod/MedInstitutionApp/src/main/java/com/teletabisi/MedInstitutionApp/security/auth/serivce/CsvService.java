@@ -1,6 +1,6 @@
 package com.teletabisi.MedInstitutionApp.security.auth.serivce;
 
-import com.teletabisi.MedInstitutionApp.security.auth.RegisterDTO;
+import com.teletabisi.MedInstitutionApp.security.auth.dto.RegisterDTO;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
