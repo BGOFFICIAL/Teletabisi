@@ -172,7 +172,6 @@
 			\newpage
 			
 			\subsection{Dijagram baze podataka}
-				 U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".
 				
 				\begin{figure}[H]
 					\includegraphics[scale=0.14]{slike/bp_rel.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
@@ -193,11 +192,24 @@
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
+			Na slici 4.6 prikazani su razredi kojima se predstavlja struktura baze podataka u našoj aplikaciji te su razredi User i Appointment entiteti u bazi podataka. Implementirane metode služe za komunikaciju s bazom podataka te po potrebi izvršavaju pisanje, brisanje ili dohvaćanje podataka iz same baze. Razred User predstavlja svakog korisnika aplikacije. Kako bi korisnik mogao upotrebljavati pogodnosti koje aplikacija nudi, on se najprije mora registrirati u sustav koristeći osobne podatke: ime, prezime, korisničko ime, lozinka, email, oib, spol te datum rođenja. Razred User također koristi i enumeraciju Role koja predstavlja ulogu korisnika u sustavu. Razred User također može zakazati i otkazati termin terapije, koju predstavlja razred Appointment. Razred Appointment sadrži podatke o samome terminu terapije te ga samo korisnici s pripadajućom ulogom EMPLOYEE mogu otkazati ili stvoriti.
+		
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/modeli}
+				\centering
+				\caption{Dijagram razreda - Modeli}
+			\end{figure}
 			
-			\textbf{\textit{dio 1. revizije}}\\
+			\newpage
 			
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
+			Na slici 4.7 prikazani su razredi kojima se povezuje Backend i Frontend dio same aplikacije. Razred AuthenticationController bavi se adekvatnom provjerom informacija koje korisnik unosi te omogućava njegovu registraciju, autentikaciju, izmjenu osobnih podataka poput lozinke, korisničkog imena ili emaila ako ih je zaboravio. Također, taj razred omogućava Adminu da dodaje nove zaposlenike, uklanja ljude s kojima više nema radnog odnosa, dobiva popis svih zaposlenika te mogućnost njegove filtracije s određenim parametrima. Razred AppController služi za povezivanje s frontend dijelom aplikacije i prikazivanje odabranih stranica, npr. stranica za registraciju, stranica za prijavu te provjerava valjanost podataka prilikom prijave i registracije.
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/kontroleri}
+				\centering
+				\caption{Dijagram razreda - Kontroleri}
+			\end{figure}
+			
 			
 			\textbf{\textit{dio 2. revizije}}\\			
 			
