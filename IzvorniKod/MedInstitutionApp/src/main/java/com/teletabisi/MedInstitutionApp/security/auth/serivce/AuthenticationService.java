@@ -65,6 +65,7 @@ public class AuthenticationService {
     public AuthenticationResponse update(UpdateRequest request){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.print(authentication);
         if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)){
             throw new IllegalStateException("User not authenticated");
         }

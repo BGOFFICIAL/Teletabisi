@@ -1,8 +1,6 @@
 package com.teletabisi.MedInstitutionApp.security.auth;
 
-import com.teletabisi.MedInstitutionApp.security.auth.request.RegisterRequest;
-import com.teletabisi.MedInstitutionApp.security.auth.request.AuthenticationRequest;
-import com.teletabisi.MedInstitutionApp.security.auth.request.UpdateRequest;
+
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.security.auth.dto.EmployeeDTO;
 import com.teletabisi.MedInstitutionApp.security.auth.request.*;
@@ -65,6 +63,7 @@ public class AuthenticationController {
 
     @PostMapping("/add/employee")
     public ResponseEntity<PromotionResponse> promotion(@RequestBody PromotionRequest request) {
+        System.out.print(request.getUsername());
         if (request != null && request.getUsername() != null) {
             User promotedUser = promotionService.promoteUser(request.getUsername());
 

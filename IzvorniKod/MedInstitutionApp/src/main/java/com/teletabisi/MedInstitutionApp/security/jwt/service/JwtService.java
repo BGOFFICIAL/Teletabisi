@@ -40,11 +40,15 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
-    }
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("roles",userDetails.getAuthorities());
 
+
+        return generateToken(claims,userDetails);
+    }
+    private static final long EXPIRATION_TIME_MS = 1000L * 60L * 60L * 24L*30L *6L ;
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails){
-        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis())).setExpiration(new Date(System.currentTimeMillis() + 1000 *60 *5)).signWith(getSignInKey(), SignatureAlgorithm.HS256).compact();
+        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis())).setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_MS)).signWith(getSignInKey(), SignatureAlgorithm.HS256).compact();
     }
 
     public boolean isTokenValid(String token,UserDetails userDetails){
