@@ -34,8 +34,48 @@ public class PromotionService {
             User user = this.repo.findFirstByUsername(username).orElse(null);
 
             if(user != null){
-                if(user.getRole() == Role.EMPLOYEE){
+                if(user.getRole() == Role.ADMINEMPLOYEE || user.getRole() == Role.EMPLOYEE || user.getRole() == Role.USER){
                     user.setRole(Role.INACTIVE);
+                    return this.repo.save(user);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: Promocija employee-a u adminemployee
+     * @param username
+     * @return
+     */
+    public User promoteEmployee(String username){
+        if(username != null){
+            User user = this.repo.findFirstByUsername(username).orElse(null);
+
+            if(user != null){
+                if(user.getRole() == Role.EMPLOYEE) {
+                    user.setRole(Role.ADMINEMPLOYEE);
+                    return this.repo.save(user);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: Degradacija adminemployee-a u employee-a
+     * @param username
+     * @return
+     */
+    public User demoteEmployee(String username){
+        if(username != null){
+            User user = this.repo.findFirstByUsername(username).orElse(null);
+
+            if(user != null){
+                if(user.getRole() == Role.ADMINEMPLOYEE){
+                    user.setRole(Role.EMPLOYEE);
                     return this.repo.save(user);
                 }
             }

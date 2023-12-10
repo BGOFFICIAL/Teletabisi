@@ -26,7 +26,7 @@ public class EmployeeService {
 
     public static List<EmployeeDTO> findAllEmployees(){
         List<EmployeeDTO> employees = repo.findAll().stream()
-                .filter(employee-> employee.getRole() == Role.EMPLOYEE)
+                .filter(employee-> employee.getRole() == Role.EMPLOYEE || employee.getRole() == Role.ADMINEMPLOYEE)
                 .map(employee-> new EmployeeDTO(employee.getFirstname(), employee.getLastname(), employee.getEmail(), employee.getDateOfBirth(), employee.getStartDate()))
                 .toList();
         if(employees.isEmpty()){
@@ -53,7 +53,7 @@ public class EmployeeService {
                     .filter(employee-> (employee.getGender().equals(gender)) &&
                             (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth))) &&
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
-                    && (employee.getRole() == Role.EMPLOYEE))
+                    && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -67,7 +67,7 @@ public class EmployeeService {
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
                     .filter(employee-> (employee.getGender().equals(gender)) &&
                             (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth)))
-                    && (employee.getRole() == Role.EMPLOYEE))
+                    && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -79,7 +79,7 @@ public class EmployeeService {
         }
         if(gender != null && dayOfBirth == null && startDate == null){
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
-                    .filter(employee-> (employee.getGender().equals(gender)) && (employee.getRole() == Role.EMPLOYEE))
+                    .filter(employee-> (employee.getGender().equals(gender)) && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -93,7 +93,7 @@ public class EmployeeService {
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
                     .filter(employee-> (employee.getGender().equals(gender)) &&
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
-                    && (employee.getRole() == Role.EMPLOYEE))
+                    && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -105,7 +105,8 @@ public class EmployeeService {
         }
         if(gender == null && dayOfBirth != null && startDate == null){
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
-                    .filter(employee-> (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth))) && (employee.getRole() == Role.EMPLOYEE))
+                    .filter(employee-> (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth))) && ((employee.getRole() == Role.EMPLOYEE)
+                    || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -119,7 +120,7 @@ public class EmployeeService {
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
                     .filter(employee-> (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth))) &&
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
-                            && (employee.getRole() == Role.EMPLOYEE))
+                            && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),
@@ -132,7 +133,7 @@ public class EmployeeService {
         if(gender == null && dayOfBirth == null && startDate != null){
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
                     .filter(employee-> formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
-                            && (employee.getRole() == Role.EMPLOYEE))
+                            && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
                             employee.getFirstname(),
                             employee.getLastname(),

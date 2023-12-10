@@ -1,5 +1,6 @@
 package com.teletabisi.MedInstitutionApp.security.auth;
 
+import com.teletabisi.MedInstitutionApp.security.auth.dto.UserDTO;
 import com.teletabisi.MedInstitutionApp.security.auth.request.RegisterRequest;
 import com.teletabisi.MedInstitutionApp.security.auth.request.AuthenticationRequest;
 import com.teletabisi.MedInstitutionApp.security.auth.request.UpdateRequest;
@@ -9,10 +10,8 @@ import com.teletabisi.MedInstitutionApp.security.auth.request.*;
 import com.teletabisi.MedInstitutionApp.security.auth.response.AuthenticationResponse;
 import com.teletabisi.MedInstitutionApp.security.auth.response.EmployeeResponse;
 import com.teletabisi.MedInstitutionApp.security.auth.response.PromotionResponse;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.CsvService;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.AuthenticationService;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.EmployeeService;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.PromotionService;
+import com.teletabisi.MedInstitutionApp.security.auth.response.UserResponse;
+import com.teletabisi.MedInstitutionApp.security.auth.serivce.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -117,6 +116,91 @@ public class AuthenticationController {
             if(filteredEmployeeList != null && !filteredEmployeeList.isEmpty()){
                 EmployeeResponse response = EmployeeResponse.builder()
                         .employeeList(filteredEmployeeList)
+                        .build();
+                return ResponseEntity.ok(response);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: POST - employee -> adminemployee
+     * @param request
+     * @return
+     */
+    @PostMapping("/add/adminemployee")
+    public ResponseEntity<PromotionResponse> promotionEmployee(@RequestBody PromotionRequest request) {
+        System.out.print(request.getUsername());
+        if (request != null && request.getUsername() != null) {
+            User promotedUser = promotionService.promoteEmployee(request.getUsername());
+
+            if (promotedUser != null) {
+                PromotionResponse response = PromotionResponse.builder()
+                        .name(promotedUser.getFirstname())
+                        .surname(promotedUser.getLastname())
+                        .email(promotedUser.getEmail())
+                        .date_of_birth(promotedUser.getDateOfBirth())
+                        .start_date(promotedUser.getStartDate())
+                        .gender(promotedUser.getGender())
+                        .build();
+
+                return ResponseEntity.ok(response);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: POST - adminemployee -> employee
+     * @param request
+     * @return
+     */
+    @PostMapping("/remove/adminemployee")
+    public ResponseEntity<String> demotionEmployee(@RequestBody PromotionRequest request) {
+        if (request != null && request.getUsername() != null) {
+            User demotedUser = promotionService.demoteEmployee(request.getUsername());
+
+            if (demotedUser != null) {
+                return ResponseEntity.ok("Djelatnik postaje employee");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: selekcija usera (pacijenata)
+     * @return
+     */
+    @GetMapping("/return/user")
+    public ResponseEntity<UserResponse> users(){
+        List<UserDTO> userList = UserService.findAllUsers();
+
+        if(userList != null && !userList.isEmpty()){
+            UserResponse response = UserResponse.builder()
+                    .userList(userList)
+                    .build();
+            return ResponseEntity.ok(response);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    /**
+     * Autor: Neven Pralas;
+     * Cilj: filtriranje usera (pacijenata)
+     * @param request
+     * @return
+     */
+    @PostMapping("/filter/users")
+    public ResponseEntity<UserResponse> filteredUsers(@RequestBody UserRequest request){
+        if (request != null) {
+            List<UserDTO> filteredUserList = UserService.filterAllUsers(request.getGender(), request.getDateOfBirth() , request.getStartDate());
+
+            if(filteredUserList != null && !filteredUserList.isEmpty()){
+                UserResponse response = UserResponse.builder()
+                        .userList(filteredUserList)
                         .build();
                 return ResponseEntity.ok(response);
             }
