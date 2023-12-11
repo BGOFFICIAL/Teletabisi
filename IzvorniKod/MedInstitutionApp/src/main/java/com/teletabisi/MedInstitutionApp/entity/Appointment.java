@@ -2,14 +2,11 @@ package com.teletabisi.MedInstitutionApp.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
+public class Appointment {
 
-public class Appointment{
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String status;
 

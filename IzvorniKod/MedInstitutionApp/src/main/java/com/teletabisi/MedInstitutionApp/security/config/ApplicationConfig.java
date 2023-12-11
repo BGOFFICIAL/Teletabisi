@@ -18,9 +18,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository repository;
+
     @Bean
     public UserDetailsService userDetailsService() {
-            return username -> repository.findFirstByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return username -> repository.findFirstByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean
@@ -31,11 +32,11 @@ public class ApplicationConfig {
         return authProvider;
     }
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

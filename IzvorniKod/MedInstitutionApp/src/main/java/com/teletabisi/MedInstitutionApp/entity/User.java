@@ -1,44 +1,43 @@
 package com.teletabisi.MedInstitutionApp.entity;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Date;
-import java.util.Objects;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-
+import java.util.Objects;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements UserDetails {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate StartDate;
 
     @NotNull(message = "Unesi ime")
     private String firstname;
+
     @NotNull(message = "Unesi prezime")
     private String lastname;
+
     @Column(unique = true)
     @NotNull(message = "Unesi korisničko ime")
     private String username;
@@ -47,8 +46,10 @@ public class User implements UserDetails {
     @Email(message = "Unesi ispravnu email adresu")
     @NotNull(message = "Unesi email adresu")
     private String email;
+
     @NotNull(message = "Unesi lozinku")
     private String password;
+
     @Column(unique = true)
     @NotNull(message = "Unesi OIB")
     @Size(min = 11, max = 11, message = "OIB mora imati 11 znamenki")
@@ -56,11 +57,12 @@ public class User implements UserDetails {
 
     @NotNull(message = "Označi spol")
     private String gender;
+
     @NotNull(message = "Označi datum rođenja")
     private Date dateOfBirth;
+
     @Enumerated(EnumType.STRING)
     private Role role;
-
 
     public String getEmail() {
         return email;
@@ -134,7 +136,6 @@ public class User implements UserDetails {
         StartDate = startDate;
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -181,8 +182,8 @@ public class User implements UserDetails {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
-            User that = (User)o;
-            return Objects.equals(this.id, that.id) &&  Objects.equals(this.firstname, that.firstname) &&
+            User that = (User) o;
+            return Objects.equals(this.id, that.id) && Objects.equals(this.firstname, that.firstname) &&
                     Objects.equals(this.lastname, that.lastname) && Objects.equals(this.username, that.username) &&
                     Objects.equals(this.email, that.email) && Objects.equals(this.password, that.password) &&
                     Objects.equals(this.OIB, that.OIB) && Objects.equals(this.gender, that.gender) &&
@@ -206,6 +207,4 @@ public class User implements UserDetails {
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
-
-
 }
