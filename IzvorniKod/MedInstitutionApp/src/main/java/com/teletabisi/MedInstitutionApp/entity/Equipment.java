@@ -14,13 +14,18 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String description;
+
     private String name;
 
-    private String description;
 
     private String status;
 
+    @Column(name="instance_number")
+    private int instanceNumber;
+
     @ManyToOne(optional = false)
+    @JoinColumn(name="room_id")
     private Room room;
 
     public Long getId() {
@@ -61,5 +66,13 @@ public class Equipment {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public int getInstanceNumber() {
+        return instanceNumber;
+    }
+
+    public void setInstanceNumber(int instanceNumber) {
+        this.instanceNumber = instanceNumber;
     }
 }
