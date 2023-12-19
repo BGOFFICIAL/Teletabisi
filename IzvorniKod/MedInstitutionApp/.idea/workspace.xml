@@ -5,39 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/kapacitetSobe,imeSobe.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/reading/ReadingCSV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/oprema.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/entity/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/entity/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/entity/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/entity/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/EquipmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/EquipmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/Equipment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User$UserBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/EmployeeRequest$EmployeeRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/EmployeeRequest$EmployeeRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/EmployeeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/EmployeeRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/UserRequest$UserRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/UserRequest$UserRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/UserRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/request/UserRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse$EmployeeResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse$EmployeeResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/PromotionResponse$PromotionResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/PromotionResponse$PromotionResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/PromotionResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/PromotionResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse$UserResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse$UserResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO$EmployeeDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO$EmployeeDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO$UserDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO$UserDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest$RegisterRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest$RegisterRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/request/RegisterRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/reading/ReadingCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/reading/ReadingCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oprema.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/oprema.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +115,7 @@
       <workItem from="1702986295437" duration="2093000" />
       <workItem from="1702996435700" duration="3416000" />
       <workItem from="1703004639416" duration="1975000" />
-      <workItem from="1703023169253" duration="937000" />
+      <workItem from="1703023169253" duration="2044000" />
     </task>
     <servers />
   </component>

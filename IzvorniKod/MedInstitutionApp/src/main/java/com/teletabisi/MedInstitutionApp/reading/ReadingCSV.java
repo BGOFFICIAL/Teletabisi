@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
 autor: Neven Pralas
@@ -77,9 +79,26 @@ public class ReadingCSV implements CommandLineRunner {
         }
 
         int i = 0;
-        for(Equipment equipment: readingsE){
+        for(Equipment equipment: readingsE) {
             equipment.setRoom(roomRepository.findByName(roomNames.get(i)).orElse(null));
             i++;
+        }
+
+        // Dodjela instance_number-a
+        Map<String, Integer> instanceCountMap = new HashMap<>();
+
+
+        for (Equipment equipment : readingsE) {
+            String equipmentName = equipment.getName();
+
+            if (instanceCountMap.containsKey(equipmentName)) {
+                int instanceNumber = instanceCountMap.get(equipmentName) + 1;
+                equipment.setInstanceNumber(instanceNumber);
+                instanceCountMap.put(equipmentName, instanceNumber);
+            } else {
+                equipment.setInstanceNumber(1);
+                instanceCountMap.put(equipmentName, 1);
+            }
         }
 
         if(equipmentRepository.count()==0) {equipmentRepository.saveAll(readingsE);}
