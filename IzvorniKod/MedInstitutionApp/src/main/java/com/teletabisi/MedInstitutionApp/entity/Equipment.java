@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 public class Equipment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipment_seq")
+    @SequenceGenerator(name = "equipment_seq", sequenceName = "equipment_seq", initialValue = 0, allocationSize = 1)
     private Long id;
 
     private String description;
 
     private String name;
-
 
     private String status;
 

@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_seq")
+    @SequenceGenerator(name = "room_seq", sequenceName = "room_seq", initialValue = 0, allocationSize = 1)
     private Long id;
 
     @Column(unique = true)

@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
 
     Optional<Equipment> findByNameAndInstanceNumber(String name, int instanceNumber);
+
+    Equipment getEquipmentById(long l);
 }

@@ -19,10 +19,10 @@ public class Appointment {
     @ManyToOne(optional = false)
     private User user;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Equipment equipment;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Room room;
 
     public Appointment() {
