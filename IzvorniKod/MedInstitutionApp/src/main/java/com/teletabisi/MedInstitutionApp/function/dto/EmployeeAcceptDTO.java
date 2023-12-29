@@ -10,6 +10,5 @@ import lombok.*;
 @Setter
 @ToString
 public class EmployeeAcceptDTO {
-    private Long roomId;
-    private Long equipmentId;
+    private String equipmentName;
 }

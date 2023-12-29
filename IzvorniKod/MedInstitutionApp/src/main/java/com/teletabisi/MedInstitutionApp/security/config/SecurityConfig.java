@@ -23,12 +23,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) -> authorize.requestMatchers("api/v1/auth/**").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests((authorize) ->
+                        authorize
+                                .requestMatchers("/api/v1/auth/appointment/control").hasAnyRole("EMPLOYEE", "ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("/api/v1/auth/appointment/accept/**").hasAnyRole("EMPLOYEE", "ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("/api/v1/auth/appointment/reject/**").hasAnyRole("EMPLOYEE", "ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("/api/v1/auth/appointment/new-appointment-date/**").hasAnyRole("EMPLOYEE", "ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("/api/v1/auth/appointment/delete/**").hasAnyRole("EMPLOYEE", "ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("/api/v1/auth/appointment/administration/**").hasAnyRole("ADMIN", "ADMINEMPLOYEE")
+                                .requestMatchers("api/v1/auth/**").permitAll()
+                                .anyRequest().authenticated())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
 }

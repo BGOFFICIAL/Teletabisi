@@ -2,7 +2,7 @@ package com.teletabisi.MedInstitutionApp.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "appointment")
@@ -12,7 +12,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date appointmentDate;
+    private LocalDateTime appointmentTime;
 
     private String description;
 
@@ -28,12 +28,12 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Date getAppointmentDate() {
-        return appointmentDate;
+    public LocalDateTime getAppointmentTime() {
+        return appointmentTime;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setAppointmentTime(LocalDateTime appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     public String getDescription() {

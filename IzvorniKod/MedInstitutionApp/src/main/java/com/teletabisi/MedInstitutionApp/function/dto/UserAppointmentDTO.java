@@ -2,6 +2,7 @@ package com.teletabisi.MedInstitutionApp.function.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,5 +14,5 @@ import java.util.Date;
 @ToString
 public class UserAppointmentDTO {
     private String description;
-    private Date date;
+    private LocalDateTime dateTime;
 }
