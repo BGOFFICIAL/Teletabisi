@@ -34,7 +34,7 @@ public class ReadingCSV implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<Room> readings = new CsvToBeanBuilder<Room>(new FileReader("MedInstitutionApp/src/kapacitetSobe,imeSobe.csv"))
+        List<Room> readings = new CsvToBeanBuilder<Room>(new FileReader("src/kapacitetSobe,imeSobe.csv"))
                 .withType(Room.class).build().parse();
 
         if(roomRepository.count()==0)  {roomRepository.saveAll(readings);}
@@ -59,10 +59,10 @@ public class ReadingCSV implements CommandLineRunner {
         }
 
 
-        List<Equipment> readingsE = new CsvToBeanBuilder<Equipment>(new FileReader("MedInstitutionApp/src/oprema.csv"))
+        List<Equipment> readingsE = new CsvToBeanBuilder<Equipment>(new FileReader("src/oprema.csv"))
                 .withType(Equipment.class).build().parse();
 
-        String csvFilePath = "MedInstitutionApp/src/oprema.csv";
+        String csvFilePath = "src/oprema.csv";
 
         List<String> roomNames = new ArrayList<>();
 
@@ -121,6 +121,14 @@ public class ReadingCSV implements CommandLineRunner {
                     equipmentRepository.delete(equipments);
                 }
             }
+        }
+
+        for(Equipment equipment: equipmentRepository.findAll()){
+            Room room1 = equipment.getRoom();
+
+            room1.setCapacity(room1.getCapacity()+1);
+
+            roomRepository.save(room1);
         }
 
     }
