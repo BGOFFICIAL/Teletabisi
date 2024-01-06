@@ -123,13 +123,23 @@ public class ReadingCSV implements CommandLineRunner {
             }
         }
 
-        for(Equipment equipment: equipmentRepository.findAll()){
-            Room room1 = equipment.getRoom();
 
-            room1.setCapacity(room1.getCapacity()+1);
+        boolean prviPuta = true;
 
-            roomRepository.save(room1);
+        for(Room room: roomRepository.findAll()){
+            if(room.getCapacity()>0) prviPuta = false;
         }
 
+        //ak je prvi puta procitan ovaj room.csv
+        if(prviPuta==true) {
+            for (Equipment equipment : equipmentRepository.findAll()) {
+                Room room1 = equipment.getRoom();
+
+                room1.setCapacity(room1.getCapacity() + 1);
+
+                roomRepository.save(room1);
+            }
+        }
+        //inace ostavi kak je
     }
 }
