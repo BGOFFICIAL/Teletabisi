@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import Employee from './Employee';
 import Login from './Loginic/Login';
+import ForgotPassword from './ForgotPassword/forgot';
 
 
 
@@ -97,6 +98,7 @@ function App() {
              <Route path="/welcome"  element={<Welcome/>} />
              <Route path="/login"  element={<Login/>} />
              <Route path="/register"  element={<Register/>} />
+             <Route path="/forgot" element={<ForgotPassword/>}/>
         
 
 

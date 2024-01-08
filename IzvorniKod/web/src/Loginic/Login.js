@@ -198,16 +198,27 @@ const Login = () => {
           {loginError && <div style={{ color: 'red' }}>{loginError}</div>} {/* Prikaz poruke o pogrešci */}
         </Col>
       </Row>
-      <Row className="justify-content-md-center">
-      <br /><br /><br /> <br />
-        <Col xs={2}>
-          <Button
-            className="mb-3"
-            onClick={() => sendLoginRequest()}
-            style={{marginTop: '20px'}}
-          >Prijavi se</Button>
-        </Col>
-      </Row>
+      <div className="d-flex flex-column align-items-center">
+         <Row>
+            <Col xs={2}>
+               <Button
+                  className="mb-3"
+                  onClick={() => sendLoginRequest()}
+                  style={{ marginTop: '20px' }}
+                  >Prijavi se</Button>
+            </Col>
+         </Row>
+
+         <Row className="forgot-password">
+            <p>
+               Zaboravili ste lozinku? Kliknite{' '}
+               <a href="/forgot">
+                  ovdje.
+               </a>
+            </p>
+         </Row>
+      </div>
+
     </Container>
 
     /*
