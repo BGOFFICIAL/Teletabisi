@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Autor: Neven Pralas;
@@ -18,4 +19,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Appointment> findByUserId(Long userId);
 
     List<Appointment> findByUserIdAndAppointmentTime(Long userId, LocalDateTime currentDateTime);
+
+    Optional<Appointment> findById(Long id);
 }

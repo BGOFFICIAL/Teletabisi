@@ -1,9 +1,13 @@
 package com.teletabisi.MedInstitutionApp.function.employee;
 
+import com.teletabisi.MedInstitutionApp.email.MailService;
+import com.teletabisi.MedInstitutionApp.email.MailStructure;
 import com.teletabisi.MedInstitutionApp.entity.Appointment;
+import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.function.dto.EmployeeAcceptDTO;
 import com.teletabisi.MedInstitutionApp.function.employee.request.AppointmentDateTimeRequest;
 import com.teletabisi.MedInstitutionApp.function.employee.service.EmployeeAppointmentService;
+import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +26,12 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeAppointmentService employeeAppointmentService;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private MailService mailService;
 
     /**
      * Dohvaćanje svih termina u sustavu
@@ -52,7 +62,7 @@ public class EmployeeController {
      */
     @PostMapping("/accept/{appointmentId}")
     public ResponseEntity<Object> acceptRequest(@PathVariable Long appointmentId,
-                                              @RequestBody EmployeeAcceptDTO employeeAcceptDTO){
+                                                @RequestBody EmployeeAcceptDTO employeeAcceptDTO){
         String equipmentName = employeeAcceptDTO.getEquipmentName();
 
         List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName);
@@ -63,7 +73,28 @@ public class EmployeeController {
             response.put("newAvailableDateTimes", newDateTimes);
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         } else{
-            return new ResponseEntity<>(HttpStatus.OK);
+
+            Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+
+            /*
+autor: Neven Pralas
+Opis: Prihvaćanje termina == slanje maila
+ */
+            if(appointment!=null){
+                MailStructure mailStructure = new MailStructure();
+                mailStructure.setSubject("Poruka o potvrdi termina.");
+                mailStructure.setMessage("Potvrđen je vaš termin!");
+
+                User user = appointment.getUser();
+                String userEmail = user.getEmail();
+
+                mailService.sendMail(userEmail, mailStructure);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
     }
 

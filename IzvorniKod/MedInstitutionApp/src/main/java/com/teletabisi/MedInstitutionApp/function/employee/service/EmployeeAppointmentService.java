@@ -48,6 +48,10 @@ public class EmployeeAppointmentService {
     @Setter
     private Map<Equipment, LocalDateTime> equipmentLocalDateTimeMap;
 
+
+
+
+
     /**
      * Dohvaćanje svih uahtjeva za pregled koji su PENDING
      * @return
