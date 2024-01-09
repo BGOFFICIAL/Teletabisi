@@ -5,26 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/email/MailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/email/MailStructure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeControllerEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/email/EmailRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/AppointmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/email/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/email/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO$UserAppointmentDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO$UserAppointmentDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserAppointmentDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/MailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/MailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/MailStructure.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/MailStructure.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeControllerEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeControllerEmail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +139,8 @@
       <workItem from="1704763165829" duration="412000" />
       <workItem from="1704807467646" duration="1575000" />
       <workItem from="1704809123223" duration="145000" />
-      <workItem from="1704815792305" duration="5917000" />
+      <workItem from="1704815792305" duration="13418000" />
+      <workItem from="1704836994537" duration="5259000" />
     </task>
     <servers />
   </component>
