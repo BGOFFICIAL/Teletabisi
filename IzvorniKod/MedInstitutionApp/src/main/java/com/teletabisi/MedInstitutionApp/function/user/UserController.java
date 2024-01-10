@@ -22,7 +22,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/api/v1/auth/appointment/request")
+@RequestMapping("/api/v1/func/appointment/request")
 @RequiredArgsConstructor
 public class UserController {
 

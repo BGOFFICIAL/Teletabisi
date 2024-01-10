@@ -64,6 +64,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    // trenutnaSmjena -> 1ili2
+
+    // sljedecaSmjena -> 1ili2
+
     public String getEmail() {
         return email;
     }

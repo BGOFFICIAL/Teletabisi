@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/auth/appointment")
+@RequestMapping("/api/v1/func/appointment")
 @RequiredArgsConstructor
 public class EmployeeController {
 
@@ -38,8 +39,10 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("all-appointments")
-    public ResponseEntity<List<Appointment>> getAllAppointments(){
-        List<Appointment> allAppointments = employeeAppointmentService.getAllAppointments();
+    public ResponseEntity<List<Appointment>> getAllAppointments(@AuthenticationPrincipal User user){
+
+        Long userId = user.getId();
+        List<Appointment> allAppointments = employeeAppointmentService.getAllAppointments(userId);
 
         return new ResponseEntity<>(allAppointments, HttpStatus.OK);
     }
@@ -49,7 +52,7 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("/control")
-    public ResponseEntity<List<Appointment>> getPendingAppointments(){
+    public ResponseEntity<List<Appointment>> getPendingAppointments(@AuthenticationPrincipal User user){
         List<Appointment> pendingAppointments = employeeAppointmentService.getPendingAppointments();
         return new ResponseEntity<>(pendingAppointments, HttpStatus.OK);
     }
@@ -62,10 +65,13 @@ public class EmployeeController {
      */
     @PostMapping("/accept/{appointmentId}")
     public ResponseEntity<Object> acceptRequest(@PathVariable Long appointmentId,
-                                                @RequestBody EmployeeAcceptDTO employeeAcceptDTO){
+                                                @RequestBody EmployeeAcceptDTO employeeAcceptDTO,
+                                                @AuthenticationPrincipal User useric){
         String equipmentName = employeeAcceptDTO.getEquipmentName();
 
-        List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName);
+        Long userId = useric.getId();
+
+        List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName, userId);
 
         if(newDateTimes != null){
             Map<String, Object> response = new HashMap<>();
@@ -75,6 +81,8 @@ public class EmployeeController {
         } else{
 
             Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+
+
 
             /*
 autor: Neven Pralas
@@ -88,7 +96,7 @@ Opis: Prihvaćanje termina == slanje maila
                 User user = appointment.getUser();
                 String userEmail = user.getEmail();
 
-                mailService.sendMail(userEmail, mailStructure);
+                //ZASAD        mailService.sendMail(userEmail, mailStructure);
 
                 return new ResponseEntity<>(HttpStatus.OK);
             }

@@ -16,12 +16,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/auth/administration")
+@RequestMapping("/api/v1/func/administration")
 @RequiredArgsConstructor
 public class AdminController {
 
@@ -79,7 +80,7 @@ public class AdminController {
      * @return
      */
     @GetMapping("/return/employee")
-    public ResponseEntity<EmployeeResponse> employees() {
+    public ResponseEntity<EmployeeResponse> employees(@AuthenticationPrincipal User user) {
         List<EmployeeDTO> employeeList = EmployeeService.findAllEmployees();
 
         if (employeeList != null && !employeeList.isEmpty()) {
@@ -167,7 +168,7 @@ public class AdminController {
      * @return
      */
     @GetMapping("/return/user")
-    public ResponseEntity<UserResponse> users() {
+    public ResponseEntity<UserResponse> users(@AuthenticationPrincipal User user) {
         List<UserDTO> userList = UserService.findAllUsers();
 
         if (userList != null && !userList.isEmpty()) {

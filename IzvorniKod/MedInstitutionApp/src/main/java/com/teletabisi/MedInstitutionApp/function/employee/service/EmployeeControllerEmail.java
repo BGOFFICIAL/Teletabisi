@@ -14,7 +14,7 @@ autor: Neven Pralas
 Opis: Proizvoljno slanje maila od strane zdravstvenog djelatnika
 */
 @RestController
-@RequestMapping("/api/v1/auth/employee")
+@RequestMapping("/api/v1/func/employee")
 public class EmployeeControllerEmail {
 
     @Autowired
@@ -30,7 +30,7 @@ public class EmployeeControllerEmail {
         User user = userRepository.findById(id).orElse(null);
         if(user!=null){
             mail = user.getEmail();
-            mailService.sendMail(mail, mailStructure);
+         //ZASAD   mailService.sendMail(mail, mailStructure);
             return "Successfully sent the mail !!!";
         }
         else{

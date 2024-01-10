@@ -60,11 +60,11 @@ public class EmployeeAppointmentService {
         return appointmentRepo.findByRoomIdAndEquipmentId(0L,0L);
     }
 
-    public List<Appointment> getAllAppointments(){
+    public List<Appointment> getAllAppointments(Long userId){
         return appointmentRepo.findAll()
                 .stream()
                 .filter(a -> a.getEquipment().getId() != 0 &&
-                        a.getRoom().getId() != 0)
+                        a.getRoom().getId() != 0 && a.getDjelatnik()==userId)
                 .toList();
     }
     /**
@@ -74,7 +74,7 @@ public class EmployeeAppointmentService {
      * @param equipmentName
      * @return
      */
-    public List<LocalDateTime> acceptRequest(Long appointmentId, String equipmentName) {
+    public List<LocalDateTime> acceptRequest(Long appointmentId, String equipmentName, Long userId) {
         Optional<Appointment> optionalAppointment = appointmentRepo.findById(appointmentId);
 
         try {
@@ -102,6 +102,9 @@ public class EmployeeAppointmentService {
                     Optional<Equipment> optionalEquipment = Optional.ofNullable(existingSchedule.getEquipment());
                     optionalEquipment.ifPresent(appointment::setEquipment);
 
+                    System.out.println("***"+userId+"***");
+                    appointment.setDjelatnik(userId);
+
                     appointmentRepo.save(appointment);
                 } else{
                     // Ne postoji instanca Schedule, radimo ju iz nule i spremamo podatke u Schedule i Appointment
@@ -124,6 +127,9 @@ public class EmployeeAppointmentService {
                         // ažuriranje tablice Appointment
                         appointment.setEquipment(equipment);
                         appointment.setRoom(room);
+
+                        System.out.println("***"+userId+"***");
+                        appointment.setDjelatnik(userId);
 
                         appointmentRepo.save(appointment);
                     } else{
