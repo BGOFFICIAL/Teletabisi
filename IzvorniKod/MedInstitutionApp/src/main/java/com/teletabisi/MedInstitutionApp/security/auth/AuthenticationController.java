@@ -11,15 +11,15 @@ import com.teletabisi.MedInstitutionApp.security.auth.request.UpdateRequest;
 import com.teletabisi.MedInstitutionApp.security.auth.response.AuthenticationResponse;
 import com.teletabisi.MedInstitutionApp.security.auth.serivce.AuthenticationService;
 import com.teletabisi.MedInstitutionApp.security.auth.serivce.CsvService;
+import com.teletabisi.MedInstitutionApp.security.jwt.service.JwtService;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
@@ -27,7 +27,10 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
+    private final JwtService jwtService;
+
     private final AuthenticationService service;
+
 
     @Autowired
     private CsvService csvService;
@@ -98,5 +101,16 @@ public class AuthenticationController {
         }
 
 
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<?>  Validatetoken (@RequestParam String token, @AuthenticationPrincipal User user) {
+        try {
+            Boolean check = jwtService.isTokenValid(token,user);
+            return ResponseEntity.ok(check);
+        } catch(ExpiredJwtException e){
+            return ResponseEntity.ok(false);
+
+        }
     }
 }
