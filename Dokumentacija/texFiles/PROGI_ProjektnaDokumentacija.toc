@@ -24,5 +24,5 @@
 \contentsline {section}{\numberline {5.4}Upute za puštanje u pogon}{49}{section.5.4}%
 \contentsline {chapter}{\numberline {6}Zaključak i budući rad}{50}{chapter.6}%
 \contentsline {chapter}{Popis literature}{51}{chapter*.3}%
-\contentsline {chapter}{Dodatak: Prikaz aktivnosti grupe}{53}{chapter*.5}%
 \contentsline {chapter}{Indeks slika i dijagrama}{53}{chapter*.4}%
+\contentsline {chapter}{Dodatak: Prikaz aktivnosti grupe}{54}{chapter*.5}%

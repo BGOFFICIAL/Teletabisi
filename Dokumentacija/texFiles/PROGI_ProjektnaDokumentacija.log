@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  14 JAN 2024 16:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.29)  14 JAN 2024 19:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1022,6 +1022,9 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
 ) (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
 \openout1 = `PROGI_ProjektnaDokumentacija.aux'.
 
@@ -1177,7 +1180,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...: Prikaz aktivnosti grupe}{53}{chapter*.5}
+l.28 ...: Prikaz aktivnosti grupe}{54}{chapter*.5}
                                                   % [1
 
 ])
@@ -1336,8 +1339,13 @@ Overfull \hbox (3.47458pt too wide) in paragraph at lines 33--33
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]\OT1/jkp/m/n/12 Neven
+ []
+
+
 Overfull \hbox (3.47458pt too wide) in paragraph at lines 33--33
-[]\OT1/jkp/m/n/12 19.09.2013. 
+[]\OT1/jkp/m/n/12 14.01.2024. 
  []
 
 
@@ -1488,8 +1496,13 @@ Overfull \hbox (3.47458pt too wide) in paragraph at lines 33--33
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]\OT1/jkp/m/n/12 Neven
+ []
+
+
 Overfull \hbox (3.47458pt too wide) in paragraph at lines 33--33
-[]\OT1/jkp/m/n/12 19.09.2013. 
+[]\OT1/jkp/m/n/12 14.01.2024. 
  []
 
 
@@ -2439,8 +2452,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4.14})
                                                   \__shipout_drop_firstpage_...
 l.280 			\eject
                 <./slike/DijagramAktivnosti3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+<slike/DijagramKomponenti.PNG, id=543, 958.58125pt x 780.9175pt>
+File: slike/DijagramKomponenti.PNG Graphic file (type png)
+<use slike/DijagramKomponenti.PNG>
+Package pdftex.def Info: slike/DijagramKomponenti.PNG  used on input line 284.
+(pdftex.def)             Requested size: 498.46512pt x 406.07944pt.
 
+Overfull \hbox (62.85432pt too wide) in paragraph at lines 284--286
+ [][] 
  []
 
 )
@@ -2452,10 +2471,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[45]
+[45
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.15})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.125 	\include{Arhitektura}
+                             <./slike/DijagramKomponenti.png>]
 \openout2 = `Implementacija.aux'.
 
- (./Implementacija.tex
+
+(./Implementacija.tex
 Poglavlje 5.
 
 Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
@@ -2596,6 +2622,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[53]
 \openout2 = `Dodatak.aux'.
 
  (./Dodatak.tex
@@ -2607,7 +2642,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[53
+[54
 
 
 ]
@@ -2631,7 +2666,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[54]
+[55]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2640,7 +2675,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[55]
+[56]
 Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
  []
@@ -2654,7 +2689,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[56] 
+[57] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
 (./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
@@ -2673,10 +2708,10 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 18086 strings out of 474397
- 323009 string characters out of 5754184
+ 18095 strings out of 474397
+ 323271 string characters out of 5754184
  2071036 words of memory out of 5000000
- 39599 multiletter control sequences out of 15000+600000
+ 39606 multiletter control sequences out of 15000+600000
  621001 words of font info for 167 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,115p,1499b,1159s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2721,10 +2756,10 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/
 type1/public/kpfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public
 /kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (57 pages, 2238903 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (58 pages, 2288773 bytes).
 PDF statistics:
- 754 PDF objects out of 1000 (max. 8388607)
- 630 compressed objects within 7 object streams
- 222 named destinations out of 1000 (max. 500000)
- 329 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 764 PDF objects out of 1000 (max. 8388607)
+ 637 compressed objects within 7 object streams
+ 224 named destinations out of 1000 (max. 500000)
+ 334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
