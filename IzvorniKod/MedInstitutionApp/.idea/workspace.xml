@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2YB8UNTYMC9UWz3hMVky80jbJNw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "11c2984e",
+    "last_opened_file_path": "C:/Users/npral/OneDrive/Dokumenti/GitHub/Teletabisi/IzvorniKod/MedInstitutionApp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "b425be4903ed514164676f7c2c6cec7f",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src\main\resources" />
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src\main\java\com\teletabisi\MedInstitutionApp\reading" />
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.teletabisi.MedInstitutionApp.security.config" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MedInstitutionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MedInstitutionApp" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.teletabisi.MedInstitutionApp.MedInstitutionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="" />
+      <created>1699987629860</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699987629860</updated>
+      <workItem from="1699987632667" duration="1429000" />
+      <workItem from="1699989721772" duration="11416000" />
+      <workItem from="1700081588830" duration="7706000" />
+      <workItem from="1700209759027" duration="1070000" />
+      <workItem from="1700217248834" duration="6198000" />
+      <workItem from="1700235203155" duration="9239000" />
+      <workItem from="1700256036651" duration="1903000" />
+      <workItem from="1700274223483" duration="34000" />
+      <workItem from="1700276020185" duration="322000" />
+      <workItem from="1700303321646" duration="4227000" />
+      <workItem from="1700310351211" duration="212000" />
+      <workItem from="1700316451518" duration="1841000" />
+      <workItem from="1700318460736" duration="10782000" />
+      <workItem from="1701858296256" duration="294000" />
+      <workItem from="1701958242879" duration="3849000" />
+      <workItem from="1701975406645" duration="683000" />
+      <workItem from="1701992653321" duration="873000" />
+      <workItem from="1702046243021" duration="8093000" />
+      <workItem from="1702165753875" duration="3576000" />
+      <workItem from="1702229376654" duration="5016000" />
+      <workItem from="1702235485227" duration="1680000" />
+      <workItem from="1702241789527" duration="279000" />
+      <workItem from="1702242130707" duration="5803000" />
+      <workItem from="1702944465357" duration="967000" />
+      <workItem from="1702986295437" duration="2093000" />
+      <workItem from="1702996435700" duration="3416000" />
+      <workItem from="1703004639416" duration="1975000" />
+      <workItem from="1703023169253" duration="2044000" />
+      <workItem from="1704370356810" duration="3513000" />
+      <workItem from="1704558802993" duration="2100000" />
+      <workItem from="1704561053454" duration="364000" />
+      <workItem from="1704565794849" duration="1537000" />
+      <workItem from="1704567358245" duration="136000" />
+      <workItem from="1704570533134" duration="1198000" />
+      <workItem from="1704670348644" duration="1842000" />
+      <workItem from="1704716635613" duration="976000" />
+      <workItem from="1704749178595" duration="10704000" />
+      <workItem from="1704762522701" duration="615000" />
+      <workItem from="1704763165829" duration="412000" />
+      <workItem from="1704807467646" duration="1575000" />
+      <workItem from="1704809123223" duration="145000" />
+      <workItem from="1704815792305" duration="13418000" />
+      <workItem from="1704836994537" duration="5259000" />
+      <workItem from="1704877912157" duration="5281000" />
+      <workItem from="1704883722251" duration="36000" />
+      <workItem from="1704888430781" duration="6804000" />
+      <workItem from="1705011559265" duration="3826000" />
+      <workItem from="1705187872306" duration="1147000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.security.core.userdetails.UsernameNotFoundException" package="org.springframework.security.core.userdetails" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.PropertyValueException" package="org.hibernate" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.teletabisi.MedInstitutionApp.entity.Equipment" memberName="room" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="equipments.get(3)" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
