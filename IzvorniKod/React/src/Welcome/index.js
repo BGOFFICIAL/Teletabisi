@@ -5,13 +5,13 @@ import {
   ToggleButtonGroup, NavbarText
 } from 'react-bootstrap';
 import './index.css';
-import { useLocalState, useEffect } from '../util/useLocalStorage';
+//import { useLocalState, useEffect } from '../util/useLocalStorage';
 import { jwtDecode } from 'jwt-decode';
 import { LogOut } from '../services/LogOut';
 
 const Welcome = () => {
-
-  const [jwt, setJwt] = useLocalState("", "jwt");
+  /*
+   const [jwt, setJwt] = useLocalState("", "jwt");
   const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
   if (jwt) {
     try {
@@ -49,7 +49,7 @@ const Welcome = () => {
       return "";
     }
   }
-
+*/
 
 
 

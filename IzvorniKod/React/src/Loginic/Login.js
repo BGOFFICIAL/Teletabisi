@@ -15,40 +15,40 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  const [loginSource, setLoginSource] = useState("", "loginSource");
-  const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
+  // const [jwt, setJwt] = useLocalState("", "jwt");
+  // const [loginSource, setLoginSource] = useState("", "loginSource");
+  // const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
 
-
-  if (jwt) {
-    const decoded = jwtDecode(jwt);
-    console.log(decoded.authorities);
-    console.log("Ovo vracas:" + decoded.roles[0].authority);
-    if (decoded.roles[0].authority === "ADMIN") {
-      window.location.href = "/admin";
-      return <div>Loading....</div>
-    }
-    if (decoded.roles[0].authority === "USER") {
-      window.location.href = "/user";
-      return <div>Loading....</div>
-    }
-  }
-
-  function UseGetRoleFromJWT() {
+  /*
     if (jwt) {
       const decoded = jwtDecode(jwt);
       console.log(decoded.authorities);
-
-      return decoded.roles[0].authority;
+      console.log("Ovo vracas:" + decoded.roles[0].authority);
+      if (decoded.roles[0].authority === "ADMIN") {
+        window.location.href = "/admin";
+        return <div>Loading....</div>
+      }
+      if (decoded.roles[0].authority === "USER") {
+        window.location.href = "/user";
+        return <div>Loading....</div>
+      }
     }
-    else {
-      return "";
+  
+    function UseGetRoleFromJWT() {
+      if (jwt) {
+        const decoded = jwtDecode(jwt);
+        console.log(decoded.authorities);
+  
+        return decoded.roles[0].authority;
+      }
+      else {
+        return "";
+      }
     }
-  }
-
-
-
-
+  
+  
+  
+  */
 
   console.log(username);
   console.log(password);
@@ -94,7 +94,7 @@ const Login = () => {
       .then((data) => {
         if (pom === true) {
           console.log("usao", data.token);
-          setJwt(data.token);
+          //  setJwt(data.token);
           window.location.href = "/user";
         }
       }).catch((error) => {

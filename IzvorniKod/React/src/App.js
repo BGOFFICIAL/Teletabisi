@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import Employee from './Employee';
 import Login from './Loginic/Login';
-
+import Mail from './Mail'
 
 
 
@@ -23,29 +23,31 @@ import Login from './Loginic/Login';
 
 function App() {
 
-  const [jwt, setJwt] = useLocalState("");
-  const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
+  // const [jwt, setJwt] = useLocalState("");
+  // const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
 
-
-  function UseGetRoleFromJWT() {
-
-
-    if (jwt) {
-      const decoded = jwtDecode(jwt);
-      console.log(decoded.authorities);
-      console.log("Ovo vracas:" + decoded.roles[0].authority);
+  /*
+    function UseGetRoleFromJWT() {
+  
+  
+      if (jwt) {
+        const decoded = jwtDecode(jwt);
+        console.log(decoded.authorities);
+        console.log("Ovo vracas:" + decoded.roles[0].authority);
+      }
+  
+      if (jwt) {
+        const decoded = jwtDecode(jwt);
+        console.log(decoded.authorities);
+  
+        return decoded.roles[0].authority;
+      }
+      else {
+        return "";
+      }
     }
-
-    if (jwt) {
-      const decoded = jwtDecode(jwt);
-      console.log(decoded.authorities);
-
-      return decoded.roles[0].authority;
-    }
-    else {
-      return "";
-    }
-  }
+  
+  */
 
 
 
@@ -54,34 +56,31 @@ function App() {
 
 
 
-
-
-  useEffect(() => {
+  /*useEffect(() => {
     console.log("Hello World");
-    console.log("jwt is " + jwt);
-    if (!jwt) {
-      const reqBody = {
-        "username": "example",
-        "password": "1234",
+    console.log("jwt is " +jwt);
+    if(!jwt){
+      const reqBody= {
+      "username": "example",
+      "password": "1234",
       };
 
-
-
-
+  
+ 
+  
       fetch("http://localhost:8080/api/v1/auth/authenticate", {
         "headers": {
-          "Content-Type": "application/json",
-        },
+        "Content-Type": "application/json",
+      },
         "method": "POST",
         body: JSON.stringify(reqBody),
-      })
-        .then(response => response.json())
-        .then(data => {
-          setJwt(data.token);
+        })
+          .then(response => response.json())
+          .then(data => {
+         setJwt(data.token);
         });
-    }
-  }, [jwt]);
-
+  }}, [jwt]);
+*/
 
 
 
@@ -90,28 +89,29 @@ function App() {
     //<Login />
     //<Welcome />
     // <Register />
-    // <Employee />
+    <Employee />
     //<Settings />
-    // <User />
-    //<Search />
+    //<User />
+    // <Search />
+    // <Mail />
 
-    <Routes>
-      <Route path="*" element={<Navigate to="/welcome" />} />
-      <Route element={
-        <PrivateRoutes />} >
-        <Route path="/user" element={<User />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/employee" element={<Employee />} />
-      </Route>
-      <Route path="/welcome" element={<Welcome />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-
-
-
-    </Routes>
-
+    /*       <Routes>
+              <Route path="*" element={<Navigate to="/welcome"  />} />
+              <Route  element={
+              <PrivateRoutes/>} >
+                 <Route path="/user" element={<User/>} />
+                 <Route path="/settings" element={<Settings/>} />    
+                 <Route path="/admin"  element={<Admin/>} />
+                 <Route path="/employee"  element={<Employee/>}/>
+              </Route>
+              <Route path="/welcome"  element={<Welcome/>} />
+              <Route path="/login"  element={<Login/>} />
+              <Route path="/register"  element={<Register/>} />
+         
+ 
+ 
+           </Routes>
+      */
   );
 
 

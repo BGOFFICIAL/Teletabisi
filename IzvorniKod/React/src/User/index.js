@@ -17,48 +17,48 @@ import 'react-clock/dist/Clock.css';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
-
+import { useNavigate } from 'react-router-dom';
 
 const User = () => {
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
-  if (jwt) {
-    try {
-      const decoded = jwtDecode(jwt);
-
-      console.log(decoded.authorities);
-      console.log("Ovo vracas:" + decoded.roles[0].authority);
-      if (decoded.roles[0].authority === "ADMIN") {
-        window.location.href = "/admin";
-        return <div>Loading....</div>
-
-      } else if (decoded.roles[0].authority !== "USER") {
-        window.location.href = "/welcome";
-        return <div>Loading...</div>
-
-      }
-    }
-    catch (error) {
-      window.location.href = "/welcome";
-      return <div>Loading....</div>
-    }
-  }
-
-  function UseGetRoleFromJWT() {
-    if (jwt) {
-      const decoded = jwtDecode(jwt);
-      console.log(decoded.authorities);
-
-      return decoded.roles[0].authority;
-    }
-    else {
-      return "";
-    }
-  }
-
-  console.log("idem dalje");
-
-
+  /* const [jwt, setJwt] = useLocalState("", "jwt");
+   const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
+   if (jwt) {
+     try {
+       const decoded = jwtDecode(jwt);
+ 
+       console.log(decoded.authorities);
+       console.log("Ovo vracas:" + decoded.roles[0].authority);
+       if (decoded.roles[0].authority === "ADMIN") {
+         window.location.href = "/admin";
+         return <div>Loading....</div>
+ 
+       } else if (decoded.roles[0].authority !== "USER") {
+         window.location.href = "/welcome";
+         return <div>Loading...</div>
+ 
+       }
+     }
+     catch (error) {
+       window.location.href = "/welcome";
+       return <div>Loading....</div>
+     }
+   }
+ 
+   function UseGetRoleFromJWT() {
+     if (jwt) {
+       const decoded = jwtDecode(jwt);
+       console.log(decoded.authorities);
+ 
+       return decoded.roles[0].authority;
+     }
+     else {
+       return "";
+     }
+   }
+ 
+   console.log("idem dalje");
+ 
+ */
 
 
 
@@ -69,7 +69,7 @@ const User = () => {
   const itemsPerPage = 10;
   const [data, setData] = useState([]);
   const [description, setDescription] = useState('');
-
+  const navig = useNavigate();
 
   //HANDLE funckije
 
@@ -99,7 +99,10 @@ const User = () => {
 
   // formatiranje za datum, moguce nepotrebno
 
-  const formattedDateTime = selectedDate.toISOString().slice(0, 19).replace("T", " ");
+  const newDate = new Date(selectedDate);
+  newDate.setHours(selectedDate.getHours() + 1);
+
+  const formattedDateTime = newDate.toISOString().slice(0, 19).replace("T", " ");
 
 
 
@@ -125,9 +128,16 @@ const User = () => {
       return;
     }
 
+    const minutes = selectedDate.getMinutes();
+
+    if (minutes !== 0) {
+      alert('Molimo izaberite samo pune sate.');
+      return;
+    }
+
     const time = selectedDate.getHours();
-    if (time < 8 || time >= 20) {
-      alert('Molimo izaberite vrijeme između 8:00 i 20:00 sati.');
+    if (time < 8 || time > 19) {
+      alert('Molimo izaberite vrijeme između 8:00 i 19:00 sati.');
       return;
     }
 
@@ -193,7 +203,17 @@ const User = () => {
   const monthPlaceholder = (today.getMonth() + 1).toString();
   const dayPlaceholder = today.getDate().toString();
 
+  const currentDay = today.getDay();
 
+  let maxDate;
+  if (currentDay >= 1 && currentDay <= 4) {
+
+    maxDate = new Date(today.getTime() + (11 - currentDay) * 24 * 60 * 60 * 1000 + 24 * 60 * 60 * 1000);
+  }
+  else {
+
+    maxDate = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000 + 24 * 60 * 60 * 1000);
+  }
 
 
 
@@ -309,7 +329,6 @@ const User = () => {
       <br /><br /><br /><br /><br /><br /><br />
 
 
-
       <Container //TABLICA ZAKAZANIH TERMINA
       >
         <FormLabel className='descriptionName'>
@@ -419,13 +438,23 @@ const User = () => {
           </CardBody>
 
           <CardBody>
-            <Form.Label className='descriptionName'>
-              Unesite datum i vrijeme željenog termina:
-            </Form.Label>
-            <FormLabel>
-              Radno vrijeme klinike:
-              Pon - Pet, od 8:00 do 20:00 sati
-            </FormLabel>
+            <Row>
+              <Form.Label className='descriptionName'>
+                Unesite datum i vrijeme željenog termina:
+              </Form.Label>
+            </Row>
+            <Row>
+              <FormLabel>
+                Radno vrijeme klinike:
+                Pon - Pet, od 8:00 do 20:00 sati
+              </FormLabel>
+            </Row>
+            <Row>
+              <FormLabel>
+                Termini traju 60 minuta.
+              </FormLabel>
+            </Row>
+
           </CardBody>
 
 
@@ -436,6 +465,7 @@ const User = () => {
                 minDate={new Date(
                   //new Date().getTime() + 24 * 60 * 60 * 1000
                 )}
+                maxDate={maxDate}
                 disableWeekends={true}
                 disableClock={true}
                 disableCalendar={true}
@@ -443,8 +473,6 @@ const User = () => {
                 yearPlaceholder={yearPlaceholder}
                 monthPlaceholder={monthPlaceholder}
                 dayPlaceholder={dayPlaceholder}
-                hourPlaceholder='08'
-                minutePlaceholder='00'
                 minTime={new Date(2000, 0, 1, 8, 0)}
                 maxTime={new Date(2000, 0, 1, 20, 0)}
                 //onInvalidChange={() => alert('Invalid datetime')}
