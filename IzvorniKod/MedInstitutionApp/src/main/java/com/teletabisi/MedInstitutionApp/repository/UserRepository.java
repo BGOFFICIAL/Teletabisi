@@ -16,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findFirstByOIB(String OIB);
 
     Optional<User> findFirstById(Long id);
+
 }

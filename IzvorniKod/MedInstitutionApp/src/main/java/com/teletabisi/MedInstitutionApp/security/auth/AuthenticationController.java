@@ -25,6 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AuthenticationController {
 
     private final JwtService jwtService;

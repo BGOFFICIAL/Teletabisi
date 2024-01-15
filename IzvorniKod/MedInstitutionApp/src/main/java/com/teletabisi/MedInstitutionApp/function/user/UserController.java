@@ -24,6 +24,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/func/appointment/request")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired

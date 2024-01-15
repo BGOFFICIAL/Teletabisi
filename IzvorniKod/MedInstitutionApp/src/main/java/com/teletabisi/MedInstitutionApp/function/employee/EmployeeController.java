@@ -23,6 +23,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/func/appointment")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class EmployeeController {
 
     @Autowired
