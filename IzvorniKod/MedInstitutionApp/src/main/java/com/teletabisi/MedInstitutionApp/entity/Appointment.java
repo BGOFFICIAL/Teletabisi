@@ -25,13 +25,16 @@ public class Appointment {
     @ManyToOne
     private Room room;
 
-    private Long djelatnik;
 
-    public Long getDjelatnik() {
+
+    @ManyToOne
+    private User djelatnik;
+
+    public User getDjelatnik() {
         return djelatnik;
     }
 
-    public void setDjelatnik(Long djelatnik) {
+    public void setDjelatnik(User djelatnik) {
         this.djelatnik = djelatnik;
     }
 

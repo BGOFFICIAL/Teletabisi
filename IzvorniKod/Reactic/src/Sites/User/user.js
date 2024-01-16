@@ -68,7 +68,7 @@ const User = () => {
 
   const handleReject = () => {
     //izbrisi termin (auth/reject?)
-    // /api/v1/auth/appointment/reject/{appointmentId}
+    // /api/v1/func/appointment/request/reject/{appointmentId}
   };
 
 
@@ -253,7 +253,7 @@ const User = () => {
         <Table className='tablica' striped bordered hover>
           <thead>
             <tr>
-              <th>Ime i prezime</th>
+              <th>Ime i prezime doktora</th>
               <th>Opis</th>
               <th>Oprema</th>
               <th>Prostorija</th>
@@ -273,7 +273,7 @@ const User = () => {
 
                 currentItems.map((item) => (
                   <tr key={item.id}>
-                    <td>{item.user.firstname + " " + item.user.lastname}</td>
+                    <td>{item.djelatnik.firstname + " " + item.djelatnik.lastname}</td>
                     <td>{item.description}</td>
                     <td>{item.equipment.name}</td>
                     <td>{item.room.name}</td>

@@ -42,8 +42,7 @@ public class EmployeeController {
     @GetMapping("all-appointments")
     public ResponseEntity<List<Appointment>> getAllAppointments(@AuthenticationPrincipal User user){
 
-        Long userId = user.getId();
-        List<Appointment> allAppointments = employeeAppointmentService.getAllAppointments(userId);
+        List<Appointment> allAppointments = employeeAppointmentService.getAllAppointments(user);
 
         return new ResponseEntity<>(allAppointments, HttpStatus.OK);
     }
@@ -70,9 +69,7 @@ public class EmployeeController {
                                                 @AuthenticationPrincipal User useric){
         String equipmentName = employeeAcceptDTO.getEquipmentName();
 
-        Long userId = useric.getId();
-
-        List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName, userId);
+        List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName, useric);
 
         if(newDateTimes != null){
             Map<String, Object> response = new HashMap<>();

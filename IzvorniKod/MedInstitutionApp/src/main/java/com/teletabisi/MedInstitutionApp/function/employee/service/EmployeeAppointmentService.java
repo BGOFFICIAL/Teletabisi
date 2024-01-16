@@ -1,9 +1,6 @@
 package com.teletabisi.MedInstitutionApp.function.employee.service;
 
-import com.teletabisi.MedInstitutionApp.entity.Appointment;
-import com.teletabisi.MedInstitutionApp.entity.Equipment;
-import com.teletabisi.MedInstitutionApp.entity.Room;
-import com.teletabisi.MedInstitutionApp.entity.Schedule;
+import com.teletabisi.MedInstitutionApp.entity.*;
 import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
 import com.teletabisi.MedInstitutionApp.repository.EquipmentRepository;
 import com.teletabisi.MedInstitutionApp.repository.RoomRepository;
@@ -64,11 +61,11 @@ public class EmployeeAppointmentService {
         return appointmentRepo.findByRoomIdAndEquipmentId(0L,0L);
     }
 
-    public List<Appointment> getAllAppointments(Long userId){
+    public List<Appointment> getAllAppointments(User useric){
         return appointmentRepo.findAll()
                 .stream()
                 .filter(a -> a.getEquipment().getId() != 0 &&
-                        a.getRoom().getId() != 0 && a.getDjelatnik()==userId)
+                        a.getRoom().getId() != 0 && a.getDjelatnik().equals(useric))
                 .toList();
     }
     /**
@@ -78,7 +75,7 @@ public class EmployeeAppointmentService {
      * @param equipmentName
      * @return
      */
-    public List<LocalDateTime> acceptRequest(Long appointmentId, String equipmentName, Long userId) {
+    public List<LocalDateTime> acceptRequest(Long appointmentId, String equipmentName, User userId) {
         Optional<Appointment> optionalAppointment = appointmentRepo.findById(appointmentId);
 
         try {
