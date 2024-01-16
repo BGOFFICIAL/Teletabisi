@@ -22,7 +22,7 @@ const Settings = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const Navigate=useNavigate();
+  const Navigate = useNavigate();
 
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [loginSource, setLoginSource] = useState("", "loginSource");
@@ -71,7 +71,33 @@ const Settings = () => {
 
   return (
     <Container className="justify-content-md-center">
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <>
+        <style type="text/css">
+          {`
+    .purple {
+      background-color: purple;
+      color: white;
+    }
+    .purple .navbar-brand {
+      color: white;
+    }
+
+    .purple .navbar-brand img {
+      
+      width: 150px;
+      height: 75px;
+    }
+
+    .pageName {
+      font-size: 27px;
+      font-weight: bold;
+    }
+    `}
+        </style>
+      </>
+
+      <Navbar className='purple' fixed="top">
+
         <Container className="justify-content-space-between">
           <Col xs={1}>
             <Navbar.Brand href="#">
@@ -79,35 +105,32 @@ const Settings = () => {
                 src="/logofr.jpeg"
                 width="150"
                 height="75"
+
                 className="d-inline-block align-items-start rounded"
                 alt="logo"
               />
+
             </Navbar.Brand>
           </Col>
           <Col xs={8}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Navbar.Brand>Postavke</Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+              <Navbar.Brand className='pageName'>Postavke</Navbar.Brand>
             </Navbar.Collapse>
           </Col>
 
           <Col xs={1}>
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => Navigate(-1)}
-                >
-                  Povratak
-                </Button>
+                <Button variant="light" onClick={() => window.location.href = "/user"}>Povratak</Button>
               </Nav>
             </Navbar.Collapse>
           </Col>
+
         </Container>
+
       </Navbar>
+
 
       <br />
       <br />

@@ -18,7 +18,7 @@ import DatePicker from "react-datepicker";
 import { jwtDecode } from "jwt-decode";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useState } from "react";
-import {Navigation} from "../../services/navigate";
+import { Navigation } from "../../services/navigate";
 
 const Register = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -31,7 +31,7 @@ const Register = () => {
   const [dob, setDob] = useState(null);
   const [oib, setOib] = useState("");
   const [spol, setSpol] = useState("");
-  
+
 
   Navigation(jwt);
 
@@ -193,7 +193,36 @@ const Register = () => {
 
   return (
     <Container className="justify-content-md-center">
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <>
+        <style type="text/css">
+          {`
+.purple {
+background-color: purple;
+color: white;
+}
+.purple .navbar-brand {
+color: white;
+}
+
+.purple .navbar-brand img {
+
+width: 150px;
+height: 75px;
+}
+
+.pageName {
+font-size: 27px;
+font-weight: bold;
+}
+.bigBoldText {
+font-size: 20px;
+font-weight: bold;
+}
+`}
+        </style>
+      </>
+
+      <Navbar className='purple' fixed="top">
         <Container className="justify-content-space-between">
           <Col xs={1}>
             <Navbar.Brand href="#">
@@ -201,33 +230,30 @@ const Register = () => {
                 src="/logofr.jpeg"
                 width="150"
                 height="75"
+
                 className="d-inline-block align-items-start rounded"
                 alt="logo"
               />
+
             </Navbar.Brand>
           </Col>
           <Col xs={8}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Navbar.Brand>Registracija</Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+              <Navbar.Brand className='pageName'>Registracija</Navbar.Brand>
             </Navbar.Collapse>
           </Col>
 
           <Col xs={1}>
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => (window.location.href = "/welcome")}
-                >
-                  Povratak{" "}
-                </Button>
+                <Button //className='bigBoldText'
+                  variant="light"
+                  onClick={() => window.location.href = "/welcome"}>Povratak </Button>
               </Nav>
             </Navbar.Collapse>
           </Col>
+
         </Container>
       </Navbar>
       <br />

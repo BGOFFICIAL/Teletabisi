@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useEffect, useState } from "react";
-import  LogOut  from "../../services/LogOut";
+import LogOut from "../../services/LogOut";
 import Settings from "../Settings/settings";
 import { jwtDecode } from "jwt-decode";
 import {
@@ -21,7 +21,7 @@ import 'react-time-picker/dist/TimePicker.css';
 
 const User = () => {
 
-  
+
 
   const [jwt, setJwt] = useLocalState("", "jwt");
   //POCETAK komentara
@@ -71,23 +71,22 @@ const User = () => {
 
   console.log("idem dalje"); */
   //ZAVRSETAK komentara
- 
-   //VARIJABLE - tu ovih 6 i ova 2
-   
-   const [selectedDate, setSelectedDate] = useState(new Date());
-   const [currentPage, setCurrentPage] = useState(1);
-   const [currentPage1, setCurrentPage1] = useState(1);
-   const itemsPerPage = 10;
-   const [data, setData] = useState([]);
-   const [description, setDescription] = useState('');
 
-   useEffect(() => {
+  //VARIJABLE - tu ovih 6 i ova 2
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [data, setData] = useState([]);
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
     function updateRoles() {
       if (jwt) {
         console.log(jwt);
         const decoded = jwtDecode(jwt);
         const roles = decoded.roles;
-  
+
         if (roles && roles.length > 0) {
           const role = roles[0];
           console.log("Role:" + role);
@@ -97,45 +96,42 @@ const User = () => {
           console.log("No roles found in token");
         }
       } else {
-        localStorage.setItem("roles","no role"); // remove roles from localStorage
+        localStorage.setItem("roles", "no role"); // remove roles from localStorage
       }
     }
-  
+
     updateRoles();
   }, [jwt]);
- 
-  // funkcije
-   useEffect(() => {
-     const fetchData = async () => {
-       try {
+
+  // GET svih vlastitih termina
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
         console.log(`Bearer ${jwt}`);
-          
-         const response = await fetch('http://localhost:8080/api/v1/func/appointment/request/all-appointments',{
-         headers:{ 
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-         "Authorization":"Bearer " +jwt,
-          "Content-Type": "application/json"
-          
-          
-         
-        },
-        mode: 'cors',
-        method: "GET"
-      });
+
+        const response = await fetch('http://localhost:8080/api/v1/func/appointment/request/all-appointments', {
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Authorization": "Bearer " + jwt,
+            "Content-Type": "application/json"
+
+          },
+          mode: 'cors',
+          method: "GET"
+        });
+
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Empty', error);
+      }
+    };
+    fetchData();
+  }, []);
 
 
 
-         const jsonData = await response.json();
-         setData(jsonData);
-       } catch (error) {
-         console.error('Empty', error);
-       }
-     };
-     fetchData();
-   }, []);
-
-
-  
 
   //HANDLE funckije
 
@@ -157,25 +153,11 @@ const User = () => {
     setCurrentPage(pageNumber);
   };
 
-
-
-  const handlePageChange1 = (pageNumber) => {
-    setCurrentPage1(pageNumber);
-  };
-
   // formatiranje za datum, moguce nepotrebno
 
   const formattedDateTime = selectedDate.toISOString().slice(0, 19).replace("T", " ");
 
-
-
-
-
-
-
   // Salji zahtjeve
-
-
 
   const handleSubmission = () => {
 
@@ -202,19 +184,19 @@ const User = () => {
       description: description,
       dateTime: formattedDateTime,
     };
-    
+
     alert('Uspješno poslano');
     setDescription('');
     setSelectedDate(new Date());
-    
+
     try {
-    
-      
+
+
       fetch("http://localhost:8080/api/v1/func/appointment/request", {
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:3000",
           "Content-Type": "application/json",
-          "Authorization":`Bearer ${jwt}`
+          "Authorization": `Bearer ${jwt}`
         },
         mode: 'cors',
         method: "POST",
@@ -235,7 +217,7 @@ const User = () => {
   };
 
 
-  
+
 
 
   //Pagination and calendar setup
@@ -248,36 +230,6 @@ const User = () => {
   const yearPlaceholder = today.getFullYear().toString();
   const monthPlaceholder = (today.getMonth() + 1).toString();
   const dayPlaceholder = today.getDate().toString();
-
-
-
-
-
-  const data1 = Array.from({ length: 74 }, (_, index) => {
-    const today = new Date();
-    const currentDate = new Date(today.setDate(today.getDate() + index));
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
-    return {
-      id: index + 1,
-      appointment: `Termin ${index + 1}`,
-      description: `Description ${index + 1}`,
-      equipment: `Equipment ${index + 1}`,
-      room: `Room ${index + 1}`,
-      date: `${day}.${month}.${year}.`,
-      time: `11:00`
-    };
-  });
-
-  const handleButtonClick = () => {
-
-  }
-  const indexOfLastItem1 = currentPage1 * itemsPerPage;
-  const indexOfFirstItem1 = indexOfLastItem1 - itemsPerPage;
-  const currentItems1 = data1.slice(indexOfFirstItem1, indexOfLastItem1);
-
-
 
 
   return (
@@ -363,8 +315,6 @@ const User = () => {
       </Navbar>
 
       <br /><br /><br /><br /><br /><br /><br />
-
-
 
       <Container //TABLICA ZAKAZANIH TERMINA
       >
@@ -487,9 +437,7 @@ const User = () => {
           <CardBody>
             <Container className='d-flex justify-content-center'>
               <DateTimePicker
-                minDate={new Date(
-                  //new Date().getTime() + 24 * 60 * 60 * 1000
-                )}
+                minDate={new Date()}
                 disableWeekends={true}
                 disableClock={true}
                 disableCalendar={true}
@@ -501,7 +449,6 @@ const User = () => {
                 minutePlaceholder='00'
                 minTime={new Date(2000, 0, 1, 8, 0)}
                 maxTime={new Date(2000, 0, 1, 20, 0)}
-                //onInvalidChange={() => alert('Invalid datetime')}
                 onChange={(date) => setSelectedDate(date)}
                 value={selectedDate}
               />
@@ -544,67 +491,6 @@ const User = () => {
 
 
       <br /> <br /><br />
-
-
-
-      <Container //TABLICA ZA NOVE TERMINE
-      >
-        <FormLabel className='descriptionName'>
-          Odaberite novi termin:
-        </FormLabel>
-        <Table className='tablica' striped bordered hover>
-          <thead>
-            <tr>
-              <th>"Korisnicko ime"</th>
-              <th>Opis</th>
-              <th>Oprema</th>
-              <th>Prostorija</th>
-              <th>Datum</th>
-              <th>Vrijeme</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems1.map((item) => (
-              <tr key={item.id}>
-                <td>{item.appointment}</td>
-                <td>{item.description}</td>
-                <td>{item.equipment}</td>
-                <td>{item.room}</td>
-                <td>{item.date}</td>
-                <td>{item.time}</td>
-                <td> <Button variant="link"
-                  onClick={() => handleButtonClick(item.date)}
-                > Odaberi ovaj termin </Button> </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-
-        <br />
-
-        <Container className='d-flex justify-content-center'>
-          <Pagination>
-            {Array.from({ length: Math.ceil(data1.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
-              <Pagination.Item
-                key={pageNumber}
-                active={pageNumber === currentPage1}
-                onClick={() => handlePageChange1(pageNumber)}
-              >
-                {pageNumber}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </Container>
-      </Container>
-
-
-
-
-
-
-
-
       <br /> <br /><br />
       <br /><br /><br />
 

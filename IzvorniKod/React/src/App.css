@@ -1,4 +1,4 @@
-.App {
+/*App {
   text-align: center;
 }
 
@@ -35,4 +35,40 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+/* Add Bootstrap CSS classes and your custom styles here */
+
+.container-fluid {
+  height: 100vh;
+}
+
+.row-highlight {
+  background-color: purple;
+  color: white;
+}
+
+.row-background {
+  /*background-image: url('path/to/your/wallpaper.jpg');*/
+  background-size: cover;
+  color: white;
+}
+
+.col-text {
+  text-align: center;
+  padding: 20px;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-register {
+  margin-top: 20px;
+}
+
+.btn-login {
+  margin-top: 20px;
 }
