@@ -80,7 +80,15 @@ const Admin = () => {
     const [spolfilter, setSpolFilter] = useState('');
     const [godfilter, setGodFilter] = useState();
 
+    const options = [
+        { value: '1', label: 'Neparni ujutro' },
+        { value: '2', label: 'Neparni popodne' },
+      ];
+
     const itemsPerPage = 5;
+
+
+    //fiksna lista
     const data1 = Array.from({ length: 17 }, (_, index) => {
         const today = new Date();
         const currentDate = new Date(today.setDate(today.getDate() + index));
@@ -97,22 +105,28 @@ const Admin = () => {
             spol: `M`
         };
     });
+    const newData = {
+        id: 18,
+        ime: "Zenska",
+        prezime: "Zenic",
+        email: "zena.email@example.com",
+        Smjena: "2",
+        date: "01.01.2025",
+        spol: "F"
+    };
+    data1.push(newData);
 
-    //prikaz stranica
     const indexOfLastItem = EmpPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-    // empItems = data1.slice(indexOfFirstItem, indexOfLastItem);
     const indexOfLastItem2 = FilterPage * itemsPerPage;
     const indexOfFirstItem2 = indexOfLastItem2 - itemsPerPage;
-    
+    //tu bi se negdje trebalo spremiti u data1 pomoću fetcha koji ima listu svih empolyee
     useEffect(() => {
         setempItems(data1.slice(indexOfFirstItem, indexOfLastItem));
         setfilterItems(data1.slice(indexOfFirstItem2, indexOfLastItem2));
     }, [EmpPage, FilterPage, data1]);
     
-    
-      
 
     const handleSmjenaFChange = (item) => {
         setSmjenaFilter(item.target.id);
@@ -137,10 +151,9 @@ const Admin = () => {
     const handleFilterPageChange = (pageNumber) => {
         setFilterPage(pageNumber);
     };  
-    //fetch za sve employee = data1
 
     const handleAdd = () => {
-        //fetch post username, selectedSmjena
+        //fetch post username, selectedSmjena - šalje username i smjenu koju ce imat
         alert("ID smjene: " + selectedSmjena +" Username: "+ usernameS);
     };
 
@@ -152,32 +165,30 @@ const Admin = () => {
 
     const handleFilter = () =>{
         const filteredItems = data1.filter((item) => {
-            return (
-              (item.Smjena === smjenafilter || !smjenafilter) &&
-              (item.spol === spolfilter || !spolfilter) &&
-              (item.date.includes(godfilter) || !godfilter)
-            );
-          });
-      
-          setfilterItems(filteredItems);
-          setFilterPage(1);
-        alert("Smjena:" + smjenafilter + " Spol: " + spolfilter+ " Godina Zapošljivanja: "+godfilter);
+                return (
+                (item.Smjena === smjenafilter || !smjenafilter) &&
+                (item.spol === spolfilter || !spolfilter) &&
+                (item.date.includes(godfilter) || !godfilter)
+                );
+            });
+            filteredItems.map((item) => (
+                alert(item.Smjena + item.ime)
+            ));
+
+            setfilterItems(filteredItems);
+            setFilterPage(1);
+            //alert("Smjena:" + filterItems.smjenafilter + " Spol: " + spolfilter+ " Godina Zapošljivanja: "+godfilter);
         };
     const handleFilterReset = () =>{
-
+        smjenafilter= '';
+        spolfilter = '';
+        godfilter = null;
         alert("Maknule su se sve filter postavke!");
     };
-/*
-    const setEquipment = (item) => (event) => {
-        const selectedEquipment = event.target.value;
-        const updatedItem = { ...item, equipment: selectedEquipment };
-        setfilterItems((prevRoomItems) =>
-            prevRoomItems.map((roomItem) =>
-                roomItem.id === item.id ? updatedItem : roomItem
-            )
-        );
+    const setChangedSmjena = (item) =>{
+        console.log(item.target.value + item.target.id);
+        //Fetch post - pošalji id i smjenu na koju se mijenja
     };
-*/
 
     return (
         <Container className="justify-content-md-center">
@@ -255,6 +266,15 @@ const Admin = () => {
             </Navbar>
 
             <br /> <br /><br /><br /> <br></br>
+            <Container className='text-center'>
+                <Button style={{ marginRight: '0.5rem' }} href=''>Dodaj opremu</Button>
+                <Button style={{ marginRight: '0.5rem' }} href=''>Dodaj sobu</Button>
+                <Button style={{ marginRight: '0.5rem' }} href=''>Pošalji mail</Button>
+                <Button style={{ marginRight: '0.5rem' }} href=''>Pretrai pacijenta</Button>
+            </Container>
+            
+            <br></br> <br></br> 
+            
             <Card className='text-center'>
                 <Card.Header >Dodaj zaposlenika</Card.Header>
                     <Card.Body>
@@ -271,6 +291,7 @@ const Admin = () => {
                                             type={'radio'}
                                             onChange={handleSmjenaChange}
                                             id={`1`}
+                                            required
                                         />
                                         <Form.Check
                                             inline
@@ -279,6 +300,7 @@ const Admin = () => {
                                             type={'radio'}
                                             onChange={handleSmjenaChange}
                                             id={`2`}
+                                            required
                                         />
                                     </Col>
                                     <Col>
@@ -287,7 +309,7 @@ const Admin = () => {
                                             Upiši username:
                                             </Form.Label>
                                             <Col sm='8'>
-                                            <Form.Control type='text' placeholder='username' onChange={handleusernameSChange} value={usernameS}/>
+                                            <Form.Control type='text' placeholder='korisničko ime' onChange={handleusernameSChange} value={usernameS} required/>
                                             </Col>
                                         </Form.Group>
                                     </Col>
@@ -326,12 +348,20 @@ const Admin = () => {
                                 <td>{item.ime}</td>
                                 <td>{item.prezime}</td>
                                 <td>{item.email}</td>
-                                <td>{item.Smjena}</td>
+                                <td>
+                                    <Form.Select onChange={(item) => setChangedSmjena(item)} value={item.Smjena} id={item.id}>
+                                        {options.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                        
+                                    </Form.Select>
+                                </td>
                                 <td>{item.date}</td>
                                 <td>{item.spol}</td>
                                 <td> <Button onClick={() => handleRemove(item)}> Ukloni </Button> </td>
                             </tr>
-
                         ))}
                     </tbody>
                 </Table>
@@ -371,7 +401,6 @@ const Admin = () => {
                                             type={'radio'}
                                             id={`1`}
                                             onChange={handleSmjenaFChange}
-                                            
                                         />
                                         <Form.Check
                                             inline
@@ -465,8 +494,7 @@ const Admin = () => {
                             <Pagination.Item
                                 key={pageNumber}
                                 active={pageNumber === FilterPage}
-                                onClick={() => handleFilterPageChange(pageNumber)}
-                            >
+                                onClick={() => handleFilterPageChange(pageNumber)}>
                                 {pageNumber}
                             </Pagination.Item>
                         ))}
