@@ -14,4 +14,8 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     Equipment getEquipmentById(long l);
 
     List<Equipment> findIdsByName(String equipmentName);
+
+    List<Equipment> findAllByRoom(Room existingRoom);
+
+    int countByName(String name);
 }
