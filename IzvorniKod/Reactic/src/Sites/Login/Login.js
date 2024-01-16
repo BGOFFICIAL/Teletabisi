@@ -77,7 +77,6 @@ const Login = () => {
         if (pom === true) {
           console.log("usao", data.token);
           setJwt(data.token);
-          window.location.href = "/user";
         }
       })
       .catch((error) => {

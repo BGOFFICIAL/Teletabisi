@@ -37,44 +37,47 @@ const Employee = () => {
   };
 
   //prijenos iz jedne u drugu tablicu
+  const [data, setData] = useState([]);
   const [pendingItems, setpendingItems] = useState([]);
   const [ownItems, setownItems] = useState([]);
   const [roomItems, setroomItems] = useState([]);
 
   // cisto primjer podataka da mozes testirat kak izgleda
-
-  const data1 = Array.from({ length: 101 }, (_, index) => {
-    const today = new Date();
-    const currentDate = new Date(today.setDate(today.getDate() + index));
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
-    return {
-      id: index + 1,
-      appointment: `Korisnik ${index + 1}`,
-      description: `Description ${index + 1}`,
-      equipment: `Potrebno dodijeliti`,
-      room: `A2`,
-      date: `${day}.${month}.${year}.`,
-      time: `11:00`
-    };
-  });
-
+  /*
+    const data1 = Array.from({ length: 101 }, (_, index) => {
+      const today = new Date();
+      const currentDate = new Date(today.setDate(today.getDate() + index));
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1;
+      const year = currentDate.getFullYear();
+      return {
+        id: index + 1,
+        appointment: `Korisnik ${index + 1}`,
+        description: `Description ${index + 1}`,
+        equipment: `Potrebno dodijeliti`,
+        room: `A2`,
+        date: `${day}.${month}.${year}.`,
+        time: `11:00`
+      };
+    });
+  */
   //format date
-
-  const formatDate = (dateString, timeString) => {
-    const dateParts = dateString.split('.');
-    const timeParts = timeString.split(':');
-
-    const year = parseInt(dateParts[2], 10);
-    const month = parseInt(dateParts[1], 10) - 1;
-    const day = parseInt(dateParts[0], 10);
-    const hours = parseInt(timeParts[0], 10);
-    const minutes = parseInt(timeParts[1], 10);
-
-    return new Date(year, month, day, hours, minutes);
-  };
-
+  /*
+    const formatDate = (dateString, timeString) => {
+      const dateParts = dateString.split('.');
+      const timeParts = timeString.split(':');
+  
+      const year = parseInt(dateParts[2], 10);
+      const month = parseInt(dateParts[1], 10) - 1;
+      const day = parseInt(dateParts[0], 10);
+      const hours = parseInt(timeParts[0], 10);
+      const minutes = parseInt(timeParts[1], 10);
+  
+      return new Date(year, month, day, hours, minutes);
+    };
+  
+  
+  */
 
 
   //prikaz stranica
@@ -83,8 +86,32 @@ const Employee = () => {
   // pendingItems = data1.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    setpendingItems(data1.slice(indexOfFirstItem, indexOfLastItem));
-  }, [pendingPage, data1]);
+
+
+    const fetchData = async () => {
+      try {
+
+        //POCETAK KOMENTARA  
+
+        const response = await fetch('http://localhost:8080/api/v1/func/appointment/control', {
+          headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+          method: "GET"
+        });
+        const jsonData = await response.json();
+        setData(jsonData);
+
+        //ZAVRSETAK KOMENTARA
+      } catch (error) {
+        console.error('Empty', error);
+      }
+    };
+    fetchData();
+    setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
+  }, [pendingPage, data]);
+
 
 
 
@@ -123,10 +150,10 @@ const Employee = () => {
   };
 
   const handleSearch = () => {
-    window.location.href = "/search"
+    window.location.href = "/Search"
   };
   const handleMail = () => {
-    window.location.href = "/mail"
+    window.location.href = "/Mail"
   };
 
   const handleReload = () => {
@@ -141,7 +168,32 @@ const Employee = () => {
     }
     //provjeri jel slobodno
     if (true) {
+      try {
+        console.log(item.equipment);
+        // POCETAK KOMENTARA
+        fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}`,
+          },
+          mode: "cors",
+          method: "POST",
+          body: JSON.stringify({
+            equipmentName: item.equipment,
+          }),
+        })
+          .then((response) => response.json())
+          .catch((error) => {
+            console.error("Error:", error)
+          });
+        //ZAVRSETAK KOMENTARA
+      }
 
+      catch (error) {
+        return Promise.reject("Invalidni zahtjev");
+        ;
+      }
       setownItems((prevOwnItems) => [...prevOwnItems, item]);
       setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
     } else {
@@ -154,6 +206,15 @@ const Employee = () => {
   const setEquipment = (item) => (event) => {
     const selectedEquipment = event.target.value;
     const updatedItem = { ...item, equipment: selectedEquipment };
+    setroomItems((prevRoomItems) =>
+      prevRoomItems.map((roomItem) =>
+        roomItem.id === item.id ? updatedItem : roomItem
+      )
+    );
+  };
+
+  const setDate = (item) => (selectedDate) => {
+    const updatedItem = { ...item, appointmentTime: selectedDate.toISOString() };
     setroomItems((prevRoomItems) =>
       prevRoomItems.map((roomItem) =>
         roomItem.id === item.id ? updatedItem : roomItem
@@ -272,10 +333,9 @@ const Employee = () => {
         <Table className='tablica' striped bordered hover>
           <thead>
             <tr>
-              <th>Ime korisnika</th>
+              <th>Ime i prezime</th>
               <th>Opis</th>
-              <th>Datum</th>
-              <th>Vrijeme</th>
+              <th>Datum i vrijeme</th>
               <th>Odaberi</th>
 
             </tr>
@@ -283,10 +343,9 @@ const Employee = () => {
           <tbody>
             {pendingItems.map((item) => (
               <tr key={item.id}>
-                <td>{item.appointment}</td>
+                <td>{item.user.firstname + " " + item.user.lastname}</td>
                 <td>{item.description}</td>
-                <td>{item.date}</td>
-                <td>{item.time}</td>
+                <td>{item.appointmentTime}</td>
                 <td> <Button variant="link"
                   onClick={() => handleAccept(item)} //tu nesto??
                 > Odaberi zahtjev </Button> </td>
@@ -301,7 +360,7 @@ const Employee = () => {
 
         <Container className='d-flex justify-content-center'>
           <Pagination>
-            {Array.from({ length: Math.ceil(data1.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
+            {Array.from({ length: Math.ceil(data.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
               <Pagination.Item
                 key={pageNumber}
                 active={pageNumber === pendingPage}
@@ -322,7 +381,7 @@ const Employee = () => {
         <Table className='tablica' striped bordered hover>
           <thead>
             <tr>
-              <th>Ime korisnika</th>
+              <th>Ime i prezime</th>
               <th>Opis</th>
               <th>Oprema</th>
               <th>Datum i vrijeme</th>
@@ -344,7 +403,7 @@ const Employee = () => {
 
 
                 <tr key={item.id}>
-                  <td>{item.appointment}</td>
+                  <td>{item.user.firstname + " " + item.user.lastname}</td>
                   <td>{item.description}</td>
                   <td>
                     <Form.Select
@@ -357,11 +416,13 @@ const Employee = () => {
                       <option value="Laser">Laser</option>
                       <option value="Štake">Štake</option>
                       <option value="Traka">Traka</option>
+                      <option value="oprema 1">Oprema 1</option>
                     </Form.Select>
                   </td>
                   <td>
                     <DateTimePicker
-                      value={formatDate(item.date, item.time)}
+                      value={item.appointmentTime}
+                      onChange={setDate(item)}
                       clearIcon={null}
                       disableClock={true}
                       disableCalendar={true}
@@ -417,12 +478,11 @@ const Employee = () => {
         <Table className="tablica" striped bordered hover>
           <thead>
             <tr>
-              <th>Ime korisnika</th>
+              <th>Ime i prezime</th>
               <th>Opis</th>
               <th>Oprema</th>
               <th>Prostorija</th>
-              <th>Datum</th>
-              <th>Vrijeme</th>
+              <th>Datum i vrijeme</th>
               <th>Otkaži</th>
               <th>Izbriši</th>
             </tr>
@@ -437,16 +497,16 @@ const Employee = () => {
             ) : (
               ownItems.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.appointment}</td>
+                  <td>{item.user.firstname + " " + item.user.lastname}</td>
                   <td>{item.description}</td>
                   <td>
                     {item.equipment}
                   </td>
                   <td>
-                    {item.room}
+                    {item.room.name}
                   </td>
-                  <td>{item.date}</td>
-                  <td>{item.time}</td>
+                  <td>{item.appointmentTime}</td>
+
                   <td> <Button variant="link"
                     onClick={() => handleQuit(item)}
                   > Otkaži termin </Button> </td>

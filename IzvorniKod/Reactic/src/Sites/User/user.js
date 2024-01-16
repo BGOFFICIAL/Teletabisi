@@ -48,11 +48,7 @@ const User = () => {
           },
           method: "GET"
         });
-
-
-        console.log(response);
         const jsonData = await response.json();
-        console.log(jsonData);
 
         setData(jsonData);
 
@@ -66,9 +62,31 @@ const User = () => {
 
   //HANDLE funckije
 
-  const handleReject = () => {
-    //izbrisi termin (auth/reject?)
-    // /api/v1/func/appointment/request/reject/{appointmentId}
+  const handleReject = (item) => {
+
+    try {
+
+      // POCETAK KOMENTARA
+      fetch(`http://localhost:8080/api/v1/func/appointment/request/reject/${item.id}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+        mode: "cors",
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error("Error:", error)
+        });
+      //ZAVRSETAK KOMENTARA
+    }
+
+    catch (error) {
+      return Promise.reject("Invalidni zahtjev");
+      ;
+    }
   };
 
 
@@ -143,7 +161,6 @@ const User = () => {
       return Promise.reject("Invalidni zahtjev");
       ;
     }
-    console.log(jsonData);
 
   };
 
@@ -253,7 +270,7 @@ const User = () => {
         <Table className='tablica' striped bordered hover>
           <thead>
             <tr>
-              <th>Ime i prezime doktora</th>
+              <th>Liječnik</th>
               <th>Opis</th>
               <th>Oprema</th>
               <th>Prostorija</th>
@@ -281,7 +298,7 @@ const User = () => {
                     <td>
                       <Button
                         variant="link"
-                        onClick={() => handleReject()}
+                        onClick={() => handleReject(item)}
 
                       >
                         Otkaži ovaj termin
