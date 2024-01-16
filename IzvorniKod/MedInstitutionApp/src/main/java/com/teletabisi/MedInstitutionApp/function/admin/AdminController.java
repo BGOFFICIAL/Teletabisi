@@ -1,15 +1,16 @@
 package com.teletabisi.MedInstitutionApp.function.admin;
 
+import com.teletabisi.MedInstitutionApp.entity.Equipment;
+import com.teletabisi.MedInstitutionApp.entity.Room;
 import com.teletabisi.MedInstitutionApp.entity.User;
-import com.teletabisi.MedInstitutionApp.function.admin.request.EmployeeRequest;
-import com.teletabisi.MedInstitutionApp.function.admin.request.PromotionRequest;
-import com.teletabisi.MedInstitutionApp.function.admin.request.UserRequest;
+import com.teletabisi.MedInstitutionApp.function.admin.request.*;
+import com.teletabisi.MedInstitutionApp.function.admin.request.equipment.EquipmentRequest;
+import com.teletabisi.MedInstitutionApp.function.admin.request.equipment.EquipmentRoomNameRequest;
+import com.teletabisi.MedInstitutionApp.function.admin.request.equipment.EquipmentStatusRequest;
 import com.teletabisi.MedInstitutionApp.function.admin.response.EmployeeResponse;
 import com.teletabisi.MedInstitutionApp.function.admin.response.PromotionResponse;
 import com.teletabisi.MedInstitutionApp.function.admin.response.UserResponse;
-import com.teletabisi.MedInstitutionApp.function.admin.service.EmployeeService;
-import com.teletabisi.MedInstitutionApp.function.admin.service.PromotionService;
-import com.teletabisi.MedInstitutionApp.function.admin.service.UserService;
+import com.teletabisi.MedInstitutionApp.function.admin.service.*;
 import com.teletabisi.MedInstitutionApp.function.dto.EmployeeDTO;
 import com.teletabisi.MedInstitutionApp.function.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,12 @@ public class AdminController {
 
     @Autowired
     private PromotionService promotionService;
+
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private EquipmentService equipmentService;
 
     /**
      * Cilj: inactive/user -> employee
@@ -202,5 +209,97 @@ public class AdminController {
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    /**
+     *
+     * @param request
+     * @return
+     */
+    @PostMapping("add/room")
+    public ResponseEntity<Object> addNewRoom(@RequestBody RoomRequest request){
+        if(request != null){
+            Room newRoom = roomService.addNewRoom(request.getName(), request.getStatus(), request.getMaxRoomCapacity());
+
+            if (newRoom != null){
+                return ResponseEntity.ok(newRoom);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana soba već postoji.");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("change-room-status")
+    public ResponseEntity<Object> changeRoomStatus(@RequestBody RoomRequest request){
+        if(request != null){
+            Room newRoom = roomService.changeRoomStatus(request.getName(), request.getStatus());
+
+            if (newRoom != null){
+                return ResponseEntity.ok(newRoom);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana soba ne postoji ILI je zadani status jednak postojećem statusu.");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/all-rooms")
+    public ResponseEntity<List<Room>> getAllRooms(){
+
+        List<Room> allRooms = roomService.getAllRooms();
+
+        return new ResponseEntity<>(allRooms, HttpStatus.OK);
+    }
+
+    @PostMapping("add/equipment")
+    public ResponseEntity<Object> addNewEquipment(@RequestBody EquipmentRequest request){
+        if(request != null){
+            Equipment newEquipment = equipmentService.addNewEquipment(request.getDescription(), request.getName(), request.getStatus(), request.getRoomName());
+            if (newEquipment != null){
+                return ResponseEntity.ok(newEquipment);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana soba ne postoji ILI je kapacitet zadane sobe popunjen.");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("change-equipment-status/{equipmentId}")
+    public ResponseEntity<Object> changeEquipmentStatus(@PathVariable Long equipmentId,
+                                                           @RequestBody EquipmentStatusRequest request){
+        if(request != null){
+            Equipment newEquipment = equipmentService.changeEquipmentStatus(request.getStatus(), equipmentId);
+
+            if (newEquipment != null){
+                return ResponseEntity.ok(newEquipment);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadani status jednak starome ILI kapacitet sobe pun.");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("change-equipment-room/{equipmentId}")
+    public ResponseEntity<Object> changeEquipmentRoom(@PathVariable Long equipmentId,
+                                                         @RequestBody EquipmentRoomNameRequest request){
+        if(request != null){
+            Equipment newEquipment = equipmentService.changeEquipmentRoom(request.getRoomName(), equipmentId);
+
+            if (newEquipment != null){
+                return ResponseEntity.ok(newEquipment);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadana soba jednaka staroj sobi ILI zadana soba ne postoji ILI kapacitet sobe pun. ");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/all-equipment")
+    public ResponseEntity<List<Equipment>> getAllEquipment(){
+
+        List<Equipment> allEquipment = equipmentService.getAllEquipment();
+
+        return new ResponseEntity<>(allEquipment, HttpStatus.OK);
     }
 }
