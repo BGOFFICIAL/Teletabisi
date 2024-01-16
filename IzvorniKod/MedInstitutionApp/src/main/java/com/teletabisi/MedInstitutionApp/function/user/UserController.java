@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -35,32 +36,36 @@ public class UserController {
     /**
      * Korisnik šalje opis problema, datum i vrijeme kada želi termin. Sustav omogućava slanje zahtjeva jednom u
      * minuti - spriječavanje spam-a
-     * @param userAppointmentDTO
      * @param user
      * @return
      */
     @PostMapping("")
     public ResponseEntity<Object> createAppointment(@RequestBody UserAppointmentDTO userAppointmentDTO,
-                                                         @AuthenticationPrincipal User user){
+                                                    @AuthenticationPrincipal User user) {
+        try {
+            Long userId = user.getId();
 
-        Long userId = user.getId();
+            // Uvjet koji ograničava slanje po jednom zahtjevu u minuti za svakog korisnika
+            if (userLastRequestTime.containsKey(userId)) {
+                long lastRequestedTime = userLastRequestTime.get(userId);
+                long currentTime = System.currentTimeMillis();
 
-        // Uvijet koji ograničava slanje po jednog zahtjeva u minuti za svakog korisnika
-        if (userLastRequestTime.containsKey(userId)){
-            long lastRequestedTime = userLastRequestTime.get(userId);
-            long currentTime = System.currentTimeMillis();
-
-            long requestLimitInterval = 60 * 1000;
-            if (currentTime- lastRequestedTime < requestLimitInterval){
-                return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Pričekajte " + requestLimitInterval/1000 + " sekundi.");
+                long requestLimitInterval = 60 * 1000;
+                if (currentTime - lastRequestedTime < requestLimitInterval) {
+                    return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Pričekajte " + requestLimitInterval / 1000 + " sekundi.");
+                }
             }
+
+            // Nastavite s postojećim kodom
+            Appointment appointment = userAppointmentService.save(userAppointmentDTO, user);
+
+            userLastRequestTime.put(userId, System.currentTimeMillis());
+
+            return ResponseEntity.ok(appointment);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Neispravan format JSON podataka.");
         }
-
-        Appointment appointment = userAppointmentService.save(userAppointmentDTO, user);
-
-        userLastRequestTime.put(userId, System.currentTimeMillis());
-
-        return ResponseEntity.ok(appointment);
     }
 
     /**

@@ -114,8 +114,8 @@ public class UserAppointmentService {
         return userAppointments != null ?
                 userAppointments.stream()
                         .filter(i -> i.getAppointmentTime().isAfter(currentDateTime) &&
-                                i.getRoom().getId() != 0 &&
-                                i.getEquipment().getId() != 0)
+                                i.getRoom() != null && i.getRoom().getId() != 0 &&
+                                i.getEquipment() != null && i.getEquipment().getId() != 0)
                         .toList()
                 : Collections.emptyList();
     }

@@ -64,9 +64,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // trenutnaSmjena -> 1ili2
+    // private int trenutnaSmjena = 0;
 
-    // sljedecaSmjena -> 1ili2
+    // private int sljedecaSmjena = 0;
 
     public String getEmail() {
         return email;
