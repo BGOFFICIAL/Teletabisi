@@ -1,5 +1,7 @@
 package com.teletabisi.MedInstitutionApp.entity;
 
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,10 +17,15 @@ public class Room {
     @SequenceGenerator(name = "room_seq", sequenceName = "room_seq", initialValue = 0, allocationSize = 1)
     private Long id;
 
+    @CsvBindByName(column = "capacity")
+    private Integer capacity;
+
     @Column(unique = true)
+    @CsvBindByName(column = "name")
     private String name;
 
-    private Integer capacity;
+    @CsvBindByName(column = "roomStatus")
+    private String roomStatus;
 
     public Long getId() {
         return id;
@@ -42,5 +49,13 @@ public class Room {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
+    }
+
+    public String getRoomStatus() {
+        return roomStatus;
+    }
+
+    public void setRoomStatus(String roomStatus) {
+        this.roomStatus = roomStatus;
     }
 }

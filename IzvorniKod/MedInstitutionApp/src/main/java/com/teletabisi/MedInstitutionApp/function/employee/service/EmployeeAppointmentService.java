@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 /**
- * Autor: Tin Ogrizek
  * Cilj: Upravljanje podacima vezanih za termine dobivenih od strane korisnika (od strane zaposlenika)
  */
 @Service
