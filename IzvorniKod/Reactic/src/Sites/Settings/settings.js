@@ -2,7 +2,7 @@ import React from "react";
 import { jwtDecode } from "jwt-decode";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   Form,
@@ -23,7 +23,7 @@ const Settings = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const Navigate=useNavigate();
+  const Navigate = useNavigate();
 
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [loginSource, setLoginSource] = useState("", "loginSource");
@@ -34,7 +34,7 @@ const Settings = () => {
 
 
 
- 
+
 
 
 
@@ -83,7 +83,33 @@ const Settings = () => {
 
   return (
     <Container className="justify-content-md-center">
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <>
+        <style type="text/css">
+          {`
+    .purple {
+      background-color: purple;
+      color: white;
+    }
+    .purple .navbar-brand {
+      color: white;
+    }
+
+    .purple .navbar-brand img {
+      
+      width: 150px;
+      height: 75px;
+    }
+
+    .pageName {
+      font-size: 27px;
+      font-weight: bold;
+    }
+    `}
+        </style>
+      </>
+
+      <Navbar className='purple' fixed="top">
+
         <Container className="justify-content-space-between">
           <Col xs={1}>
             <Navbar.Brand href="#">
@@ -91,46 +117,38 @@ const Settings = () => {
                 src="/logofr.jpeg"
                 width="150"
                 height="75"
+
                 className="d-inline-block align-items-start rounded"
                 alt="logo"
               />
+
             </Navbar.Brand>
           </Col>
           <Col xs={8}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Navbar.Brand>Postavke</Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+              <Navbar.Brand className='pageName'>Postavke</Navbar.Brand>
             </Navbar.Collapse>
           </Col>
 
           <Col xs={1}>
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => Navigate(-1)}
-                >
-                  Povratak
-                </Button>
+                <Button variant="light" onClick={() => window.location.href = "/user"}>Povratak</Button>
               </Nav>
             </Navbar.Collapse>
           </Col>
+
         </Container>
+
       </Navbar>
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br /><br /><br /><br /><br /><br /><br /><br />
 
-      <Form noValidate>
+      <Form
+        noValidate
+      >
+
         <Row className="justify-content-md-center">
           <Col xs={6}>
             <Form.Group md="3" controlId="validationCustom01">
@@ -141,10 +159,9 @@ const Settings = () => {
                 id="username"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
-                isValid={!username.includes(" ") && username.length > 0}
-                isInvalid={username.includes(" ") && username.length > 0}
-                required
-              />
+                isValid={!username.includes(' ') && username.length > 0}
+                isInvalid={username.includes(' ') && username.length > 0}
+                required />
               <Form.Control.Feedback type="invalid">
                 Molimo unesite ispravno korisničko ime.
               </Form.Control.Feedback>
@@ -162,19 +179,9 @@ const Settings = () => {
                 id="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                isValid={
-                  password.length > 7 &&
-                  password.trim().length < 21 &&
-                  !password.includes(" ")
-                }
-                isInvalid={
-                  password.length > 0 &&
-                  !(
-                    password.length > 7 &&
-                    password.trim().length < 21 &&
-                    !password.includes(" ")
-                  )
-                }
+
+                isValid={password.length > 7 && password.trim().length < 21 && !password.includes(' ')}
+                isInvalid={password.length > 0 && !(password.length > 7 && password.trim().length < 21 && !password.includes(' '))}
               />
 
               <Form.Control.Feedback type="invalid">
@@ -193,8 +200,7 @@ const Settings = () => {
                 id="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                required
-              />
+                required />
               <Form.Control.Feedback type="invalid">
                 Molimo unesite ispravan email.
               </Form.Control.Feedback>
@@ -202,16 +208,17 @@ const Settings = () => {
           </Col>
         </Row>
 
-        <br />
-        <br />
-        <br />
-        <Row className="justify-content-md-center">
-          <Col xs={2}>
-            <Button className="mb-3" onClick={() => sendSettingsRequest()}>
-              Promijeni postavke
-            </Button>
-          </Col>
-        </Row>
+        <br /><br /><br />
+
+        <Container className="d-flex justify-content-center">
+          <Button
+            className="mb-3"
+
+            onClick={() => sendSettingsRequest()}
+          >Promijeni postavke</Button>
+        </Container>
+
+
       </Form>
     </Container>
   );

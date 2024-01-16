@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useEffect, useState } from "react";
-import  LogOut  from "../../services/LogOut";
+import LogOut from "../../services/LogOut";
 import Settings from "../Settings/settings";
 import { jwtDecode } from "jwt-decode";
-import  Navigacija  from "../../services/navigate";
+import Navigacija from "../../services/navigate";
 import {
   Button, Form, Row, Col, Container, Navbar,
   Nav, InputGroup, ButtonGroup, FormLabel, ToggleButton, ToggleButtonGroup,
@@ -25,93 +25,44 @@ const User = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
 
   Navigacija(jwt);
- /* const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
-  
 
-  
-  if (jwt) {
-    try {
-      const decoded = jwtDecode(jwt);
-
-      console.log(decoded.authorities);
-      console.log("Ovo vracas:" + decoded.roles[0].authority);
-      if (decoded.roles[0].authority === "ADMIN") {
-        window.location.href = "/admin";
-        return <div>Loading....</div>
-
-      } else if (decoded.roles[0].authority !== "USER") {
-        window.location.href = "/welcome";
-        return <div>Loading...</div>
-
-      }
-    }
-    catch (error) {
-      window.location.href = "/welcome";
-      return <div>Loading....</div>
-    }
-  }
+  //VARIJABLE
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [data, setData] = useState([]);
+  const [description, setDescription] = useState('');
 
 
-  function UseGetRoleFromJWT() {
-    if (jwt) {
-      const decoded = jwtDecode(jwt);
-      console.log(decoded.authorities);
-
-      return decoded.roles[0].authority;
-    }
-    else {
-      return "";
-    }
-  }
-
-   
-
-  console.log("idem dalje");
- */
- 
-   //VARIJABLE
-   const [selectedDate, setSelectedDate] = useState(new Date());
-   const [currentPage, setCurrentPage] = useState(1);
-   const [currentPage1, setCurrentPage1] = useState(1);
-   const itemsPerPage = 10;
-   const [data, setData] = useState([]);
-   const [description, setDescription] = useState('');
-
-
-
-
-
-   
- 
   // funkcije
-   useEffect(() => {
-     const fetchData = async () => {
-       try {
-        
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
         //POCETAK KOMENTARA  
-        
-         const response = await fetch('http://localhost:8080/api/v1/func/appointment/request/all-appointments',{
-         headers:{ 
-          "Authorization":`Bearer ${jwt}`,
-          "Content-Type": "application/json",
-        },
-        method: "GET"
-      }); 
+
+        const response = await fetch('http://localhost:8080/api/v1/func/appointment/request/all-appointments', {
+          headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+          method: "GET"
+        });
 
 
         console.log(response);
-         const jsonData = await response.json();
-          console.log(jsonData);
-          
-         setData(jsonData); 
-         
-         //ZAVRSETAK KOMENTARA
-       } catch (error) {
-         console.error('Empty', error);
-       }
-     };
-     fetchData();
-   }, []); 
+        const jsonData = await response.json();
+        console.log(jsonData);
+
+        setData(jsonData);
+
+        //ZAVRSETAK KOMENTARA
+      } catch (error) {
+        console.error('Empty', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   //HANDLE funckije
 
@@ -133,28 +84,14 @@ const User = () => {
     setCurrentPage(pageNumber);
   };
 
-
-
-  const handlePageChange1 = (pageNumber) => {
-    setCurrentPage1(pageNumber);
-  };
-
   // formatiranje za datum, moguce nepotrebno
 
   const formattedDateTime = selectedDate.toISOString().slice(0, 19).replace("T", " ");
 
-
-
-
-
-
-
   // Salji zahtjeve
 
 
-
   const handleSubmission = () => {
-
 
     if (!description.trim()) {
       alert('Molimo unesite opis bolesti.');
@@ -173,7 +110,6 @@ const User = () => {
       return;
     }
 
-
     const jsonData = {
       description: description,
       dateTime: formattedDateTime,
@@ -182,15 +118,15 @@ const User = () => {
     alert('Uspješno poslano');
     setDescription('');
     setSelectedDate(new Date());
-    
+
     try {
-    
+
       // POCETAK KOMENTARA
       fetch("http://localhost:8080/api/v1/func/appointment/request", {
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:3000",
           "Content-Type": "application/json",
-          "Authorization":`Bearer ${jwt}`,
+          "Authorization": `Bearer ${jwt}`,
         },
         mode: "cors",
         method: "POST",
@@ -199,21 +135,17 @@ const User = () => {
         .then((response) => response.json())
         .catch((error) => {
           console.error("Error:", error)
-        });  
-        //ZAVRSETAK KOMENTARA
+        });
+      //ZAVRSETAK KOMENTARA
     }
 
     catch (error) {
       return Promise.reject("Invalidni zahtjev");
       ;
     }
-    console.log(jsonData); 
+    console.log(jsonData);
 
-  }; 
-
-
-  
-
+  };
 
   //Pagination and calendar setup
 
@@ -225,36 +157,6 @@ const User = () => {
   const yearPlaceholder = today.getFullYear().toString();
   const monthPlaceholder = (today.getMonth() + 1).toString();
   const dayPlaceholder = today.getDate().toString();
-
-
-
-
-
-  const data1 = Array.from({ length: 74 }, (_, index) => {
-    const today = new Date();
-    const currentDate = new Date(today.setDate(today.getDate() + index));
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
-    return {
-      id: index + 1,
-      appointment: `Termin ${index + 1}`,
-      description: `Description ${index + 1}`,
-      equipment: `Equipment ${index + 1}`,
-      room: `Room ${index + 1}`,
-      date: `${day}.${month}.${year}.`,
-      time: `11:00`
-    };
-  });
-
-  const handleButtonClick = () => {
-
-  }
-  const indexOfLastItem1 = currentPage1 * itemsPerPage;
-  const indexOfFirstItem1 = indexOfLastItem1 - itemsPerPage;
-  const currentItems1 = data1.slice(indexOfFirstItem1, indexOfLastItem1);
-
-
 
 
   return (
@@ -371,7 +273,7 @@ const User = () => {
 
                 currentItems.map((item) => (
                   <tr key={item.id}>
-                    <td>{item.user.firstname+" "+item.user.lastname}</td>
+                    <td>{item.user.firstname + " " + item.user.lastname}</td>
                     <td>{item.description}</td>
                     <td>{item.equipment.name}</td>
                     <td>{item.room.name}</td>
@@ -464,9 +366,7 @@ const User = () => {
           <CardBody>
             <Container className='d-flex justify-content-center'>
               <DateTimePicker
-                minDate={new Date(
-                  //new Date().getTime() + 24 * 60 * 60 * 1000
-                )}
+                minDate={new Date()}
                 disableWeekends={true}
                 disableClock={true}
                 disableCalendar={true}
@@ -478,7 +378,6 @@ const User = () => {
                 minutePlaceholder='00'
                 minTime={new Date(2000, 0, 1, 8, 0)}
                 maxTime={new Date(2000, 0, 1, 20, 0)}
-                //onInvalidChange={() => alert('Invalid datetime')}
                 onChange={(date) => setSelectedDate(date)}
                 value={selectedDate}
               />
@@ -521,67 +420,6 @@ const User = () => {
 
 
       <br /> <br /><br />
-
-
-
-      <Container //TABLICA ZA NOVE TERMINE
-      >
-        <FormLabel className='descriptionName'>
-          Odaberite novi termin:
-        </FormLabel>
-        <Table className='tablica' striped bordered hover>
-          <thead>
-            <tr>
-              <th>"Korisnicko ime"</th>
-              <th>Opis</th>
-              <th>Oprema</th>
-              <th>Prostorija</th>
-              <th>Datum</th>
-              <th>Vrijeme</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems1.map((item) => (
-              <tr key={item.id}>
-                <td>{item.appointment}</td>
-                <td>{item.description}</td>
-                <td>{item.equipment}</td>
-                <td>{item.room}</td>
-                <td>{item.date}</td>
-                <td>{item.time}</td>
-                <td> <Button variant="link"
-                  onClick={() => handleButtonClick(item.date)}
-                > Odaberi ovaj termin </Button> </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-
-        <br />
-
-        <Container className='d-flex justify-content-center'>
-          <Pagination>
-            {Array.from({ length: Math.ceil(data1.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
-              <Pagination.Item
-                key={pageNumber}
-                active={pageNumber === currentPage1}
-                onClick={() => handlePageChange1(pageNumber)}
-              >
-                {pageNumber}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </Container>
-      </Container>
-
-
-
-
-
-
-
-
       <br /> <br /><br />
       <br /><br /><br />
 

@@ -37,32 +37,6 @@ const Register = () => {
 
   Navigacija(jwt);
 
-  
-  
-
-
-  /*
-  if (jwt) {
-    const decoded = jwtDecode(jwt);
-    console.log(decoded.authorities);
-    console.log("Ovo vracas:" + decoded.roles[0].authority);
-    if (decoded.roles[0].authority === "ADMIN") {
-      window.location.href = "/admin";
-      return <div>Loading....</div>;
-    }
-    if (decoded.roles[0].authority === "USER") {
-      window.location.href = "/user";
-      return <div>Loading....</div>;
-    }
-
-    if (decoded.roles[0].authority === "EMPLOYEE") {
-      window.location.href = "/employee";
-      return <div>Loading....</div>;
-    }
-  }
-
-  */
-
 
 
   const handleName = (event) => {
@@ -189,8 +163,41 @@ const Register = () => {
   };
 
   return (
+
+
+
+
     <Container className="justify-content-md-center">
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <>
+        <style type="text/css">
+          {`
+.purple {
+  background-color: purple;
+  color: white;
+}
+.purple .navbar-brand {
+  color: white;
+}
+
+.purple .navbar-brand img {
+  
+  width: 150px;
+  height: 75px;
+}
+
+.pageName {
+  font-size: 27px;
+  font-weight: bold;
+}
+.bigBoldText {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`}
+        </style>
+      </>
+
+      <Navbar className='purple' fixed="top">
         <Container className="justify-content-space-between">
           <Col xs={1}>
             <Navbar.Brand href="#">
@@ -198,42 +205,32 @@ const Register = () => {
                 src="/logofr.jpeg"
                 width="150"
                 height="75"
+
                 className="d-inline-block align-items-start rounded"
                 alt="logo"
               />
+
             </Navbar.Brand>
           </Col>
           <Col xs={8}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Navbar.Brand>Registracija</Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+              <Navbar.Brand className='pageName'>Registracija</Navbar.Brand>
             </Navbar.Collapse>
           </Col>
 
           <Col xs={1}>
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => (window.location.href = "/welcome")}
-                >
-                  Povratak{" "}
-                </Button>
+                <Button variant="light"
+                  onClick={() => window.location.href = "/welcome"}>Povratak </Button>
               </Nav>
             </Navbar.Collapse>
           </Col>
+
         </Container>
       </Navbar>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br /><br /><br /><br /><br /><br /><br />
 
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="justify-content-md-center">
