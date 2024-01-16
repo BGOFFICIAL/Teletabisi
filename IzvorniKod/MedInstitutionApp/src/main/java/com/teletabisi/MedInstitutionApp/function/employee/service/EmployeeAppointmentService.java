@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -26,6 +27,9 @@ public class EmployeeAppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepo;
+
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
     @Autowired
     private RoomRepository roomRepo;
@@ -208,8 +212,19 @@ public class EmployeeAppointmentService {
         Optional<Appointment> optionalAppointment = appointmentRepo.findById(appointmentId);
         try {
             Appointment appointment = optionalAppointment.orElseThrow(NoSuchElementException::new);
+            if(ChronoUnit.HOURS.between
+                    (LocalDateTime.now(), appointment.getAppointmentTime()) > 24) {
 
-            appointmentRepo.deleteById(appointmentId);
+                Schedule schedule = scheduleRepository.findByAppointmentId(appointment.getId()).orElse(null);
+                if(schedule!=null) {
+                    scheduleRepository.delete(schedule);
+                }
+                appointmentRepo.deleteById(appointmentId);
+
+            }
+            else{
+                System.out.println("Prekasno otkazivanje termina");
+            }
         } catch (NoSuchElementException e){
             throw new NoSuchElementException("Nije nađen temrin (ID:  " + appointmentId + ")");
         }

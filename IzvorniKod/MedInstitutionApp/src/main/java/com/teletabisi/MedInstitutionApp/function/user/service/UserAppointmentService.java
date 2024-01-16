@@ -1,13 +1,11 @@
 package com.teletabisi.MedInstitutionApp.function.user.service;
 
-import com.teletabisi.MedInstitutionApp.entity.Appointment;
-import com.teletabisi.MedInstitutionApp.entity.Equipment;
-import com.teletabisi.MedInstitutionApp.entity.Room;
-import com.teletabisi.MedInstitutionApp.entity.User;
+import com.teletabisi.MedInstitutionApp.entity.*;
 import com.teletabisi.MedInstitutionApp.function.dto.UserAppointmentDTO;
 import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
 import com.teletabisi.MedInstitutionApp.repository.EquipmentRepository;
 import com.teletabisi.MedInstitutionApp.repository.RoomRepository;
+import com.teletabisi.MedInstitutionApp.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +13,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /**
  * Autor: Tin Ogrizek
@@ -30,6 +26,9 @@ public class UserAppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepo;
+
+    @Autowired
+    ScheduleRepository scheduleRepository;
 
     @Autowired
     private RoomRepository roomRepo;
@@ -118,5 +117,28 @@ public class UserAppointmentService {
                                 i.getEquipment() != null && i.getEquipment().getId() != 0)
                         .toList()
                 : Collections.emptyList();
+    }
+
+    public void rejectRequest(Long appointmentId) {
+        Optional<Appointment> optionalAppointment = appointmentRepo.findById(appointmentId);
+        try {
+
+            Appointment appointment = optionalAppointment.orElseThrow(NoSuchElementException::new);
+            if(ChronoUnit.HOURS.between
+                    (LocalDateTime.now(), appointment.getAppointmentTime()) > 24){
+
+                Schedule schedule = scheduleRepository.findByAppointmentId(appointment.getId()).orElse(null);
+                if(schedule!=null) {
+                    scheduleRepository.delete(schedule);
+                }
+                appointmentRepo.deleteById(appointmentId);
+
+            }else{
+                System.out.println("Prekasno otkazivanje termina");
+            }
+
+        } catch (NoSuchElementException e){
+            throw new NoSuchElementException("Nije nađen temrin (ID:  " + appointmentId + ")");
+        }
     }
 }

@@ -103,4 +103,10 @@ public class UserController {
 
         return ResponseEntity.ok(userAppointments);
     }
+
+    @DeleteMapping("/reject/{appointmentId}")
+    public ResponseEntity<Void> rejectRequest(@PathVariable Long appointmentId){
+        userAppointmentService.rejectRequest(appointmentId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
