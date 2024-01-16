@@ -106,7 +106,12 @@ public class UserController {
 
     @DeleteMapping("/reject/{appointmentId}")
     public ResponseEntity<Void> rejectRequest(@PathVariable Long appointmentId){
-        userAppointmentService.rejectRequest(appointmentId);
+        boolean vracanje = userAppointmentService.rejectRequest(appointmentId);
+        if(vracanje){
         return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

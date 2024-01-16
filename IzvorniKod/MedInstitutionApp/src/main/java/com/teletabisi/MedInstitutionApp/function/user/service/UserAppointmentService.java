@@ -61,6 +61,8 @@ public class UserAppointmentService {
         appointment.setAppointmentTime(userAppointmentDTO.getDateTime());
         appointment.setUser(user);
 
+
+
         // postavljanje na PENDING vrijednosti za Room i Equipment
         Room room = roomRepo.getRoomById(0L);
         Equipment equipment = equipmentRepo.getEquipmentById(0L);
@@ -119,7 +121,7 @@ public class UserAppointmentService {
                 : Collections.emptyList();
     }
 
-    public void rejectRequest(Long appointmentId) {
+    public boolean rejectRequest(Long appointmentId) {
         Optional<Appointment> optionalAppointment = appointmentRepo.findById(appointmentId);
         try {
 
@@ -132,9 +134,10 @@ public class UserAppointmentService {
                     scheduleRepository.delete(schedule);
                 }
                 appointmentRepo.deleteById(appointmentId);
-
+                return true;
             }else{
                 System.out.println("Prekasno otkazivanje termina");
+                return false;
             }
 
         } catch (NoSuchElementException e){

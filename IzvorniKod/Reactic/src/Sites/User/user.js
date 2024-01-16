@@ -76,7 +76,16 @@ const User = () => {
         mode: "cors",
         method: "DELETE",
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if(response.status == 200){
+            alert("Uspješno otkazan termin");
+            return response.json();
+          }
+          else{
+            alert("Prekasno otkazan termin");
+            return response.json();
+          }
+        })
         .catch((error) => {
           console.error("Error:", error)
         });
@@ -133,7 +142,7 @@ const User = () => {
       dateTime: formattedDateTime,
     };
 
-    alert('Uspješno poslano');
+    
     setDescription('');
     setSelectedDate(new Date());
 
@@ -150,7 +159,17 @@ const User = () => {
         method: "POST",
         body: JSON.stringify(jsonData),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if(response.status == 200){
+            alert('Uspješno poslano');
+          return response.json();
+        }
+        else{
+           alert('Neuspješno poslano. Termini moraju biti na puni sat.');
+           return response.json();
+        }
+    }
+    )
         .catch((error) => {
           console.error("Error:", error)
         });
