@@ -18,7 +18,10 @@ import DatePicker from "react-datepicker";
 import { jwtDecode } from "jwt-decode";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useState } from "react";
-import {Navigation} from "../../services/navigate";
+import Navigacija from "../../services/navigate";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Register = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -31,9 +34,12 @@ const Register = () => {
   const [dob, setDob] = useState(null);
   const [oib, setOib] = useState("");
   const [spol, setSpol] = useState("");
+
+  Navigacija(jwt);
+
+  
   
 
-  Navigation(jwt);
 
   /*
   if (jwt) {
@@ -57,16 +63,7 @@ const Register = () => {
 
   */
 
-  function UseGetRoleFromJWT() {
-    if (jwt) {
-      const decoded = jwtDecode(jwt);
-      console.log(decoded.authorities);
 
-      return decoded.roles[0].authority;
-    } else {
-      return "";
-    }
-  }
 
   const handleName = (event) => {
     const Newname = event.target.value;

@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 import { useEffect } from "react";
 import { useState } from "react";
-import {Navigation} from "../../services/navigate";
+import Navigacija from "../../services/navigate";
 import {
   Button,
   Form,
@@ -27,6 +27,7 @@ const Login = () => {
   const [roles, setRoles] = useState('');
 
   const [jwt, setJwt] = useLocalState("", "jwt");
+  Navigacija(jwt);
   const [loginSource, setLoginSource] = useState("", "loginSource");
 
 

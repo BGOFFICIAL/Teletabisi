@@ -1,7 +1,8 @@
 import React from "react";
+import { jwtDecode } from "jwt-decode";
 import { useLocalState } from "../../util/useLocalStorage";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   Button,
   Form,
@@ -27,9 +28,20 @@ const Settings = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [loginSource, setLoginSource] = useState("", "loginSource");
 
+
+
+
+
+
+
+ 
+
+
+
   console.log(username);
   console.log(password);
   let pom = false;
+  console.log("Bearer :" + jwt);
 
   function sendSettingsRequest() {
     console.log("kliknut");

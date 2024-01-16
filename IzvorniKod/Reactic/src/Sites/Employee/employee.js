@@ -3,12 +3,14 @@ import { Col, Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useLocalState } from "../../util/useLocalStorage";
 import { jwtDecode } from "jwt-decode";
 import LogOut from "../../services/LogOut";
-import {Navigation,Waiter} from "../../services/navigate";
+import Navigacija  from "../../services/navigate";
+
 
 const Employee = () => {
-  Waiter(window.location.pathname);
+  
   const [jwt, setJwt] = useLocalState("", "jwt");
-  Navigation();
+  Navigacija(jwt);
+ 
 
   
 

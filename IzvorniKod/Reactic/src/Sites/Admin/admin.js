@@ -6,9 +6,11 @@ import "./admin.css";
 import { Button, Table, Form, InputGroup, Alert } from "react-bootstrap";
 import FormData from "form-data";
 import { useNavigate } from "react-router-dom";
+import Navigacija from "../../services/navigate";
 
 const Admin = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
+  Navigacija(jwt);
   const navigate = useNavigate();
   /*const role = UseGetRoleFromJWT(jwt);
   if (jwt) {

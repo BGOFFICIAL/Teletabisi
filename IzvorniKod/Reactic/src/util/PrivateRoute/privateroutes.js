@@ -5,7 +5,12 @@ import { useState } from "react";
 import ajax from "../../services/fetchGenerator";
 
 
-const PrivateRoutes = () => {
+
+
+
+
+
+const PrivateRoutes = () => {  
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [isLoading,setIsLoading] = useState(true);
   const [isValid,setIsValid] = useState(null);
@@ -22,7 +27,7 @@ const PrivateRoutes = () => {
   return isLoading ? (<div>Loading...</div>) : isValid === true ? (<Outlet />) : (<Navigate to="/welcome" />);
 
 
-  return jwt ? <Outlet /> : <Navigate to="/welcome" />;
+  
 };
 
 export default PrivateRoutes;

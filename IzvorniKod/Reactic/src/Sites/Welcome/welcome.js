@@ -19,10 +19,22 @@ import "./welcome.css";
 import { useLocalState, useEffect } from "../../util/useLocalStorage";
 import { jwtDecode } from "jwt-decode";
 import { LogOut } from "../../services/LogOut";
-import {Navigation} from "../../services/navigate";
+import Navigacija from "../../services/navigate";
+import { useState } from "react";
+
 
 const Welcome = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
+  Navigacija(jwt);
+
+
+  
+  localStorage.setItem("roles", "no role");
+  
+   
+
+
+
 
   
 
@@ -32,6 +44,8 @@ const Welcome = () => {
     fontSize: "28px",
     fontWeight: "bold",
   };
+
+  
 
   return (
     <Container>
@@ -158,6 +172,7 @@ const Welcome = () => {
   </div>
 */
   );
+ 
 };
 
 export default Welcome;

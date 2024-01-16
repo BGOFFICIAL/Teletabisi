@@ -7,76 +7,70 @@ import { useLocalState} from '../util/useLocalStorage';
 
 
 
-function UseGetRoleFromJWT(jwtpom) {
-  if (jwtpom) {
-    const decoded = jwtDecode(jwtpom);
-    console.log(decoded.authorities);
-
-    return decoded.roles[0].authority;
-  }
-  else {
-    return null;
-  }
-}
 
 
-function Waiter(lokacija) {
-  if(window.location.pathname !== lokacija)
-  return <div>Loading...</div>
-}
 
-
-function Navigation(jwt) {
+function Navigacija(jwt) {
   
 
   
-  const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
-
+  try{
 
 
     if (jwt) {
-      
-      
-        try {
-          const role = UseGetRoleFromJWT(jwt);
+          const decoded = jwtDecode(jwt);
+          const roles = decoded.roles;
+
+          if(roles && roles.length > 0){
+            const role = roles[0];
+            localStorage.setItem("roles", role);
+            console.log("role :" + role);
+          } else{
+            console.log("No roles found in token");
+            localStorage.setItem("roles","no role"); // remove roles from localStorage
+          } 
+        } else{
+            localStorage.setItem("roles","no role"); // remove roles from localStorage
+          }
           
+          console.log("roles:" + localStorage.getItem("roles"));
+          console.log("path:" + window.location.pathname);
     
-          if (role=== "ADMIN") {
+          if (localStorage.getItem("roles")=== "ADMIN" && window.location.pathname !== "/admin") {
             window.location.href = "/admin";
 
 
             return <div>Loading....</div>
           }
-          else if (role=== "USER") {
+          if (localStorage.getItem("roles")=== "USER" && (window.location.pathname !== "/user" || window.location.pathname === "/welcome") ) {
             window.location.href = "/user";
 
 
             return <div>Loading....</div>
           }
     
-          else if(role=== "EMPLOYEE"){
+          if(localStorage.getItem("roles")=== "EMPLOYEE" && window.location.pathname !== "/employee"){
             window.location.href = "/employee";
 
 
             return <div>Loading....</div>
           }
 
-         else{
-          if(window.location.pathname !== "/login" || window.location.pathname !== "/register" || window.location.pathname !== "/welcome" ){
+
+          
+
+         if((localStorage.getItem("roles")!=="USER" && localStorage.getItem("roles")!=="EMPLOYEE" && localStorage.getItem("roles")!=="ADMIN") && (window.location.pathname !== "/login" && window.location.pathname !== "/register" && window.location.pathname !== "/welcome") ){
             window.location.href = "/welcome";
 
+            localStorage.setItem("jwt","");
 
-            return <div>Loading....</div>}
+
+            return <div>Loading....</div>
           }
-    
-    
-        } catch (error) {
-          LogOut();
-          return <div>Loading....</div>
-        };
+        }catch(error){
+          localStorage.setItem("jwt","");
+          
+          console.log("errorcina");
+        }
       }
-     
-      }
-
-
-export {Navigation,Waiter};
+export default Navigacija;

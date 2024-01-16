@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import  LogOut  from "../../services/LogOut";
 import Settings from "../Settings/settings";
 import { jwtDecode } from "jwt-decode";
+import  Navigacija  from "../../services/navigate";
 import {
   Button, Form, Row, Col, Container, Navbar,
   Nav, InputGroup, ButtonGroup, FormLabel, ToggleButton, ToggleButtonGroup,
   NavbarText, NavDropdown, Table, Pagination, Card, CardFooter, CardBody
 } from "react-bootstrap";
-import Calendar from 'react-calendar';
+import Calendar, { Navigation } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DateTimePicker from 'react-datetime-picker';
 import Clock from 'react-clock';
@@ -21,14 +22,10 @@ import 'react-time-picker/dist/TimePicker.css';
 
 const User = () => {
 
-  
-
   const [jwt, setJwt] = useLocalState("", "jwt");
-  //POCETAK komentara
-  /*
-  const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
 
-  
+  Navigacija(jwt);
+ /* const [roles, setRoles] = useLocalState(UseGetRoleFromJWT);
   
 
   
@@ -69,11 +66,10 @@ const User = () => {
 
    
 
-  console.log("idem dalje"); */
-  //ZAVRSETAK komentara
+  console.log("idem dalje");
+ */
  
-   //VARIJABLE - tu ovih 6 i ova 2
-   
+   //VARIJABLE
    const [selectedDate, setSelectedDate] = useState(new Date());
    const [currentPage, setCurrentPage] = useState(1);
    const [currentPage1, setCurrentPage1] = useState(1);
@@ -81,61 +77,41 @@ const User = () => {
    const [data, setData] = useState([]);
    const [description, setDescription] = useState('');
 
-   useEffect(() => {
-    function updateRoles() {
-      if (jwt) {
-        console.log(jwt);
-        const decoded = jwtDecode(jwt);
-        const roles = decoded.roles;
-  
-        if (roles && roles.length > 0) {
-          const role = roles[0];
-          console.log("Role:" + role);
-          localStorage.setItem("roles", role);
-          console.log("Success");
-        } else {
-          console.log("No roles found in token");
-        }
-      } else {
-        localStorage.setItem("roles","no role"); // remove roles from localStorage
-      }
-    }
-  
-    updateRoles();
-  }, [jwt]);
+
+
+
+
+   
  
   // funkcije
    useEffect(() => {
      const fetchData = async () => {
        try {
-        console.log(`Bearer ${jwt}`);
-          
+        
+        //POCETAK KOMENTARA  
+        
          const response = await fetch('http://localhost:8080/api/v1/func/appointment/request/all-appointments',{
          headers:{ 
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-         "Authorization":"Bearer " +jwt,
-          "Content-Type": "application/json"
-          
-          
-         
+          "Authorization":`Bearer ${jwt}`,
+          "Content-Type": "application/json",
         },
-        mode: 'cors',
         method: "GET"
-      });
+      }); 
 
 
-
+        console.log(response);
          const jsonData = await response.json();
-         setData(jsonData);
+          console.log(jsonData);
+          
+         setData(jsonData); 
+         
+         //ZAVRSETAK KOMENTARA
        } catch (error) {
          console.error('Empty', error);
        }
      };
      fetchData();
-   }, []);
-
-
-  
+   }, []); 
 
   //HANDLE funckije
 
@@ -202,37 +178,38 @@ const User = () => {
       description: description,
       dateTime: formattedDateTime,
     };
-    
+
     alert('Uspješno poslano');
     setDescription('');
     setSelectedDate(new Date());
     
     try {
     
-      
+      // POCETAK KOMENTARA
       fetch("http://localhost:8080/api/v1/func/appointment/request", {
         headers: {
           "Access-Control-Allow-Origin": "http://localhost:3000",
           "Content-Type": "application/json",
-          "Authorization":`Bearer ${jwt}`
+          "Authorization":`Bearer ${jwt}`,
         },
-        mode: 'cors',
+        mode: "cors",
         method: "POST",
         body: JSON.stringify(jsonData),
       })
         .then((response) => response.json())
         .catch((error) => {
           console.error("Error:", error)
-        });
+        });  
+        //ZAVRSETAK KOMENTARA
     }
 
     catch (error) {
       return Promise.reject("Invalidni zahtjev");
       ;
     }
-    console.log(jsonData);
+    console.log(jsonData); 
 
-  };
+  }; 
 
 
   
@@ -378,7 +355,8 @@ const User = () => {
               <th>Opis</th>
               <th>Oprema</th>
               <th>Prostorija</th>
-              <th>Datum i vrijeme</th>
+              <th>Datum</th>
+              <th>Vrijeme</th>
               <th>Otkaži</th>
             </tr>
           </thead>
@@ -398,7 +376,8 @@ const User = () => {
                     <td>{item.description}</td>
                     <td>{item.equipment}</td>
                     <td>{item.room}</td>
-                    <td>{item.appointmentTime}</td>
+                    <td>{item.date}</td>
+                    <td>{item.time}</td>
                     <td>
                       <Button
                         variant="link"

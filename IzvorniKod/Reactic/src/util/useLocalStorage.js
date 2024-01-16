@@ -9,7 +9,10 @@ function useLocalState(defaultValue, key) {
       stickyValue === "null" ||
       stickyValue === null ||
       stickyValue === "" ||
-      stickyValue === " "
+      stickyValue === " " ||
+      stickyValue === undefined ||
+      stickyValue === '"' ||
+      stickyValue === '""' 
     ) {
       return defaultValue;
     }
