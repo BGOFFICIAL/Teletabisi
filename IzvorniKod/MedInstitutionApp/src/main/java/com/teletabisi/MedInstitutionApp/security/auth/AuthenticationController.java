@@ -1,27 +1,34 @@
 package com.teletabisi.MedInstitutionApp.security.auth;
 
-
+import com.teletabisi.MedInstitutionApp.email.EmailRequest;
+import com.teletabisi.MedInstitutionApp.email.MailService;
+import com.teletabisi.MedInstitutionApp.email.MailStructure;
 import com.teletabisi.MedInstitutionApp.entity.User;
-import com.teletabisi.MedInstitutionApp.security.auth.dto.EmployeeDTO;
-import com.teletabisi.MedInstitutionApp.security.auth.request.*;
+import com.teletabisi.MedInstitutionApp.repository.UserRepository;
+import com.teletabisi.MedInstitutionApp.security.auth.request.AuthenticationRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.request.RegisterRequest;
+import com.teletabisi.MedInstitutionApp.security.auth.request.UpdateRequest;
 import com.teletabisi.MedInstitutionApp.security.auth.response.AuthenticationResponse;
-import com.teletabisi.MedInstitutionApp.security.auth.response.EmployeeResponse;
-import com.teletabisi.MedInstitutionApp.security.auth.response.PromotionResponse;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.CsvService;
 import com.teletabisi.MedInstitutionApp.security.auth.serivce.AuthenticationService;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.EmployeeService;
-import com.teletabisi.MedInstitutionApp.security.auth.serivce.PromotionService;
+import com.teletabisi.MedInstitutionApp.security.auth.serivce.CsvService;
+import com.teletabisi.MedInstitutionApp.security.jwt.service.JwtService;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AuthenticationController {
+
+    private final JwtService jwtService;
 
     private final AuthenticationService service;
 
@@ -29,7 +36,12 @@ public class AuthenticationController {
     private CsvService csvService;
 
     @Autowired
-    private PromotionService promotionService;
+    private UserRepository userRepository;
+
+    @Autowired
+    private MailService mailService;
+
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -61,65 +73,44 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.update(request));
     }
 
-    @PostMapping("/add/employee")
-    public ResponseEntity<PromotionResponse> promotion(@RequestBody PromotionRequest request) {
-        System.out.print(request.getUsername());
-        if (request != null && request.getUsername() != null) {
-            User promotedUser = promotionService.promoteUser(request.getUsername());
+    @PostMapping("/forget")
+    public String forgotPassword(@RequestBody EmailRequest emailRequest){
 
-            if (promotedUser != null) {
-                PromotionResponse response = PromotionResponse.builder()
-                        .name(promotedUser.getFirstname())
-                        .surname(promotedUser.getLastname())
-                        .email(promotedUser.getEmail())
-                        .date_of_birth(promotedUser.getDateOfBirth())
-                        .start_date(promotedUser.getStartDate())
-                        .gender(promotedUser.getGender())
-                        .build();
+        String email = emailRequest.getEmail();
 
-                return ResponseEntity.ok(response);
-            }
+        MailStructure mailStructure = new MailStructure();
+        User user = userRepository.findFirstByEmail(email).orElse(null);
+
+        if(user!=null) {
+            String username = user.getUsername();
+            String password = mailService.generateRandomString(10);
+
+
+            mailStructure.setSubject("Vaše korisničko ime i lozinka");
+            mailStructure.setMessage("Korisničko ime: " + username + "\n" + "Lozinka: " + password);
+
+            mailService.sendMail(email, mailStructure);
+            //spremi se neekriptirana
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+            return "Uspješno pronađen korisnik";
+
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Korisnik nije pronađen");
+        }
+
+
     }
 
-    @PostMapping("/remove/employee")
-    public ResponseEntity<String> demotion(@RequestBody PromotionRequest request) {
-        if (request != null && request.getUsername() != null) {
-            User demotedUser = promotionService.demoteUser(request.getUsername());
+    @GetMapping("/validate")
+    public ResponseEntity<?>  Validatetoken (@RequestParam String token, @AuthenticationPrincipal User user) {
+        try {
+            Boolean check = jwtService.isTokenValid(token,user);
+            return ResponseEntity.ok(check);
+        } catch(ExpiredJwtException e){
+            return ResponseEntity.ok(false);
 
-            if (demotedUser != null) {
-                return ResponseEntity.ok("Djelatnik neaktivan");
-            }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @GetMapping("/return/employee")
-    public ResponseEntity<EmployeeResponse> employees(){
-        List<EmployeeDTO> employeeList = EmployeeService.findAllEmployees();
-
-        if(employeeList != null && !employeeList.isEmpty()){
-            EmployeeResponse response = EmployeeResponse.builder()
-                    .employeeList(employeeList)
-                    .build();
-            return ResponseEntity.ok(response);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @PostMapping("/filter/employees")
-    public ResponseEntity<EmployeeResponse> filteredEmployees(@RequestBody EmployeeRequest request){
-        if (request != null) {
-            List<EmployeeDTO> filteredEmployeeList = EmployeeService.filterAllEmployees(request.getGender(), request.getDateOfBirth() , request.getStartDate());
-
-            if(filteredEmployeeList != null && !filteredEmployeeList.isEmpty()){
-                EmployeeResponse response = EmployeeResponse.builder()
-                        .employeeList(filteredEmployeeList)
-                        .build();
-                return ResponseEntity.ok(response);
-            }
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

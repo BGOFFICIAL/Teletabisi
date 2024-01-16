@@ -1,6 +1,5 @@
 package com.teletabisi.MedInstitutionApp.security.auth.register;
 
-
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.security.auth.register.service.AppService;
 import com.teletabisi.MedInstitutionApp.repository.UserRepository;
@@ -18,6 +17,7 @@ public class AppController {
 
     @Autowired
     private UserRepository repo;
+
     public AppController() {
     }
 
@@ -50,7 +50,7 @@ public class AppController {
         if (repo.findFirstByOIB(user.getOIB()).isPresent()) {
             model.addAttribute("errorOIB1", "Korisnik sa OIB-om: " + user.getOIB() + " već postoji");
         }
-        if (user.getOIB().length()!=11) {
+        if (user.getOIB().length() != 11) {
             model.addAttribute("errorOIB2", "OIB mora imati 11 znamenki");
         }
 
