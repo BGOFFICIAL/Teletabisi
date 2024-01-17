@@ -58,7 +58,6 @@ public class EmployeeAppointmentService {
         Iterator<Appointment> iterator = appointments.iterator();
         while (iterator.hasNext()) {
             Appointment appointment = iterator.next();
-            System.out.println(appointment.getDjelatnik());
             if (appointment.getDjelatnik() == null) {
                 // Koristimo iterator.remove() umjesto appointments.remove()
                 iterator.remove();

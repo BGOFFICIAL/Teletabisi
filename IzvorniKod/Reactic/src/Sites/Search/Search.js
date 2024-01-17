@@ -69,43 +69,43 @@ const Search = () => {
 
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
             event.stopPropagation();
         }
         setValidated(true);
-
-
+    
         if (!ime || !prezime || !oib || !isValidOIB(oib)) {
             alert('Molimo ispunite sva polja ispravno.');
             return;
         }
-
-
-        try {
-            const response = fetch(`http://localhost:8080/api/v1/func/appointment/searchUser/${oib}`, {
-          headers: {
+    
+        fetch(`http://localhost:8080/api/v1/func/appointment/searchUser/${oib}`, {
+            headers: {
                 "Authorization": `Bearer ${jwt}`,
-                 "Content-Type": "application/json",
-         },
-         mode: "cors",
-         method: "GET"         
-         });
-         if (response.ok) {
-        const jsonData = response.json();
-        setData(jsonData);
-        } else {
-    console.error('Error fetching searchUser:', response.status, response.statusText);
-    // Handle the error as needed
-}
-
-    }catch (error) {
-        return Promise.reject("Invalidni zahtjev");
-        
-      }
-
-    }
+                "Content-Type": "application/json",
+            },
+            mode: "cors",
+            method: "GET"
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                console.error('Error fetching searchUser:', response.status, response.statusText);
+                throw new Error('Error fetching searchUser');
+            }
+        })
+        .then((jsonData) => {
+            setData(jsonData); // Assuming jsonData is an array
+        })
+        .catch((error) => {
+            console.error('Error during fetch:', error);
+            // Handle the error as needed
+            return Promise.reject("Invalidni zahtjev");
+        });
+    };
 
     const formatDate = (dateTimeString) => {
         const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
