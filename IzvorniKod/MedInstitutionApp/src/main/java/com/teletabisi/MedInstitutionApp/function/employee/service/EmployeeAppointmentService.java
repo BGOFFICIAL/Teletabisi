@@ -51,7 +51,22 @@ public class EmployeeAppointmentService {
 
 
 
+    public List<Appointment> searchUser(User user) {
+        List<Appointment> appointments = appointmentRepo.findByUserId(user.getId());
 
+        // Koristimo iterator kako bismo mogli sigurno ukloniti elemente iz liste
+        Iterator<Appointment> iterator = appointments.iterator();
+        while (iterator.hasNext()) {
+            Appointment appointment = iterator.next();
+            System.out.println(appointment.getDjelatnik());
+            if (appointment.getDjelatnik() == null) {
+                // Koristimo iterator.remove() umjesto appointments.remove()
+                iterator.remove();
+            }
+        }
+
+        return appointments;
+    }
 
     /**
      * Dohvaćanje svih uahtjeva za pregled koji su PENDING

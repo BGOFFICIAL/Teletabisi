@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/dto/SearchUserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Reactic/src/Sites/Employee/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reactic/src/Sites/Employee/employee.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +147,7 @@
       <workItem from="1705436480768" duration="8000000" />
       <workItem from="1705448564956" duration="7202000" />
       <workItem from="1705484223484" duration="787000" />
-      <workItem from="1705490144765" duration="2396000" />
+      <workItem from="1705490144765" duration="7548000" />
     </task>
     <servers />
   </component>

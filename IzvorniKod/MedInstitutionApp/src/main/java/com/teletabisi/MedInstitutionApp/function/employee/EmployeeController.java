@@ -6,10 +6,12 @@ import com.teletabisi.MedInstitutionApp.entity.Appointment;
 import com.teletabisi.MedInstitutionApp.entity.Equipment;
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.function.dto.EmployeeAcceptDTO;
+import com.teletabisi.MedInstitutionApp.function.dto.SearchUserDTO;
 import com.teletabisi.MedInstitutionApp.function.employee.request.AppointmentDateTimeRequest;
 import com.teletabisi.MedInstitutionApp.function.employee.service.EmployeeAppointmentService;
 import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
 import com.teletabisi.MedInstitutionApp.repository.EquipmentRepository;
+import com.teletabisi.MedInstitutionApp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ public class EmployeeController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Autowired
@@ -58,12 +63,23 @@ public class EmployeeController {
         return new ResponseEntity<>(pendingAppointments, HttpStatus.OK);
     }
 
+
     @GetMapping("/getEquipment")
     public ResponseEntity<Set<String>> getEquipment(@AuthenticationPrincipal User user){
         Set<String> equipment = employeeAppointmentService.getEquipment();
         return new ResponseEntity<>(equipment, HttpStatus.OK);
     }
 
+    @GetMapping("/searchUser/{oib}")
+    public ResponseEntity<List<Appointment>> searchUser(@PathVariable String oib,
+                                                        @AuthenticationPrincipal User useric){
+        List<Appointment> appointments = new ArrayList<>();
+        User user = userRepository.findFirstByOIB(oib).orElse(null);
+        appointments = employeeAppointmentService.searchUser(user);
+
+        return new ResponseEntity<>(appointments, HttpStatus.OK);
+
+    }
     /**
      * Prihvaćanje određenog zahtjeva za novim terminom
      * @param appointmentId

@@ -12,7 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
-
+    const [jwt, setJwt] = useLocalState("", "jwt");
     const [ime, setIme] = useState('');
     const [prezime, setPrezime] = useState('');
     const [oib, setOib] = useState('');
@@ -83,32 +83,36 @@ const Search = () => {
         }
 
 
-        //  FETCH funkcija tu negdje
+        try {
+            const response = fetch(`http://localhost:8080/api/v1/func/appointment/searchUser/${oib}`, {
+          headers: {
+                "Authorization": `Bearer ${jwt}`,
+                 "Content-Type": "application/json",
+         },
+         mode: "cors",
+         method: "GET"         
+         });
+         if (response.ok) {
+        const jsonData = response.json();
+        setData(jsonData);
+        } else {
+    console.error('Error fetching searchUser:', response.status, response.statusText);
+    // Handle the error as needed
+}
 
-        const searchData = {
-            ime,
-            prezime,
-            oib,
-        };
-        console.log('Search Data:', searchData);
+    }catch (error) {
+        return Promise.reject("Invalidni zahtjev");
+        
+      }
 
-    };
+    }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Fetch data from your server endpoint
-                const response = await fetch('YOUR_SERVER_ENDPOINT_HERE');
-                const jsonData = await response.json();
-                setData(jsonData);
-            } catch (error) {
-                console.error('Empty', error);
-            }
-        };
-        fetchData();
-    }, []);
-
-
+    const formatDate = (dateTimeString) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+        const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
+        return formattedDate;
+      };
+    
 
     return (
         <Container>
@@ -267,9 +271,8 @@ const Search = () => {
                 <Table className='tablica' striped bordered hover>
                     <thead>
                         <tr>
-                            <th>"Korisničko ime"</th>
-                            <th>Datum</th>
-                            <th>Vrijeme</th>
+                            <th>Korisničko ime</th>
+                            <th>Datum i vrijeme</th>
                             <th>Prostorija</th>
                             <th>Oprema</th>
                             <th>Liječnik</th>
@@ -277,7 +280,7 @@ const Search = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {//DODAJ PRAVI DATA
+                        {
                             currentItems.length === 0 ? (
                                 <tr>
                                     <td colSpan={7} className="text-center">
@@ -288,11 +291,11 @@ const Search = () => {
 
                                 currentItems.map((item) => (
                                     <tr key={item.id}>
-                                        <td>{item.date}</td>
-                                        <td>{item.time}</td>
-                                        <td>{item.room}</td>
-                                        <td>{item.equipment}</td>
-                                        <td>{item.doctor}</td>
+                                        <td>{item.user.username}</td>
+                                        <td>{formatDate(item.appointmentTime)}</td>
+                                        <td>{item.room.name}</td>
+                                        <td>{item.equipment.name}</td>
+                                        <td>{item.djelatnik.firstname + " " + item.djelatnik.lastname}</td>
                                         <td>{item.description}</td>
                                     </tr>
                                 )))}

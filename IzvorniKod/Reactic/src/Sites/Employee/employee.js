@@ -44,19 +44,17 @@ const Employee = () => {
   const [eq, setEq] = useState([]);
   const [eqItems, setEqItems] = useState([]);
 
+
   //prikaz stranica
   const indexOfLastItem = pendingPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // pendingItems = data1.slice(indexOfFirstItem, indexOfLastItem);
 
+
   useEffect(() => {
-
-
     const fetchData = async () => {
       try {
-
-        //POCETAK KOMENTARA  
-
+        // Fetching data for pendingItems
         const response = await fetch('http://localhost:8080/api/v1/func/appointment/control', {
           headers: {
             "Authorization": `Bearer ${jwt}`,
@@ -66,19 +64,56 @@ const Employee = () => {
         });
         const jsonData = await response.json();
         setData(jsonData);
-
-        //ZAVRSETAK KOMENTARA
       } catch (error) {
-        console.error('Empty', error);
+        console.error('Error fetching pendingItems:', error);
       }
+
+      try {
+        // Fetching data for equipment (eq)
+        const eqResponse = await fetch('http://localhost:8080/api/v1/func/appointment/getEquipment', {
+          headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+          method: "GET"
+        });
+        const eqJsonData = await eqResponse.json();
+        setEq(eqJsonData);
+      }
+      
+      catch (error) {
+        console.error('Error fetching equipment (eq):', error);
+      }
+
+
+
+      try {
+        // Fetching data for equipment (eq)
+        const ownResponse = await fetch('http://localhost:8080/api/v1/func/appointment/all-appointments', {
+          headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+          method: "GET"
+        });
+        const ownJsonData = await ownResponse.json();
+        setownItems(ownJsonData);
+      }
+      
+      catch (error) {
+        console.error('Error fetching own items:', error);
+      }
+
+      // Setting pendingItems after fetching data
+      setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
+      // Setting equipment (eqItems) after fetching data
+      setEqItems(eq);
     };
+
     fetchData();
-    setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
-  }, [pendingPage, data]);
-
+  }, [pendingPage, data, jwt]);
   
-  
-
+  console.log(eq);
 
   const handleAccept = (selectedItem) => {
     setroomItems((prevownItems) => [...prevownItems, selectedItem]);
@@ -166,7 +201,7 @@ const Employee = () => {
         return Promise.reject("Invalidni zahtjev");
         ;
       }
-      setownItems((prevOwnItems) => [...prevOwnItems, item]);
+     // setownItems((prevOwnItems) => [...prevOwnItems, item]);
       setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
     } else {
       //ispisi datum kad moze
@@ -186,7 +221,7 @@ const Employee = () => {
   };
 
   const setDate = (item) => (selectedDate) => {
-    const updatedItem = { ...item, appointmentTime: selectedDate.toISOString() };
+    const updatedItem = { ...item, appointmentTime: selectedDate.toISOString().slice(0, 19).replace("T", " ") };
     setroomItems((prevRoomItems) =>
       prevRoomItems.map((roomItem) =>
         roomItem.id === item.id ? updatedItem : roomItem
@@ -384,18 +419,18 @@ const Employee = () => {
                   <td>{item.user.firstname + " " + item.user.lastname}</td>
                   <td>{item.description}</td>
                   <td>
-                    <Form.Select
-                      required
-                      onChange={setEquipment(item)}
-                      aria-label="Default select example"
-
-                    >
-                      <option>Odaberi</option>
-                      <option value="Laser">Laser</option>
-                      <option value="Štake">Štake</option>
-                      <option value="Traka">Traka</option>
-                      <option value="oprema 1">Oprema 1</option>
-                    </Form.Select>
+                  <Form.Select
+  required
+  onChange={setEquipment(item)}
+  aria-label="Default select example"
+>
+  <option>Odaberi</option>
+  {eq.map((equipmentOption) => (
+    <option key={equipmentOption} value={equipmentOption}>
+      {equipmentOption}
+    </option>
+  ))}
+</Form.Select>
                   </td>
                   <td>
                     <DateTimePicker
@@ -477,9 +512,9 @@ const Employee = () => {
                 <tr key={item.id}>
                   <td>{item.user.firstname + " " + item.user.lastname}</td>
                   <td>{item.description}</td>
-                  <td>
-                    {item.equipment}
-                  </td>
+                 
+                  <td>{item.equipment.name}</td>
+                 
                   <td>
                     {item.room.name}
                   </td>
