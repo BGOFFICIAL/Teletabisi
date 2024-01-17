@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PromotionRequest {
     private String username;
+    private int shift;
 
     // private int 0 1 -> parna prijepodne ili 2 -> parna poslijepodne
 

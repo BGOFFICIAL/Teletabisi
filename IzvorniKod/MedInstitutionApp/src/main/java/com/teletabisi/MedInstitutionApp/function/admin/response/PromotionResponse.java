@@ -19,4 +19,5 @@ public class PromotionResponse {
     private Date date_of_birth;
     private LocalDate start_date;
     private String gender;
+    private int shift;
 }

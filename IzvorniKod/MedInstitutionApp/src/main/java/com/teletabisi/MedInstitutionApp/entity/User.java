@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,135 +24,60 @@ import java.util.Objects;
 @Table(name = "users")
 public class User implements UserDetails {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private LocalDate StartDate;
 
+    @Setter
     @NotNull(message = "Unesi ime")
     private String firstname;
 
+    @Setter
     @NotNull(message = "Unesi prezime")
     private String lastname;
 
+    @Setter
     @Column(unique = true)
     @NotNull(message = "Unesi korisničko ime")
     private String username;
 
+    @Setter
     @Column(unique = true)
     @Email(message = "Unesi ispravnu email adresu")
     @NotNull(message = "Unesi email adresu")
     private String email;
 
+    @Setter
     @NotNull(message = "Unesi lozinku")
     private String password;
 
+    @Setter
     @Column(unique = true)
     @NotNull(message = "Unesi OIB")
     @Size(min = 11, max = 11, message = "OIB mora imati 11 znamenki")
     private String OIB;
 
+    @Setter
     @NotNull(message = "Označi spol")
     private String gender;
 
+    @Setter
     @NotNull(message = "Označi datum rođenja")
     private Date dateOfBirth;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // private int trenutnaSmjena = 0;
-
-    // private int sljedecaSmjena = 0;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getOIB() {
-        return OIB;
-    }
-
-    public void setOIB(String OIB) {
-        this.OIB = OIB;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public LocalDate getStartDate() {
-        return StartDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        StartDate = startDate;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Setter
+    // 0 za korisnika,
+    // 1 Neparni datumi ujutro, Parni datumi popodne,
+    // 2 Neparni datumi popodne, Parni datumi ujutro
+    private int shift;
 
     @Override
     public boolean isAccountNonExpired() {
