@@ -43,9 +43,9 @@ public class RoomService {
             Room existingRoom = existingRoomOptional.get();
             if (!Objects.equals(existingRoom.getRoomStatus(), newStatus)){
                 existingRoom.setRoomStatus(newStatus);
-                if(Objects.equals(newStatus, "NEDOSTUPNO")){
+                if(Objects.equals(newStatus, "inactive")){
                     existingRoom.setCapacity(0);
-                } else if (Objects.equals(newStatus, "DOSTUPNO")){
+                } else if (Objects.equals(newStatus, "active")){
                     List<Equipment> sameRoomEquipment = equipmentRepo.findAllByRoom(existingRoom);
                     existingRoom.setCapacity(sameRoomEquipment.size());
                 }
