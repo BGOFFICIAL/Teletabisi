@@ -4,6 +4,7 @@ import com.teletabisi.MedInstitutionApp.entity.Appointment;
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.function.dto.UserAppointmentDTO;
 import com.teletabisi.MedInstitutionApp.function.user.service.UserAppointmentService;
+import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class UserController {
     @Autowired
     private UserAppointmentService userAppointmentService;
 
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
     private final Map<Long, Long> userLastRequestTime = new HashMap<>();
 
     /**
@@ -44,6 +48,13 @@ public class UserController {
                                                     @AuthenticationPrincipal User user) {
         try {
             Long userId = user.getId();
+
+            List<Appointment> appointmentsUser = appointmentRepository.findByUserId(user.getId());
+            for(Appointment appointment: appointmentsUser){
+                if(appointment.getAppointmentTime().equals(userAppointmentDTO.getDateTime())) {
+                    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                }
+            }
 
             // Uvjet koji ograničava slanje po jednom zahtjevu u minuti za svakog korisnika
             if (userLastRequestTime.containsKey(userId)) {

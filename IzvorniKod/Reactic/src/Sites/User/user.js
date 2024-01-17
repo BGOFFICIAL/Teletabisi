@@ -160,9 +160,12 @@ const User = () => {
         body: JSON.stringify(jsonData),
       })
         .then((response) => {
-          if(response.status == 200){
+          if(response.status === 200){
             alert('Uspješno poslano');
           return response.json();
+        }
+        else if(response.status === 403){
+          alert('Već imate dogovoren termin u to vrijeme.');
         }
         else{
            alert('Neuspješno poslano. Termini moraju biti na puni sat.');

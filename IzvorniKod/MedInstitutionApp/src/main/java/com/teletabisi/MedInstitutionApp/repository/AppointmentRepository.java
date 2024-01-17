@@ -1,6 +1,7 @@
 package com.teletabisi.MedInstitutionApp.repository;
 
 import com.teletabisi.MedInstitutionApp.entity.Appointment;
+import com.teletabisi.MedInstitutionApp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -21,4 +22,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Appointment> findByUserIdAndAppointmentTime(Long userId, LocalDateTime currentDateTime);
 
     Optional<Appointment> findById(Long id);
+
+    List<Appointment> findByDjelatnikId(Long djelatnikId);
 }

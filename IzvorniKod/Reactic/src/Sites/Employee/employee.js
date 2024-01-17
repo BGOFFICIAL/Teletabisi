@@ -183,7 +183,16 @@ const Employee = () => {
             equipmentName: item.equipment,
           }),
         })
-          .then((response) => response.json())
+          .then((response) => {
+            if(response.status === 200){
+              alert('Uspješno prihvaćen termin!');
+              response.json();
+            }
+            else{
+              alert('Imate dogovoren termin u isto vrijeme.');
+              
+            }
+           })
           .catch((error) => {
             console.error("Error:", error)
           });

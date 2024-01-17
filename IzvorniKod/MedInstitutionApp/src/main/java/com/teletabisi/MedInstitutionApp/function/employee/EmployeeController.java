@@ -69,16 +69,26 @@ public class EmployeeController {
                                                 @AuthenticationPrincipal User useric){
         String equipmentName = employeeAcceptDTO.getEquipmentName();
 
-        List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName, useric);
+        List<Appointment> appointmentsDjelatnik = appointmentRepository.findByDjelatnikId(useric.getId());
 
-        if(newDateTimes != null){
-            Map<String, Object> response = new HashMap<>();
-            response.put("message", "Room or equipment is not available at the requested time.");
-            response.put("newAvailableDateTimes", newDateTimes);
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
-        } else{
 
-            Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+        for(Appointment appointment: appointmentsDjelatnik){
+            if(appointment.getAppointmentTime().equals(appointmentRepository.findById(appointmentId).orElse(null).getAppointmentTime())) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        }
+
+
+            List<LocalDateTime> newDateTimes = employeeAppointmentService.acceptRequest(appointmentId, equipmentName, useric);
+
+            if (newDateTimes != null) {
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "Room or equipment is not available at the requested time.");
+                response.put("newAvailableDateTimes", newDateTimes);
+                return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+            } else {
+
+                Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
 
 
 
@@ -86,21 +96,21 @@ public class EmployeeController {
 autor: Neven Pralas
 Opis: Prihvaćanje termina == slanje maila
  */
-            if(appointment!=null){
-                MailStructure mailStructure = new MailStructure();
-                mailStructure.setSubject("Poruka o potvrdi termina.");
-                mailStructure.setMessage("Potvrđen je vaš termin!");
+                if (appointment != null) {
+                    MailStructure mailStructure = new MailStructure();
+                    mailStructure.setSubject("Poruka o potvrdi termina.");
+                    mailStructure.setMessage("Potvrđen je vaš termin!");
 
-                User user = appointment.getUser();
-                String userEmail = user.getEmail();
+                    User user = appointment.getUser();
+                    String userEmail = user.getEmail();
 
-                //ZASAD        mailService.sendMail(userEmail, mailStructure);
+                    //ZASAD        mailService.sendMail(userEmail, mailStructure);
 
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
-            else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+                    return new ResponseEntity<>(HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                }
+
         }
     }
 
