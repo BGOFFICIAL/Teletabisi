@@ -10,4 +10,5 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     Optional<Schedule> findByEquipmentIdAndDateTime(Long equipmentId, LocalDateTime requestedDateTime);
 
     Optional<Schedule> findByAppointmentId(Long appointmentId);
+
 }

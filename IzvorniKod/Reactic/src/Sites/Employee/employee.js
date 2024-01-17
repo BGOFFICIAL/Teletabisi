@@ -113,7 +113,6 @@ const Employee = () => {
     fetchData();
   }, [pendingPage, data, jwt]);
   
-  console.log(eq);
 
   const handleAccept = (selectedItem) => {
     setroomItems((prevownItems) => [...prevownItems, selectedItem]);
@@ -134,17 +133,73 @@ const Employee = () => {
 
 
   const handleDelete = (item) => {
-    // logika za brisanje
-    setownItems((prevownItems) =>
-      prevownItems.filter((completedItem) => completedItem.id !== item.id)
-    );
+    try {
+
+      // POCETAK KOMENTARA
+      fetch(`http://localhost:8080/api/v1/func/appointment/delete/${item.id}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+        mode: "cors",
+        method: "DELETE",
+      })
+        .then((response) => {
+          if(response.status == 200){
+            alert("Uspješno izbrisan termin");
+          }
+          else{
+            alert("Neuspješno izbrisan termin");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+        });
+      //ZAVRSETAK KOMENTARA
+    }
+
+    catch (error) {
+      return Promise.reject("Invalidni zahtjev");
+      ;
+    } 
   }
   const handleQuit = (item) => {
-    //logika za otkazivanje
-    setpendingItems((prevownItems) => [...prevownItems, item]);
-    setownItems((prevownItems) =>
-      prevownItems.filter((completedItem) => completedItem.id !== item.id)
-    );
+    
+     // FETCH
+     try {
+
+      // POCETAK KOMENTARA
+      fetch(`http://localhost:8080/api/v1/func/appointment/otkazi/${item.id}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+        mode: "cors",
+        method: "POST",
+      })
+        .then((response) => {
+          if(response.status == 200){
+            alert("Uspješno otkazan termin");
+            return response.json();
+          }
+          else{
+            alert("Prekasno otkazan termin");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+        });
+      //ZAVRSETAK KOMENTARA
+    }
+
+    catch (error) {
+      return Promise.reject("Invalidni zahtjev");
+      ;
+    }  
+
+    
   };
 
   const handleSearch = () => {
@@ -184,11 +239,14 @@ const Employee = () => {
           .then((response) => {
             if(response.status === 200){
               alert('Uspješno prihvaćen termin!');
-              response.json();
+              
             }
-            else{
+            else if(response.status === 400){
               alert('Imate dogovoren termin u isto vrijeme.');
               
+            }
+            else{
+              alert('Odaberi dostupnu opremu.');
             }
            })
           .catch((error) => {

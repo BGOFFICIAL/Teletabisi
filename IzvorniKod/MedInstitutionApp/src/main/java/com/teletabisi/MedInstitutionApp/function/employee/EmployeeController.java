@@ -2,16 +2,12 @@ package com.teletabisi.MedInstitutionApp.function.employee;
 
 import com.teletabisi.MedInstitutionApp.email.MailService;
 import com.teletabisi.MedInstitutionApp.email.MailStructure;
-import com.teletabisi.MedInstitutionApp.entity.Appointment;
-import com.teletabisi.MedInstitutionApp.entity.Equipment;
-import com.teletabisi.MedInstitutionApp.entity.User;
+import com.teletabisi.MedInstitutionApp.entity.*;
 import com.teletabisi.MedInstitutionApp.function.dto.EmployeeAcceptDTO;
 import com.teletabisi.MedInstitutionApp.function.dto.SearchUserDTO;
 import com.teletabisi.MedInstitutionApp.function.employee.request.AppointmentDateTimeRequest;
 import com.teletabisi.MedInstitutionApp.function.employee.service.EmployeeAppointmentService;
-import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
-import com.teletabisi.MedInstitutionApp.repository.EquipmentRepository;
-import com.teletabisi.MedInstitutionApp.repository.UserRepository;
+import com.teletabisi.MedInstitutionApp.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +32,15 @@ public class EmployeeController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
 
     @Autowired
@@ -171,6 +176,28 @@ Opis: Prihvaćanje termina == slanje maila
     @DeleteMapping("delete/{appointmentId}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable Long appointmentId){
         employeeAppointmentService.deleteAppointment(appointmentId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/otkazi/{appointmentId}")
+    public ResponseEntity<Void> otkaziAppointment(@PathVariable Long appointmentId){
+        Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
+
+        Equipment equipment = equipmentRepository.findById(0L).orElse(null);
+        Room room = roomRepository.findById(0L).orElse(null);
+
+        appointment.setDjelatnik(null);
+        appointment.setEquipment(equipment);
+        appointment.setRoom(room);
+
+        Schedule schedule = scheduleRepository.findByAppointmentId(appointmentId).orElse(null);
+
+        
+        scheduleRepository.delete(schedule);
+
+
+        appointmentRepository.save(appointment);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -79,6 +79,14 @@ public class User implements UserDetails {
     // 2 Neparni datumi popodne, Parni datumi ujutro
     private int shift;
 
+    public int getShift() {
+        return shift;
+    }
+
+    public void setShift(int shift) {
+        this.shift = shift;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
