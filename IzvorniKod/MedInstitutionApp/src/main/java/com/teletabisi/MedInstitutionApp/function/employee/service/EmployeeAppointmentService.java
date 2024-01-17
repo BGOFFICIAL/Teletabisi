@@ -61,6 +61,14 @@ public class EmployeeAppointmentService {
         return appointmentRepo.findByRoomIdAndEquipmentId(0L,0L);
     }
 
+    public Set<String> getEquipment(){
+        Set<String> oprema = new HashSet<>();
+        for(Equipment equipment: equipmentRepo.findAll()){
+            if(equipment.getId()!=0)
+            oprema.add(equipment.getName());
+        }
+        return oprema;
+    }
     public List<Appointment> getAllAppointments(User useric){
         return appointmentRepo.findAll()
                 .stream()

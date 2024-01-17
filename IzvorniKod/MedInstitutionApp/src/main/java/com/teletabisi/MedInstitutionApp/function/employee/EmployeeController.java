@@ -3,11 +3,13 @@ package com.teletabisi.MedInstitutionApp.function.employee;
 import com.teletabisi.MedInstitutionApp.email.MailService;
 import com.teletabisi.MedInstitutionApp.email.MailStructure;
 import com.teletabisi.MedInstitutionApp.entity.Appointment;
+import com.teletabisi.MedInstitutionApp.entity.Equipment;
 import com.teletabisi.MedInstitutionApp.entity.User;
 import com.teletabisi.MedInstitutionApp.function.dto.EmployeeAcceptDTO;
 import com.teletabisi.MedInstitutionApp.function.employee.request.AppointmentDateTimeRequest;
 import com.teletabisi.MedInstitutionApp.function.employee.service.EmployeeAppointmentService;
 import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
+import com.teletabisi.MedInstitutionApp.repository.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +18,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/func/appointment")
@@ -31,6 +31,7 @@ public class EmployeeController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
 
     @Autowired
     private MailService mailService;
@@ -55,6 +56,12 @@ public class EmployeeController {
     public ResponseEntity<List<Appointment>> getPendingAppointments(@AuthenticationPrincipal User user){
         List<Appointment> pendingAppointments = employeeAppointmentService.getPendingAppointments();
         return new ResponseEntity<>(pendingAppointments, HttpStatus.OK);
+    }
+
+    @GetMapping("/getEquipment")
+    public ResponseEntity<Set<String>> getEquipment(@AuthenticationPrincipal User user){
+        Set<String> equipment = employeeAppointmentService.getEquipment();
+        return new ResponseEntity<>(equipment, HttpStatus.OK);
     }
 
     /**

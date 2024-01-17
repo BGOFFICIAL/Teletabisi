@@ -41,44 +41,8 @@ const Employee = () => {
   const [pendingItems, setpendingItems] = useState([]);
   const [ownItems, setownItems] = useState([]);
   const [roomItems, setroomItems] = useState([]);
-
-  // cisto primjer podataka da mozes testirat kak izgleda
-  /*
-    const data1 = Array.from({ length: 101 }, (_, index) => {
-      const today = new Date();
-      const currentDate = new Date(today.setDate(today.getDate() + index));
-      const day = currentDate.getDate();
-      const month = currentDate.getMonth() + 1;
-      const year = currentDate.getFullYear();
-      return {
-        id: index + 1,
-        appointment: `Korisnik ${index + 1}`,
-        description: `Description ${index + 1}`,
-        equipment: `Potrebno dodijeliti`,
-        room: `A2`,
-        date: `${day}.${month}.${year}.`,
-        time: `11:00`
-      };
-    });
-  */
-  //format date
-  /*
-    const formatDate = (dateString, timeString) => {
-      const dateParts = dateString.split('.');
-      const timeParts = timeString.split(':');
-  
-      const year = parseInt(dateParts[2], 10);
-      const month = parseInt(dateParts[1], 10) - 1;
-      const day = parseInt(dateParts[0], 10);
-      const hours = parseInt(timeParts[0], 10);
-      const minutes = parseInt(timeParts[1], 10);
-  
-      return new Date(year, month, day, hours, minutes);
-    };
-  
-  
-  */
-
+  const [eq, setEq] = useState([]);
+  const [eqItems, setEqItems] = useState([]);
 
   //prikaz stranica
   const indexOfLastItem = pendingPage * itemsPerPage;
@@ -112,9 +76,8 @@ const Employee = () => {
     setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
   }, [pendingPage, data]);
 
-
-
-
+  
+  
 
 
   const handleAccept = (selectedItem) => {
@@ -229,6 +192,12 @@ const Employee = () => {
         roomItem.id === item.id ? updatedItem : roomItem
       )
     );
+  };
+
+  const formatDate = (dateTimeString) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+    const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
+    return formattedDate;
   };
 
 
@@ -354,7 +323,7 @@ const Employee = () => {
               <tr key={item.id}>
                 <td>{item.user.firstname + " " + item.user.lastname}</td>
                 <td>{item.description}</td>
-                <td>{item.appointmentTime}</td>
+                <td>{formatDate(item.appointmentTime)}</td>
                 <td> <Button variant="link"
                   onClick={() => handleAccept(item)} //tu nesto??
                 > Odaberi zahtjev </Button> </td>
@@ -514,7 +483,7 @@ const Employee = () => {
                   <td>
                     {item.room.name}
                   </td>
-                  <td>{item.appointmentTime}</td>
+                  <td>{formatDate(item.appointmentTime)}</td>
 
                   <td> <Button variant="link"
                     onClick={() => handleQuit(item)}
