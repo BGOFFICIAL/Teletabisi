@@ -53,7 +53,7 @@ public class EmployeeController {
      */
     @GetMapping("/control")
     public ResponseEntity<List<Appointment>> getPendingAppointments(@AuthenticationPrincipal User user){
-        List<Appointment> pendingAppointments = employeeAppointmentService.getPendingAppointments();
+        List<Appointment> pendingAppointments = employeeAppointmentService.getPendingAppointments(user);
         return new ResponseEntity<>(pendingAppointments, HttpStatus.OK);
     }
 

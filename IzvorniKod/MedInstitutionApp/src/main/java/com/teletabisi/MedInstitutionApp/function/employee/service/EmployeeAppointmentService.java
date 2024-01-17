@@ -8,10 +8,12 @@ import com.teletabisi.MedInstitutionApp.repository.ScheduleRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -57,8 +59,24 @@ public class EmployeeAppointmentService {
      * Dohvaćanje svih uahtjeva za pregled koji su PENDING
      * @return
      */
-    public List<Appointment> getPendingAppointments() {
-        return appointmentRepo.findByRoomIdAndEquipmentId(0L,0L);
+    public List<Appointment> getPendingAppointments(User useric) {
+        int shift = useric.getShift();
+
+        return appointmentRepo.findByRoomIdAndEquipmentId(0L,0L)
+                .stream()
+                .filter(appointment -> isAppointmentInUserShift(appointment, shift))
+                .toList();
+    }
+
+    private boolean isAppointmentInUserShift(Appointment appointment, int shift) {
+        boolean isDayEven = appointment.getAppointmentTime().getDayOfMonth() % 2 == 0;
+
+        LocalTime appointmentTime = appointment.getAppointmentTime().toLocalTime();
+
+        return (shift == 1 && isDayEven && appointmentTime.isAfter(LocalTime.of(13, 0)) && appointmentTime.isBefore(LocalTime.of(20, 0)))
+                || (shift == 1 && !isDayEven && appointmentTime.isAfter(LocalTime.of(7, 0)) && appointmentTime.isBefore(LocalTime.of(14, 0)))
+                || (shift == 2 && isDayEven && appointmentTime.isAfter(LocalTime.of(7, 0)) && appointmentTime.isBefore(LocalTime.of(14, 0)))
+                || (shift == 2 && !isDayEven && appointmentTime.isAfter(LocalTime.of(13, 0)) && appointmentTime.isBefore(LocalTime.of(20, 0)));
     }
 
     public List<Appointment> getAllAppointments(User useric){

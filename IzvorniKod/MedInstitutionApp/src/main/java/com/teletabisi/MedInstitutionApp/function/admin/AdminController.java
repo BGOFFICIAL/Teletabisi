@@ -38,6 +38,9 @@ public class AdminController {
     @Autowired
     private EquipmentService equipmentService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     /**
      * Cilj: inactive/user -> employee
      *
@@ -47,7 +50,7 @@ public class AdminController {
     @PostMapping("/add/employee")
     public ResponseEntity<PromotionResponse> promotion(@RequestBody PromotionRequest request) {
         if (request != null && request.getUsername() != null) {
-            User promotedUser = promotionService.promoteUser(request.getUsername());
+            User promotedUser = promotionService.promoteUser(request.getUsername(), request.getShift());
 
             if (promotedUser != null) {
                 PromotionResponse response = PromotionResponse.builder()
@@ -57,6 +60,7 @@ public class AdminController {
                         .date_of_birth(promotedUser.getDateOfBirth())
                         .start_date(promotedUser.getStartDate())
                         .gender(promotedUser.getGender())
+                        .shift(promotedUser.getShift())
                         .build();
 
                 return ResponseEntity.ok(response);
@@ -72,7 +76,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("/remove/employee")
-    public ResponseEntity<String> demotion(@RequestBody PromotionRequest request) {
+    public ResponseEntity<String> demotion(@RequestBody DemotionRequest request) {
         if (request != null && request.getUsername() != null) {
             User demotedUser = promotionService.demoteUser(request.getUsername());
 
@@ -90,7 +94,7 @@ public class AdminController {
      */
     @GetMapping("/return/employee")
     public ResponseEntity<EmployeeResponse> employees(@AuthenticationPrincipal User user) {
-        List<EmployeeDTO> employeeList = EmployeeService.findAllEmployees();
+        List<EmployeeDTO> employeeList = employeeService.findAllEmployees();
 
         if (employeeList != null && !employeeList.isEmpty()) {
             EmployeeResponse response = EmployeeResponse.builder()
@@ -110,7 +114,7 @@ public class AdminController {
     @PostMapping("/filter/employees")
     public ResponseEntity<EmployeeResponse> filteredEmployees(@RequestBody EmployeeRequest request) {
         if (request != null) {
-            List<EmployeeDTO> filteredEmployeeList = EmployeeService.filterAllEmployees(request.getGender(), request.getDateOfBirth(), request.getStartDate());
+            List<EmployeeDTO> filteredEmployeeList = employeeService.filterAllEmployees(request.getGender(), request.getDateOfBirth(), request.getStartDate());
 
             if (filteredEmployeeList != null && !filteredEmployeeList.isEmpty()) {
                 EmployeeResponse response = EmployeeResponse.builder()
@@ -130,7 +134,9 @@ public class AdminController {
      * @return
      */
     @PostMapping("/add/adminemployee")
-    public ResponseEntity<PromotionResponse> promotionEmployee(@RequestBody PromotionRequest request) {
+    // koristim DemotionRequest zato što on ima samo username, a PromotionRequest ima i username i smjenu, stoga to ne funkcionira
+    // pa da se smanji količina koda i klasa
+    public ResponseEntity<PromotionResponse> promotionEmployee(@RequestBody DemotionRequest request) {
         System.out.print(request.getUsername());
         if (request != null && request.getUsername() != null) {
             User promotedUser = promotionService.promoteEmployee(request.getUsername());
@@ -143,6 +149,7 @@ public class AdminController {
                         .date_of_birth(promotedUser.getDateOfBirth())
                         .start_date(promotedUser.getStartDate())
                         .gender(promotedUser.getGender())
+                        .shift(promotedUser.getShift())
                         .build();
 
                 return ResponseEntity.ok(response);
@@ -159,7 +166,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("/remove/adminemployee")
-    public ResponseEntity<String> demotionEmployee(@RequestBody PromotionRequest request) {
+    public ResponseEntity<String> demotionEmployee(@RequestBody DemotionRequest request) {
         if (request != null && request.getUsername() != null) {
             User demotedUser = promotionService.demoteEmployee(request.getUsername());
 
@@ -301,5 +308,20 @@ public class AdminController {
         List<Equipment> allEquipment = equipmentService.getAllEquipment();
 
         return new ResponseEntity<>(allEquipment, HttpStatus.OK);
+    }
+
+    @PostMapping("/change-shift/{employeeId}")
+    public ResponseEntity<Object> changeShift(@PathVariable Long employeeId,
+                                              @RequestBody ShiftRequest request){
+
+        if(request != null){
+            User employee = employeeService.changeShift(employeeId, request.getShift());
+            if(employee != null){
+                return ResponseEntity.ok(employee);
+            } else{
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Korisnik nije nađen ILI nova smjena je jednaka staroj.");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

@@ -41,6 +41,7 @@ public class AppService {
                 user.setPassword(password);
                 user.setEmail(email);
                 user.setOIB(OIB);
+                user.setShift(0);
 
                 return (User) this.repo.save(user);
             }

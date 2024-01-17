@@ -21,7 +21,7 @@ public class PromotionService {
      * @param username
      * @return
      */
-    public User promoteUser(String username) {
+    public User promoteUser(String username, int shift) {
         if (username != null) {
             User user = this.repo.findFirstByUsername(username).orElse(null);
 
@@ -29,6 +29,7 @@ public class PromotionService {
                 if (user.getRole() == Role.USER || user.getRole() == Role.INACTIVE) {
                     user.setStartDate(LocalDate.now());
                     user.setRole(Role.EMPLOYEE);
+                    user.setShift(shift);
                     return this.repo.save(user);
                 }
             }
@@ -49,6 +50,7 @@ public class PromotionService {
             if (user != null) {
                 if (user.getRole() == Role.ADMINEMPLOYEE || user.getRole() == Role.EMPLOYEE || user.getRole() == Role.USER) {
                     user.setRole(Role.INACTIVE);
+                    user.setShift(0);
                     return this.repo.save(user);
                 }
             }
