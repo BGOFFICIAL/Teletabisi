@@ -77,11 +77,11 @@ const User = () => {
         method: "DELETE",
       })
         .then((response) => {
-          if(response.status == 200){
+          if (response.status == 200) {
             alert("Uspješno otkazan termin");
             return response.json();
           }
-          else{
+          else {
             alert("Prekasno otkazan termin");
           }
         })
@@ -141,7 +141,7 @@ const User = () => {
 
     const minute = selectedDate.getMinutes();
     if (minute !== 0) {
-      alert('Neuspješno poslano. Molimo izaberite puni sat.');
+      alert('Molimo izaberite puni sat.');
       return;
     }
 
@@ -150,7 +150,7 @@ const User = () => {
       dateTime: formattedDateTime,
     };
 
-    
+
     setDescription('');
     setSelectedDate(new Date());
 
@@ -168,18 +168,18 @@ const User = () => {
         body: JSON.stringify(jsonData),
       })
         .then((response) => {
-          if(response.status === 200){
+          if (response.status === 200) {
             alert('Uspješno poslano');
-          return response.json();
+            return response.json();
+          }
+          else if (response.status === 403) {
+            alert('Već imate zahtjev za termin u traženo vrijeme.');
+          }
+          else {
+            alert('Neuspješno poslano. Pričekajte minutu pa pokušajte ponovno');
+          }
         }
-        else if(response.status === 403){
-          alert('Već imate dogovoren termin u to vrijeme.');
-        }
-        else{
-           alert('Neuspješno poslano. Termini moraju biti na puni sat.');
-        }
-    }
-    )
+        )
         .catch((error) => {
           console.error("Error:", error)
         });
@@ -203,7 +203,7 @@ const User = () => {
   const yearPlaceholder = today.getFullYear().toString();
   const monthPlaceholder = (today.getMonth() + 1).toString();
   const dayPlaceholder = today.getDate().toString();
-  
+
   const formatDate = (dateTimeString) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
     const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);

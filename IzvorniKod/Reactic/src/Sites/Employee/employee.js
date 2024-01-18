@@ -212,61 +212,73 @@ const Employee = () => {
   const handleReload = () => {
     window.location.reload()
   };
-
-  const handleCheck = (item) => {
-
+//pocetak
+const handleCheck = async (item) => {
+  try {
     if (item.equipment === "Potrebno dodijeliti") {
       alert('Molimo unesite opremu.');
       return;
     }
-    //provjeri jel slobodno
-    if (true) {
-      try {
-        console.log(item.equipment);
-        // POCETAK KOMENTARA
-        fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwt}`,
-          },
-          mode: "cors",
-          method: "POST",
-          body: JSON.stringify({
-            equipmentName: item.equipment,
-          }),
-        })
-          .then((response) => {
-            if(response.status === 200){
-              alert('Uspješno prihvaćen termin!');
-              
-            }
-            else if(response.status === 400){
-              alert('Imate dogovoren termin u isto vrijeme.');
-              
-            }
-            else{
-              alert('Odaberi dostupnu opremu.');
-            }
-           })
-          .catch((error) => {
-            console.error("Error:", error)
-          });
-        //ZAVRSETAK KOMENTARA
-      }
 
-      catch (error) {
-        return Promise.reject("Invalidni zahtjev");
-        ;
-      }
-     // setownItems((prevOwnItems) => [...prevOwnItems, item]);
-      setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
+    const adjustedDate = new Date(item.appointmentTime);
+    adjustedDate.setHours(adjustedDate.getHours() + 1);
+
+    const formattedDateTime = adjustedDate.toISOString().slice(0, 19).replace("T", " ");
+
+    console.log(item.equipment + " " + item.appointmentTime);
+    console.log(adjustedDate);
+
+    const response1 = await fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`,
+      },
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        equipmentName: item.equipment,
+      }),
+    });
+
+    if (response1.status === 200) {
+      alert('Uspješno prihvaćen termin!');
+    } else if (response1.status === 400) {
+      alert('Imate dogovoren termin u isto vrijeme.');
+      return;
     } else {
-      //ispisi datum kad moze
-      console.log(`Recommendation:`);
+      alert('Odaberi dostupnu opremu.');
+      return;
     }
 
+    // Prvi fetch je završen, sada možete izvršiti drugi fetch
+    const response2 = await fetch(`http://localhost:8080/api/v1/func/appointment/newDate/${item.id}`, {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`,
+      },
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        newAppointmentDateTime: adjustedDate,
+      }),
+    });
+
+    if (response2.status === 200) {
+      alert('Uspješno ažuriran termin!');
+    } else {
+      alert('Odaberi dostupnu opremu.');
+    }
+
+    // Nakon završetka oba fetch poziva, možete izvršiti dodatne radnje
+    setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
+  } catch (error) {
+    console.error("Error:", error);
+    return Promise.reject("Invalidni zahtjev");
   }
+};
+  //kraj
 
   const setEquipment = (item) => (event) => {
     const selectedEquipment = event.target.value;
