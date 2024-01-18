@@ -19,7 +19,7 @@ import AddRooms from "./Sites/AddRooms/AddRooms";
 import Search from "./Sites/Search/Search";
 import Mail from "./Sites/Mail/Mail";
 import ForgotPassword from "./Sites/ForgotPassword/forgotpassword";
-import AdminEmployee from "./Sites/AdminEmployee/AdminEmployee";
+import AdminEmployee from "./Sites/AdminEmployee/adminemployee";
 
 function App() {
 
