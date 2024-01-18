@@ -4,6 +4,7 @@ function ajax(url, requestMethod, jwt, requestBody) {
         "Content-Type": "application/json",
       },
       method: requestMethod,
+      mode:"cors",
     };
   
     if (jwt) {

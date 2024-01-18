@@ -71,7 +71,6 @@ public class EquipmentService {
                         return null;
                     }
                 } else if(Objects.equals(status, "inactive")){
-                    // nisam siguran da ce ikad kapacitet bit <= 0 pa da dode do null
                     if(room.getCapacity() > 0){
                         room.setCapacity(room.getCapacity() - 1);
                     } else {
@@ -104,20 +103,11 @@ public class EquipmentService {
                 }
                 Room newRoom = newOptionalRoom.get();
 
-                if(newRoom.getCapacity() < newRoom.getMaxRoomCapacity()
-                        && Objects.equals(newRoom.getRoomStatus(), "active")){
+                if(newRoom.getCapacity() < newRoom.getMaxRoomCapacity()){
                     existingEquipment.setRoom(newRoom);
+                    newRoom.setCapacity(newRoom.getCapacity() + 1);
 
-                    if(Objects.equals(existingEquipment.getStatus(), "active")){
-                        newRoom.setCapacity(newRoom.getCapacity() + 1);
-                    }
-
-                    if(currentRoom.getCapacity() > 0){
-                        currentRoom.setCapacity(currentRoom.getCapacity() - 1);
-                    } else{
-                        currentRoom.setCapacity(0);
-                    }
-
+                    currentRoom.setCapacity(currentRoom.getCapacity() - 1);
 
                     roomRepo.save(newRoom);
 

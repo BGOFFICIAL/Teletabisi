@@ -25,11 +25,20 @@ import { useState } from "react";
 
 const Welcome = () => {
   const [jwt, setJwt] = useLocalState("", "jwt");
-  Navigacija(jwt);
+  
+    
+  
+  
+ 
+localStorage.setItem("roles", "no role");
+
+  
+
+  
+  
 
 
-
-  localStorage.setItem("roles", "no role");
+ 
 
 
   return (

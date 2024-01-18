@@ -18,7 +18,9 @@ import AddEquipment from "./Sites/AddEquipment/AddEquipment";
 import AddRooms from "./Sites/AddRooms/AddRooms";
 import Search from "./Sites/Search/Search";
 import Mail from "./Sites/Mail/Mail";
-import AdminEmployee from "./Sites/AdminEmployee/adminemployee";
+import ForgotPassword from "./Sites/ForgotPassword/forgotpassword";
+import AdminEmployee from "./Sites/AdminEmployee/AdminEmployee";
+
 function App() {
 
   const [jwt, setJwt] = useLocalState();
@@ -27,7 +29,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="*" element={<Navigate to="/welcome" />} />
+      <Route path="/*" element={<Navigate to="/welcome" />} />
       <Route element={
         <PrivateRoutes />}>
         <Route path="/user" element={<User />} />
@@ -38,9 +40,10 @@ function App() {
         <Route path="/AddRooms" element={<AddRooms />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Mail" element={<Mail />} />
-        <Route path="/AdminEmployee" element={<AdminEmployee />} />
+        <Route path="/adminemployee" element={<AdminEmployee />} />
 
       </Route>
+      <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/welcome" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

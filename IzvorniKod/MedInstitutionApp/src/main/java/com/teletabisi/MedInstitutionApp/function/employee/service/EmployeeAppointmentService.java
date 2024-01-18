@@ -200,8 +200,7 @@ public class EmployeeAppointmentService {
             Long equipmentId = equipment.getId();
             Optional<Schedule> schedule = scheduleRepo.findByEquipmentIdAndDateTime(equipmentId, requestedDateTime);
 
-            if ((schedule.isEmpty() || schedule.get().getRoomCapacity() > 0)
-                    && Objects.equals(equipment.getStatus(), "active")) {
+            if (schedule.isEmpty() || schedule.get().getRoomCapacity() > 0) {
                 setFoundEquipmentId(equipmentId);
                 return true;
             }

@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -149,42 +148,14 @@ Opis: Prihvaćanje termina == slanje maila
      * @param request
      * @return
      */
-  /*  @PostMapping("/new-appointment-date/{appointmentId}")
+    @PostMapping("/new-appointment-date/{appointmentId}")
     public ResponseEntity<Object> setNewAppointmentDateTime(@PathVariable Long appointmentId,
                                                             @RequestBody AppointmentDateTimeRequest request){
         LocalDateTime newDateTime = request.getNewAppointmentDateTime();
         String equipmentName = request.getEquipmentName();
         employeeAppointmentService.setNewAppointmentDateTime(appointmentId, newDateTime, equipmentName);
         return new ResponseEntity<>(HttpStatus.OK);
-    } */
-
-    @PostMapping("/newDate/{appointmentId}")
-    public ResponseEntity<Object> setNewAppointmentDateTime(
-            @PathVariable Long appointmentId,
-            @RequestBody AppointmentDateTimeRequest request) {
-
-        // Prvo dohvatimo Appointment po ID-u
-        Appointment appointment = appointmentRepository.findById(appointmentId)
-                .orElseThrow(() -> new ResourceAccessException("Appointment not found with id: " + appointmentId));
-
-        // Postavimo novo vrijeme za Appointment
-        appointment.setAppointmentTime(request.getNewAppointmentDateTime());
-
-        // Spremimo promjene u bazu podataka
-        appointmentRepository.save(appointment);
-
-        // Ako postoji povezani Schedule, ažuriramo i njegovo vrijeme
-        Schedule schedule = scheduleRepository.findByAppointmentId(appointment.getId()).orElse(null);
-        if (schedule != null) {
-            schedule.setDateTime(request.getNewAppointmentDateTime());
-            scheduleRepository.save(schedule);
-        }
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
 
     /**
      * Odbijanje zahtjeva za terminom koji su PENDING
@@ -221,7 +192,7 @@ Opis: Prihvaćanje termina == slanje maila
 
         Schedule schedule = scheduleRepository.findByAppointmentId(appointmentId).orElse(null);
 
-
+        
         scheduleRepository.delete(schedule);
 
 
@@ -229,5 +200,4 @@ Opis: Prihvaćanje termina == slanje maila
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

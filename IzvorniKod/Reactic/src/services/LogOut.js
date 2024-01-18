@@ -6,10 +6,10 @@ function LogOut() {
   localStorage.setItem("jwt", jwtToken);
 
   let roles = localStorage.getItem("roles");
-  roles = '""';
+  roles = "no role";
   localStorage.setItem("roles", roles);
-
   window.location.reload();
+  
 }
 
 export default LogOut ;

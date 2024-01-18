@@ -1,4 +1,4 @@
-package com.teletabisi.MedInstitutionApp.function.admin.service;
+package com.teletabisi.MedInstitutionApp.function.user.service;
 
 import com.teletabisi.MedInstitutionApp.entity.Role;
 import com.teletabisi.MedInstitutionApp.entity.User;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
-public class PromotionService {
+public class PomocService {
     private UserRepository repo;
 
-    public PromotionService(UserRepository repo) {
+    public PomocService(UserRepository repo) {
         this.repo = repo;
     }
 

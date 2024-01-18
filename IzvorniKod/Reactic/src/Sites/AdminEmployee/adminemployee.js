@@ -1,683 +1,454 @@
 import {
-  Button, Form, Row, Col, Container, Navbar,
-  Nav, InputGroup, ButtonGroup, FormLabel, ToggleButton, ToggleButtonGroup,
-  NavbarText, NavDropdown, Table, Pagination, Card, Dropdown
-} from "react-bootstrap";
+    Button, Form, Row, Col, Container, Navbar,
+    Nav, InputGroup, ButtonGroup, FormLabel, ToggleButton, ToggleButtonGroup,
+    NavbarText, NavDropdown, Table, Pagination, Card, Dropdown, Alert
+} from 'react-bootstrap';
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { useLocalState } from '../../util/useLocalStorage';
 import { useEffect } from 'react';
-import { useLocalState } from "../../util/useLocalStorage";
-import { jwtDecode } from "jwt-decode";
-import LogOut from "../../services/LogOut";
+import { jwtDecode } from 'jwt-decode';
+import  LogOut  from '../../services/LogOut';
+import { useNavigate } from 'react-router-dom';
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DateTimePicker from 'react-datetime-picker';
+import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 import 'react-datetime-picker/dist/DateTimePicker.css';
-import Navigacija from "../../services/navigate";
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+
 
 
 const AdminEmployee = () => {
 
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  Navigacija(jwt);
+     const [jwt, setJwt] = useLocalState("", "jwt");
+
+    
+     
+
+    //nekoliko funkcija da mijenjas stranice tablice
+
+    const [EmpPage, setEmpPage] = useState(1);
+
+    
+    const [empItems, setempItems] = useState([]);
+  
+
+    const [selectedshift, setSelectedshift] = useState();
+    const [usernameS, setusernameS] = useState('');
+    const [usernameA, setusernameA] = useState(''); 
+
+ 
+
+    const options = [
+        { value:1, label: 'Neparni ujutro' },
+        { value:2, label: 'Neparni popodne' },
+      ];
+
+    const itemsPerPage = 10;
 
 
-  const [pendingPage, setpendingPage] = useState(1);
-  const [ownPage, setownPage] = useState(1);
-  const [roomPage, setroomPage] = useState(1);
+    //fiksna lista
+    const [data,setData] = useState ([]);
+    
 
-  const itemsPerPage = 10;
-  const handlePageChange = (pageNumber) => {
-    setpendingPage(pageNumber);
-  };
-  const handleownPageChange = (pageNumber) => {
-    setownPage(pageNumber);
-  };
-  const handleroomPageChange = (pageNumber) => {
-    setroomPage(pageNumber);
-  };
+    const indexOfLastItem = EmpPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  //prijenos iz jedne u drugu tablicu
-  const [data, setData] = useState([]);
-  const [pendingItems, setpendingItems] = useState([]);
-  const [ownItems, setownItems] = useState([]);
-  const [roomItems, setroomItems] = useState([]);
-  const [eq, setEq] = useState([]);
-  const [eqItems, setEqItems] = useState([]);
-  const [initialDate, setInitialDate] = useState(false);
-
-  //prikaz stranica
-  const indexOfLastItem = pendingPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // pendingItems = data1.slice(indexOfFirstItem, indexOfLastItem);
+    //tu bi se negdje trebalo spremiti u data1 pomoću fetcha koji ima listu svih empolyee
+    useEffect(() => {
+        const fetchData = async () => {
+         try{
+            const response = await fetch("http://localhost:8080/api/v1/func/administration/return/employee", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${jwt}`,
+                },
+            });
+            const jsonData = await response.json();
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetching data for pendingItems
-        const response = await fetch('http://localhost:8080/api/v1/func/appointment/control', {
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET"
-        });
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error fetching pendingItems:', error);
-      }
-
-      try {
-        // Fetching data for equipment (eq)
-        const eqResponse = await fetch('http://localhost:8080/api/v1/func/appointment/getEquipment', {
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET"
-        });
-        const eqJsonData = await eqResponse.json();
-        setEq(eqJsonData);
-      }
-
-      catch (error) {
-        console.error('Error fetching equipment (eq):', error);
-      }
+            if (jsonData.employeeList && Array.isArray(jsonData.employeeList) ) {
+                const filteredItems = jsonData.employeeList.filter((item) => item.role === "EMPLOYEE");
+                
 
 
+                // Assuming the response contains an array under the key "employeeList"
+                setData(filteredItems);
+            } else {
+                console.error('Invalid response format:', jsonData);
+            }
 
-      try {
-        // Fetching data for equipment (eq)
-        const ownResponse = await fetch('http://localhost:8080/api/v1/func/appointment/all-appointments', {
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET"
-        });
-        const ownJsonData = await ownResponse.json();
-        setownItems(ownJsonData);
-      }
+            
+            //setData(jsonData);
+           
+            //setdata1(jsonData);
 
-      catch (error) {
-        console.error('Error fetching own items:', error);
-      }
 
-      // Setting pendingItems after fetching data
-      setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
-      // Setting equipment (eqItems) after fetching data
-      setEqItems(eq);
+         } catch (error){
+            console.error('Empty',error);
+        }
+        
+        
     };
-
     fetchData();
-  }, [pendingPage, data, jwt]);
+
+        
+        
 
 
-  const handleAccept = (selectedItem) => {
-    setroomItems((prevownItems) => [...prevownItems, selectedItem]);
+    
+        setempItems(data.slice(indexOfFirstItem, indexOfLastItem));
 
-  };
+  
 
+        
+        
+    }, [EmpPage,jwt,data]);
+    
+    
 
-  const handleReject = (item) => {
-    setroomItems((prevownItems) =>
-      prevownItems.filter((completedItem) => completedItem.id !== item.id)
-    );
-
-  };
-
-
-  const handleDelete = (item) => {
-    try {
-
-      // POCETAK KOMENTARA
-      fetch(`http://localhost:8080/api/v1/func/appointment/delete/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Uspješno izbrisan termin");
-          }
-          else {
-            alert("Neuspješno izbrisan termin");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error)
-        });
-      //ZAVRSETAK KOMENTARA
-    }
-
-    catch (error) {
-      return Promise.reject("Invalidni zahtjev");
-      ;
-    }
-  }
-  const handleQuit = (item) => {
-
-    // FETCH
-    try {
-
-      // POCETAK KOMENTARA
-      fetch(`http://localhost:8080/api/v1/func/appointment/otkazi/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Uspješno otkazan termin");
-            return response.json();
-          }
-          else {
-            alert("Prekasno otkazan termin");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error)
-        });
-      //ZAVRSETAK KOMENTARA
-    }
-
-    catch (error) {
-      return Promise.reject("Invalidni zahtjev");
-      ;
-    }
-
-
-  };
-
-  const handleSearch = () => {
-    window.location.href = "/Search"
-  };
-  const handleMail = () => {
-    window.location.href = "/Mail"
-  };
-
-  const handleReload = () => {
-    window.location.reload()
-  };
-
-  const handleAddRoom = () => {
-    window.location.href = "/AddRooms"
-  };
-  const handleAddEquipment = () => {
-    window.location.href = "/AddEquipment"
-  };
-
-  const handlePromote = () => {
-    // window.location.href = "/?"
-  };
-
-
-  //pocetak
-  const handleCheck = async (item) => {
-    try {
-      if (item.equipment === "Potrebno dodijeliti") {
-        alert('Molimo unesite opremu.');
-        return;
-      }
-
-
-
-      const adjustedDate = new Date(item.appointmentTime
-      );
-
-
-      const selectedDay = adjustedDate.getDay();
-      if (selectedDay === 0 || selectedDay === 6) {
-        alert('Izabrani dan je vikend, molimo izaberite radni dan.');
-        return;
-      }
-
-      const time = adjustedDate.getHours();
-      if (time < 8 || time > 19) {
-        alert('Molimo izaberite vrijeme između 8:00 i 20:00 sati.');
-        return;
-      }
-
-      const minute = adjustedDate.getMinutes();
-      if (minute !== 0) {
-        alert('Molimo izaberite puni sat.');
-        return;
-      }
-      adjustedDate.setHours(adjustedDate.getHours() + 1);
-
-      console.log(item.equipment + " " + item.appointmentTime);
-      console.log(adjustedDate);
-
-      const response1 = await fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-        body: JSON.stringify({
-          equipmentName: item.equipment,
-        }),
-      });
-
-      if (response1.status === 200) {
-        alert('Uspješno prihvaćen termin!');
-      } else if (response1.status === 400) {
-        alert('Imate dogovoren termin u isto vrijeme.');
-        return;
-      } else {
-        alert('Odaberi dostupnu opremu.');
-        return;
-      }
-
-      // Prvi fetch je završen, sada možete izvršiti drugi fetch
-      const response2 = await fetch(`http://localhost:8080/api/v1/func/appointment/newDate/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-        body: JSON.stringify({
-          newAppointmentDateTime: adjustedDate,
-        }),
-      });
-
-      if (response2.status === 200 && initialDate) {
-        alert('Uspješno ažuriran termin!');
-        setInitialDate(false);
-      }
-
-      // Nakon završetka oba fetch poziva, možete izvršiti dodatne radnje
-      setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
-    } catch (error) {
-      console.error("Error:", error);
-      return Promise.reject("Invalidni zahtjev");
-    }
-  };
-  //kraj
-
-  const setEquipment = (item) => (event) => {
-    const selectedEquipment = event.target.value;
-    const updatedItem = { ...item, equipment: selectedEquipment };
-    setroomItems((prevRoomItems) =>
-      prevRoomItems.map((roomItem) =>
-        roomItem.id === item.id ? updatedItem : roomItem
-      )
-    );
-  };
-
-
-  const setDate = (item) => (selectedDate) => {
-    setInitialDate(true);
-    const updatedItem = {
-      ...item, appointmentTime: selectedDate
+   
+    const handleshiftChange = (item) => {
+        setSelectedshift(item.target.value);
+    
     };
-    setroomItems((prevRoomItems) =>
-      prevRoomItems.map((roomItem) =>
-        roomItem.id === item.id ? updatedItem : roomItem
-      )
+
+    const handleUsernameAChange = (item) => {
+        setusernameA(item.target.value);
+    };
+    const handleusernameSChange = (item) => {
+        setusernameS(item.target.value);
+    };
+    //prijenos iz jedne u drugu tablicu
+    const handlePageChange = (pageNumber) => {
+        setEmpPage(pageNumber);
+    };
+
+
+    const handleAdd = async (e) => {
+        e.preventDefault();
+        
+        if(usernameS !== '' && (selectedshift !== undefined && selectedshift !== null && selectedshift !== '')){
+            
+            try{
+            
+                const response = await
+                fetch("http://localhost:8080/api/v1/func/administration/add/employee", {
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${jwt}`,
+
+                },
+                method: "POST",
+                mode: 'cors',
+                body: JSON.stringify({
+                    username: usernameS,
+                    shift: selectedshift
+                    
+                }),
+                });
+
+                if(response.ok)
+                console.log("Uspješno dodan zaposlenik!");
+            
+            }catch(error){
+                console.error('Empty',error);
+            }
+
+          
+        }else{
+            Alert("Ispunite sva polja!");
+        }
+    
+
+        
+    
+        
+
+        //fetch post username, selectedshift - šalje username i smjenu koju ce imat
+        //alert("ID smjene: " + selectedshift +" Username: "+ usernameS);
+    };
+
+    const handleRemove = async (item) => {
+        if(item.role !== "ADMINEMPLOYEE"){
+            try{
+
+                const response = await
+                fetch("http://localhost:8080/api/v1/func/administration/remove/employee", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwt}`,
+
+                },
+                mode: 'cors',
+                body: JSON.stringify({
+                    username: item.username,
+                    shift: item.shift,
+                }),
+            });
+            if(response.ok)
+            console.log("Uspješno uklonjen zaposlenik!");
+
+        }catch(error){
+            console.error('Empty',error);}
+        }
+    };
+
+
+        
+    const setChangedshift = async (item) =>{
+        try{
+        const response = await
+        fetch(`http://localhost:8080/api/v1/func/administration/change-shift/${item.target.id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+
+        },
+        mode: 'cors',
+        body: JSON.stringify({
+            
+            shift: item.target.value,
+        }),
+    });
+
+    if(response.ok)
+    console.log("Uspješno promijenjena smjena!");    
+    }catch(error){
+        console.error('Empty',error);}
+        
+        
+    };
+
+
+    const handleAktiviranje = () =>{
+        //usernameA
+        //Fetch post - username
+    };
+
+   
+
+    return (
+        <Container className="justify-content-md-center">
+            <>
+                <style type="text/css">
+                    {`
+             .purple {
+               background-color: purple;
+               color: white;
+             }
+             .purple .navbar-brand {
+               color: white;
+             }
+ 
+             .purple .navbar-brand img {
+               width: 150px;
+               height: 75px;
+             }
+ 
+             .bigBoldText {
+               font-size: 20px;
+               font-weight: bold;
+             }
+
+             .descriptionName{
+              font-size: 17px;
+              font-weight: 500;
+             }
+ 
+             .pageName {
+               font-size: 27px;
+               font-weight: bold;
+             }
+ 
+             .tablica th, .tablica td {
+               text-align: center;
+               vertical-align: middle;
+             }
+           `}
+                </style>
+            </>
+            <Navbar //NASLOV I OPCIJE
+                className='purple' /* bg="dark" data-bs-theme="dark" */ fixed="top">
+                <Container>
+                    <Col xs={1}>
+                        <Navbar.Brand href="#">
+                            <img
+                                src="/logofr.jpeg"
+                                width="150"
+                                height="75"
+
+                                className="d-inline-block align-items-start rounded"
+                                alt="logo"
+                            />
+                        </Navbar.Brand>
+                    </Col>
+                    <Col xs={8}>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+                            <Navbar.Brand className="pageName">Admin</Navbar.Brand>
+                        </Navbar.Collapse>
+                    </Col>
+                    <Col xs={1}>
+                        <Navbar.Collapse className="justify-content-end">
+                            <Nav>
+                                <NavDropdown title="Opcije" id="basic-nav-dropdown" className="bigBoldText">
+                                    <NavDropdown.Item href="/settings">Postavke</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={() => LogOut()}>Odjavi se</NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Col>
+                </Container>
+            </Navbar>
+
+            <br /> <br /><br /><br /> <br></br>
+            <Container className='text-center'>
+                <Button style={{ marginRight: '0.5rem' }} href='/AddEquipment'>Dodaj opremu</Button>
+                <Button style={{ marginRight: '0.5rem' }} href='/AddRooms'>Dodaj sobu</Button>
+                <Button style={{ marginRight: '0.5rem' }} href='/mail'>Pošalji mail</Button>
+                <Button style={{ marginRight: '0.5rem' }} href='/search'>Pretraži pacijenta</Button>
+            </Container>
+            
+            <br></br><Card className='text-center' >
+                <Card.Header>Aktiviraj korisnika</Card.Header>
+                <Card.Body>
+                    <Form onSubmit={handleAktiviranje} className='mx-auto'>
+                        <Form.Group as={Row} className='mb-3'>
+                            <Form.Label column sm='4'>
+                                Upiši username:
+                            </Form.Label>
+                            <Col sm='5'>
+                                <Form.Control type='text' placeholder='korisničko ime' onChange={handleUsernameAChange} value={usernameA} required />
+                            </Col>
+                            <Col sm='2'>
+                                <Button type='submit'>Aktiviraj</Button>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+                </Card.Body>
+            </Card> <br></br> 
+            
+            <Card className='text-center'>
+                <Card.Header >Dodaj zaposlenika</Card.Header>
+                    <Card.Body>
+                        <Card.Title >Upiši podatke:</Card.Title>
+                        
+                            <Form className='no-gutters' >
+                                <Row>
+                                    <Col>
+                                        <Form.Label>Smjena: </Form.Label>
+                                        <Form.Check
+                                            inline
+                                            label="Neparni Ujutro"
+                                            name="group1"
+                                            type={'radio'}
+                                            onChange={handleshiftChange}
+                                            id={1}
+                                            value={1}
+                                            required
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="Neparni Popodne"
+                                            name="group1"
+                                            type={'radio'}
+                                            onChange={handleshiftChange}
+                                            id={2}
+                                            value={2}
+                                            required
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <Form.Group as={Row} className='mb-3'>
+                                            <Form.Label column sm='3'>
+                                            Upiši username:
+                                            </Form.Label>
+                                            <Col sm='8'>
+                                            <Form.Control type='text' placeholder='korisničko ime' onChange={handleusernameSChange} value={usernameS} required/>
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Button type='submit' onClick={handleAdd} style={{ marginRight: '0.5rem' }}>Dodaj kao zaposlenika</Button>
+                                       
+                                    </Col>
+                                </Row>
+
+                        </Form>
+                    </Card.Body>
+            </Card> 
+            <br></br>
+
+            <Container //TABLICA ZA ZAPOSLENIKE
+            >
+                <FormLabel className='descriptionName'>
+                    Zaposlenici:
+                </FormLabel>
+                <Table className='tablica' striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Pozicija</th>
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>E-mail</th>
+                            <th>Smjena</th>
+                            <th>Datum zapošljivanja</th>
+                            <th>Spol</th>
+                            <th>Ukloni zaposlenika</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {empItems.map((item) => (
+                            <tr key={item.id}>
+                                <td>
+                                    {item.role}</td>
+                                <td>{item.name}</td>
+                                <td>{item.surname}</td>
+                                <td>{item.email}</td>
+                                <td>
+                                    <Form.Select onChange={(item) => setChangedshift(item)} value={item.shift} id={item.id}>
+                                        {options.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
+                                        ))}
+                                        
+                                    </Form.Select>
+                                </td>
+                                <td>{item.startDate}</td>
+                                <td>{item.gender}</td>
+                                <td> <Button onClick={() => handleRemove(item)}> Ukloni </Button> </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+                <br />
+                <Container className='d-flex justify-content-center'>
+                    <Pagination>
+                        {Array.from({ length: Math.ceil(data.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
+                            <Pagination.Item
+                                key={pageNumber}
+                                active={pageNumber === EmpPage}
+                                onClick={() => handlePageChange(pageNumber)}>
+                                {pageNumber}
+                            </Pagination.Item>
+                        ))}
+                    </Pagination>
+                </Container>
+            </Container>
+
+        </Container>
     );
-  };
 
-  const formatDate = (dateTimeString) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
-    return formattedDate;
-  };
-
-
-  return (
-    <Container className="justify-content-md-center">
-      <>
-        <style type="text/css">
-          {`
-           .purple {
-             background-color: purple;
-             color: white;
-           }
-           .purple .navbar-brand {
-             color: white;
-           }
-
-           .purple .navbar-brand img {
-             width: 150px;
-             height: 75px;
-           }
-
-           .bigBoldText {
-             font-size: 20px;
-             font-weight: bold;
-           }
-
-           .descriptionName{
-            font-size: 17px;
-            font-weight: 500;
-           }
-
-           .pageName {
-             font-size: 27px;
-             font-weight: bold;
-           }
-
-           .tablica th, .tablica td {
-             text-align: center;
-             vertical-align: middle;
-           }
-         `}
-        </style>
-      </>
-      <Navbar //NASLOV I OPCIJE
-        className='purple' fixed="top">
-        <Container>
-          <Col xs={1}>
-            <Navbar.Brand href="#">
-              <img
-                src="/logofr.jpeg"
-                width="150"
-                height="75"
-
-                className="d-inline-block align-items-start rounded"
-                alt="logo"
-              />
-            </Navbar.Brand>
-          </Col>
-          <Col xs={8}>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
-              <Navbar.Brand className="pageName">Djelatnik (Admin)</Navbar.Brand>
-            </Navbar.Collapse>
-          </Col>
-          <Col xs={1}>
-            <Navbar.Collapse className="justify-content-end">
-              <Nav>
-                <NavDropdown title="Opcije" id="basic-nav-dropdown" className="bigBoldText">
-                  <NavDropdown.Item href="/settings">Postavke</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={() => LogOut()}>Odjavi se</NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Col>
-        </Container>
-      </Navbar>
-
-      <br /> <br /><br /><br /><br /><br />
-
-
-      <Container className='d-flex justify-content-center'>
-        <Row>
-          <Col><Button
-            variant='primary'
-            onClick={() => handleSearch()}>
-            Pretraži korisnika
-          </Button></Col>
-          <Col><Button
-            variant='primary'
-            onClick={() => handleMail()}>
-            Pošalji mail
-          </Button></Col>
-          <Col><Button
-            variant='primary'
-            onClick={() => handleReload()}>
-            Osvježi
-          </Button></Col>
-          <Col><Button
-            variant='success'
-            onClick={() => handleAddEquipment()}>
-            Dodaj opremu
-          </Button></Col>
-          <Col><Button
-            variant='success'
-            onClick={() => handleAddRoom()}>
-            Dodaj prostoriju
-          </Button></Col>
-          {/*
-          <Col><Button
-            variant='success'
-            onClick={() => handlePromote()}>
-            Promoviraj djelatnika
-          </Button></Col>
-          */ }
-        </Row>
-
-
-      </Container>
-
-      <br /><br />
-
-      <Container //TABLICA ZA TERMINE
-      >
-        <FormLabel className='descriptionName'>
-          Popis aktualnih zahtjeva:
-        </FormLabel>
-        <Table className='tablica' striped bordered hover>
-          <thead>
-            <tr>
-              <th>Ime i prezime</th>
-              <th>Opis</th>
-              <th>Datum i vrijeme</th>
-              <th>Odaberi</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            {pendingItems.map((item) => (
-              <tr key={item.id}>
-                <td>{item.user.firstname + " " + item.user.lastname}</td>
-                <td>{item.description}</td>
-                <td>{formatDate(item.appointmentTime)}</td>
-                <td> <Button variant="link"
-                  onClick={() => handleAccept(item)}
-                > Odaberi zahtjev </Button> </td>
-
-              </tr>
-
-            ))}
-          </tbody>
-        </Table>
-
-        <br />
-
-        <Container className='d-flex justify-content-center'>
-          <Pagination>
-            {Array.from({ length: Math.ceil(data.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
-              <Pagination.Item
-                key={pageNumber}
-                active={pageNumber === pendingPage}
-                onClick={() => handlePageChange(pageNumber)}
-              >
-                {pageNumber}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </Container>
-      </Container>
-
-      <Container //TABLICA ZA OPREMU
-      >
-        <FormLabel className='descriptionName'>
-          Dodijeli opremu:
-        </FormLabel>
-        <Table className='tablica' striped bordered hover>
-          <thead>
-            <tr>
-              <th>Ime i prezime</th>
-              <th>Opis</th>
-              <th>Oprema</th>
-              <th>Datum i vrijeme</th>
-              <th>Odustani</th>
-              <th>Potvrda odabira</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            {roomItems.length === 0 ? (
-              <tr>
-                <td colSpan={8} className="text-center">
-                  Nemate odabranih termina
-                </td>
-              </tr>
-            ) : (
-
-              roomItems.map((item) => (
-
-
-                <tr key={item.id}>
-                  <td>{item.user.firstname + " " + item.user.lastname}</td>
-                  <td>{item.description}</td>
-                  <td>
-                    <Form.Select
-                      required
-                      onChange={setEquipment(item)}
-                      aria-label="Default select example"
-                    >
-                      <option>Odaberi</option>
-                      {eq.map((equipmentOption) => (
-                        <option key={equipmentOption} value={equipmentOption}>
-                          {equipmentOption}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </td>
-                  <td>
-                    <DateTimePicker
-                      minDate={new Date()}
-                      value={item.appointmentTime}
-                      onChange={setDate(item)}
-                      clearIcon={null}
-                      disableClock={true}
-                      disableCalendar={true}
-                    />
-                  </td>
-
-
-                  <td> <Button variant="link"
-                    onClick={() => handleReject(item)}
-                  > Odustani </Button> </td>
-                  <td><Button variant="link"
-                    onClick={() => handleCheck(item)}
-                  > Potvrdi odabir </Button></td>
-                </tr>
-
-
-
-              ))
-
-            )}
-          </tbody>
-        </Table>
-
-        <br />
-
-        <Container className='d-flex justify-content-center'>
-          <Pagination>
-            {Array.from({ length: Math.ceil(roomItems.length / itemsPerPage) }, (_, index) => index + 1).map((pageNumber) => (
-              <Pagination.Item
-                key={pageNumber}
-                active={pageNumber === roomPage}
-                onClick={() => handleroomPageChange(pageNumber)}
-              >
-                {pageNumber}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </Container>
-      </Container>
-
-
-
-
-
-
-
-
-
-
-      <Container //TABLICA ZA vlastite TERMINE
-      >
-        <FormLabel className="descriptionName">Popis dodijeljenih termina:</FormLabel>
-        <Table className="tablica" striped bordered hover>
-          <thead>
-            <tr>
-              <th>Ime i prezime</th>
-              <th>Opis</th>
-              <th>Oprema</th>
-              <th>Prostorija</th>
-              <th>Datum i vrijeme</th>
-              <th>Otkaži</th>
-              <th>Izbriši</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ownItems.length === 0 ? (
-              <tr>
-                <td colSpan={8} className="text-center">
-                  Nemate dodijeljenih termina
-                </td>
-              </tr>
-            ) : (
-              ownItems.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.user.firstname + " " + item.user.lastname}</td>
-                  <td>{item.description}</td>
-
-                  <td>{item.equipment.name}</td>
-
-                  <td>
-                    {item.room.name}
-                  </td>
-                  <td>{formatDate(item.appointmentTime)}</td>
-
-                  <td> <Button variant="link"
-                    onClick={() => handleQuit(item)}
-                  > Otkaži termin </Button> </td>
-                  <td> <Button variant="link"
-                    onClick={() => handleDelete(item)}
-                  > Izbriši termin </Button> </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
-
-        <br />
-
-        <Container className="d-flex justify-content-center">
-          <Pagination>
-            {Array.from({ length: Math.ceil(ownItems.length / itemsPerPage) }, (_, index) => index + 1).map(
-              (pageNumber) => (
-                <Pagination.Item
-                  key={pageNumber}
-                  active={pageNumber === ownPage}
-                  onClick={() => handleownPageChange(pageNumber)}
-                >
-                  {pageNumber}
-                </Pagination.Item>
-              )
-            )}
-          </Pagination>
-        </Container>
-      </Container>
-
-
-
-
-
-
-
-    </Container>
-  );
 }
 export default AdminEmployee;

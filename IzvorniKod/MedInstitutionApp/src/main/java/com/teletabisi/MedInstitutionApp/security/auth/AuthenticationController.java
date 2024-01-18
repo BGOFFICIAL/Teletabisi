@@ -109,6 +109,7 @@ public class AuthenticationController {
             Boolean check = jwtService.isTokenValid(token,user);
             return ResponseEntity.ok(check);
         } catch(ExpiredJwtException e){
+            System.err.print("lud ispao");
             return ResponseEntity.ok(false);
 
         }

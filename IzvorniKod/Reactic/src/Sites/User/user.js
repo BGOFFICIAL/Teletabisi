@@ -24,7 +24,7 @@ const User = () => {
 
   const [jwt, setJwt] = useLocalState("", "jwt");
 
-  Navigacija(jwt);
+  
 
   //VARIJABLE
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -77,12 +77,13 @@ const User = () => {
         method: "DELETE",
       })
         .then((response) => {
-          if (response.status == 200) {
+          if(response.status == 200){
             alert("Uspješno otkazan termin");
             return response.json();
           }
-          else {
+          else{
             alert("Prekasno otkazan termin");
+            return response.json();
           }
         })
         .catch((error) => {
@@ -112,10 +113,7 @@ const User = () => {
 
   // formatiranje za datum, moguce nepotrebno
 
-  const adjustedDate = new Date(selectedDate);
-  adjustedDate.setHours(selectedDate.getHours() + 1);
-
-  const formattedDateTime = adjustedDate.toISOString().slice(0, 19).replace("T", " ");
+  const formattedDateTime = selectedDate.toISOString().slice(0, 19).replace("T", " ");
 
   // Salji zahtjeve
 
@@ -139,18 +137,12 @@ const User = () => {
       return;
     }
 
-    const minute = selectedDate.getMinutes();
-    if (minute !== 0) {
-      alert('Molimo izaberite puni sat.');
-      return;
-    }
-
     const jsonData = {
       description: description,
       dateTime: formattedDateTime,
     };
 
-
+    
     setDescription('');
     setSelectedDate(new Date());
 
@@ -168,18 +160,19 @@ const User = () => {
         body: JSON.stringify(jsonData),
       })
         .then((response) => {
-          if (response.status === 200) {
+          if(response.status === 200){
             alert('Uspješno poslano');
-            return response.json();
-          }
-          else if (response.status === 403) {
-            alert('Već imate zahtjev za termin u traženo vrijeme.');
-          }
-          else {
-            alert('Neuspješno poslano. Pričekajte minutu pa pokušajte ponovno');
-          }
+          return response.json();
         }
-        )
+        else if(response.status === 403){
+          alert('Već imate dogovoren termin u to vrijeme.');
+        }
+        else{
+           alert('Neuspješno poslano. Termini moraju biti na puni sat.');
+           return response.json();
+        }
+    }
+    )
         .catch((error) => {
           console.error("Error:", error)
         });
@@ -204,11 +197,6 @@ const User = () => {
   const monthPlaceholder = (today.getMonth() + 1).toString();
   const dayPlaceholder = today.getDate().toString();
 
-  const formatDate = (dateTimeString) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
-    return formattedDate;
-  };
 
   return (
     <Container className="justify-content-md-center">
@@ -328,7 +316,7 @@ const User = () => {
                     <td>{item.description}</td>
                     <td>{item.equipment.name}</td>
                     <td>{item.room.name}</td>
-                    <td>{formatDate(item.appointmentTime)}</td>
+                    <td>{item.appointmentTime}</td>
                     <td>
                       <Button
                         variant="link"
@@ -418,7 +406,6 @@ const User = () => {
             <Container className='d-flex justify-content-center'>
               <DateTimePicker
                 minDate={new Date()}
-                maxDate={new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000)}
                 disableWeekends={true}
                 disableClock={true}
                 disableCalendar={true}

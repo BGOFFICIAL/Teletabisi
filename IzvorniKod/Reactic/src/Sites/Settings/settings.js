@@ -11,6 +11,7 @@ import {
   Container,
   Navbar,
   Nav,
+  NavDropdown,
   InputGroup,
   ButtonGroup,
   FormLabel,
@@ -18,6 +19,9 @@ import {
   ToggleButtonGroup,
   NavbarText,
 } from "react-bootstrap";
+
+import LogOut from "../../services/LogOut";
+
 
 const Settings = () => {
   const [username, setUsername] = useState("");
@@ -27,6 +31,11 @@ const Settings = () => {
 
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [loginSource, setLoginSource] = useState("", "loginSource");
+
+
+  const decoded = jwtDecode(jwt);
+  const sub = decoded.sub;
+
 
 
 
@@ -42,6 +51,35 @@ const Settings = () => {
   console.log(password);
   let pom = false;
   console.log("Bearer :" + jwt);
+
+
+  const handleRemove = async (subic) => {
+
+    try{
+    
+    const response = await
+    fetch("http://localhost:8080/api/v1/func/inactive/remove/all", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+
+    },
+    mode: 'cors',
+    body: JSON.stringify({
+        username: subic
+    }),
+});
+if(response.ok)
+console.log("Uspješno uklonjen zaposlenik!");
+LogOut();
+
+}catch(error){
+console.error('Empty',error);}
+};
+
+
+
 
   function sendSettingsRequest() {
     console.log("kliknut");
@@ -64,12 +102,13 @@ const Settings = () => {
         "Content-Type": "application/json",
         Authorization: "Bearer " + jwt,
       },
-
+      mode:"cors",
       method: "POST",
       body: JSON.stringify(reqBody),
     })
       .then((response) => {
         if (response.status === 200) {
+
           return response.json();
         } else {
           console.log("nije usao");
@@ -79,6 +118,7 @@ const Settings = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+
   }
 
   return (
@@ -133,10 +173,16 @@ const Settings = () => {
 
           <Col xs={1}>
             <Navbar.Collapse className="justify-content-end">
-              <Nav>
-                <Button variant="light" onClick={() => window.location.href = "/user"}>Povratak</Button>
-              </Nav>
-            </Navbar.Collapse>
+                            <Nav>
+                                <NavDropdown title="Opcije" id="basic-nav-dropdown" className="bigBoldText">
+                                    <NavDropdown.Item onClick={() => Navigate(-1)}>Povratak</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={() => LogOut()}>Odjavi se</NavDropdown.Item>
+
+
+                                </NavDropdown>
+                            </Nav>
+                        </Navbar.Collapse>
           </Col>
 
         </Container>
@@ -210,13 +256,33 @@ const Settings = () => {
 
         <br /><br /><br />
 
-        <Container className="d-flex justify-content-center">
-          <Button
-            className="mb-3"
 
-            onClick={() => sendSettingsRequest()}
-          >Promijeni postavke</Button>
-        </Container>
+
+
+        <Container className="d-flex flex-column align-items-center justify-content-center position-relative">
+           <Button
+              className="mb-5 "
+              onClick={() => sendSettingsRequest()}
+              style={{ width: '10rem' }} 
+            >
+            Promijeni postavke
+          </Button>
+
+          <Button
+          className="mb-5 "
+          variant="danger"
+          onClick={() => handleRemove(sub)}
+          style={{ width: '10rem' }}
+          >Deaktiviraj korisnički račun</Button>
+          
+          <Form.Control.Feedback type="valid">
+            Uspiješno deaktiviran korisnički račun
+            </Form.Control.Feedback>
+          
+          </Container>
+
+
+       
 
 
       </Form>

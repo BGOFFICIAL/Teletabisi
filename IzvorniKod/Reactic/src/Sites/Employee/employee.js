@@ -41,20 +41,58 @@ const Employee = () => {
   const [pendingItems, setpendingItems] = useState([]);
   const [ownItems, setownItems] = useState([]);
   const [roomItems, setroomItems] = useState([]);
-  const [eq, setEq] = useState([]);
-  const [eqItems, setEqItems] = useState([]);
-  const [initialDate, setInitialDate] = useState(false);
+
+  // cisto primjer podataka da mozes testirat kak izgleda
+  /*
+    const data1 = Array.from({ length: 101 }, (_, index) => {
+      const today = new Date();
+      const currentDate = new Date(today.setDate(today.getDate() + index));
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1;
+      const year = currentDate.getFullYear();
+      return {
+        id: index + 1,
+        appointment: `Korisnik ${index + 1}`,
+        description: `Description ${index + 1}`,
+        equipment: `Potrebno dodijeliti`,
+        room: `A2`,
+        date: `${day}.${month}.${year}.`,
+        time: `11:00`
+      };
+    });
+  */
+  //format date
+  /*
+    const formatDate = (dateString, timeString) => {
+      const dateParts = dateString.split('.');
+      const timeParts = timeString.split(':');
+  
+      const year = parseInt(dateParts[2], 10);
+      const month = parseInt(dateParts[1], 10) - 1;
+      const day = parseInt(dateParts[0], 10);
+      const hours = parseInt(timeParts[0], 10);
+      const minutes = parseInt(timeParts[1], 10);
+  
+      return new Date(year, month, day, hours, minutes);
+    };
+  
+  
+  */
+
 
   //prikaz stranica
   const indexOfLastItem = pendingPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // pendingItems = data1.slice(indexOfFirstItem, indexOfLastItem);
 
-
   useEffect(() => {
+
+
     const fetchData = async () => {
       try {
-        // Fetching data for pendingItems
+
+        //POCETAK KOMENTARA  
+
         const response = await fetch('http://localhost:8080/api/v1/func/appointment/control', {
           headers: {
             "Authorization": `Bearer ${jwt}`,
@@ -64,59 +102,27 @@ const Employee = () => {
         });
         const jsonData = await response.json();
         setData(jsonData);
+
+        //ZAVRSETAK KOMENTARA
       } catch (error) {
-        console.error('Error fetching pendingItems:', error);
+        console.error('Empty', error);
       }
-
-      try {
-        // Fetching data for equipment (eq)
-        const eqResponse = await fetch('http://localhost:8080/api/v1/func/appointment/getEquipment', {
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET"
-        });
-        const eqJsonData = await eqResponse.json();
-        setEq(eqJsonData);
-      }
-
-      catch (error) {
-        console.error('Error fetching equipment (eq):', error);
-      }
-
-
-
-      try {
-        // Fetching data for equipment (eq)
-        const ownResponse = await fetch('http://localhost:8080/api/v1/func/appointment/all-appointments', {
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET"
-        });
-        const ownJsonData = await ownResponse.json();
-        setownItems(ownJsonData);
-      }
-
-      catch (error) {
-        console.error('Error fetching own items:', error);
-      }
-
-      // Setting pendingItems after fetching data
-      setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
-      // Setting equipment (eqItems) after fetching data
-      setEqItems(eq);
     };
-
     fetchData();
-  }, [pendingPage, data, jwt]);
+    setpendingItems(data.slice(indexOfFirstItem, indexOfLastItem));
+  }, [pendingPage, data]);
+
+
+
+
 
 
   const handleAccept = (selectedItem) => {
     setroomItems((prevownItems) => [...prevownItems, selectedItem]);
-
+    setpendingItems((prevpendingItems) =>
+      prevpendingItems.filter((item) => item.id !== selectedItem.id)
+    );
+    //setownItems([]);
   };
 
 
@@ -124,78 +130,23 @@ const Employee = () => {
     setroomItems((prevownItems) =>
       prevownItems.filter((completedItem) => completedItem.id !== item.id)
     );
-
+    setpendingItems((prevpendingItems) => [...prevpendingItems, item]);
+    //setownItems([]);
   };
 
 
   const handleDelete = (item) => {
-    try {
-
-      // POCETAK KOMENTARA
-      fetch(`http://localhost:8080/api/v1/func/appointment/delete/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Uspješno izbrisan termin");
-          }
-          else {
-            alert("Neuspješno izbrisan termin");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error)
-        });
-      //ZAVRSETAK KOMENTARA
-    }
-
-    catch (error) {
-      return Promise.reject("Invalidni zahtjev");
-      ;
-    }
+    // logika za brisanje
+    setownItems((prevownItems) =>
+      prevownItems.filter((completedItem) => completedItem.id !== item.id)
+    );
   }
   const handleQuit = (item) => {
-
-    // FETCH
-    try {
-
-      // POCETAK KOMENTARA
-      fetch(`http://localhost:8080/api/v1/func/appointment/otkazi/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-      })
-        .then((response) => {
-          if (response.status == 200) {
-            alert("Uspješno otkazan termin");
-            return response.json();
-          }
-          else {
-            alert("Prekasno otkazan termin");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error)
-        });
-      //ZAVRSETAK KOMENTARA
-    }
-
-    catch (error) {
-      return Promise.reject("Invalidni zahtjev");
-      ;
-    }
-
-
+    //logika za otkazivanje
+    setpendingItems((prevownItems) => [...prevownItems, item]);
+    setownItems((prevownItems) =>
+      prevownItems.filter((completedItem) => completedItem.id !== item.id)
+    );
   };
 
   const handleSearch = () => {
@@ -208,92 +159,58 @@ const Employee = () => {
   const handleReload = () => {
     window.location.reload()
   };
-  //pocetak
-  const handleCheck = async (item) => {
-    try {
-      if (item.equipment === "Potrebno dodijeliti") {
-        alert('Molimo unesite opremu.');
-        return;
-      }
 
+  const handleCheck = (item) => {
 
-
-      const adjustedDate = new Date(item.appointmentTime
-      );
-
-
-      const selectedDay = adjustedDate.getDay();
-      if (selectedDay === 0 || selectedDay === 6) {
-        alert('Izabrani dan je vikend, molimo izaberite radni dan.');
-        return;
-      }
-
-      const time = adjustedDate.getHours();
-      if (time < 8 || time > 19) {
-        alert('Molimo izaberite vrijeme između 8:00 i 20:00 sati.');
-        return;
-      }
-
-      const minute = adjustedDate.getMinutes();
-      if (minute !== 0) {
-        alert('Molimo izaberite puni sat.');
-        return;
-      }
-      adjustedDate.setHours(adjustedDate.getHours() + 1);
-
-      console.log(item.equipment + " " + item.appointmentTime);
-      console.log(adjustedDate);
-
-      const response1 = await fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-        body: JSON.stringify({
-          equipmentName: item.equipment,
-        }),
-      });
-
-      if (response1.status === 200) {
-        alert('Uspješno prihvaćen termin!');
-      } else if (response1.status === 400) {
-        alert('Imate dogovoren termin u isto vrijeme.');
-        return;
-      } else {
-        alert('Odaberi dostupnu opremu.');
-        return;
-      }
-
-      // Prvi fetch je završen, sada možete izvršiti drugi fetch
-      const response2 = await fetch(`http://localhost:8080/api/v1/func/appointment/newDate/${item.id}`, {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        mode: "cors",
-        method: "POST",
-        body: JSON.stringify({
-          newAppointmentDateTime: adjustedDate,
-        }),
-      });
-
-      if (response2.status === 200 && initialDate) {
-        alert('Uspješno ažuriran termin!');
-        setInitialDate(false);
-      }
-
-      // Nakon završetka oba fetch poziva, možete izvršiti dodatne radnje
-      setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
-    } catch (error) {
-      console.error("Error:", error);
-      return Promise.reject("Invalidni zahtjev");
+    if (item.equipment === "Potrebno dodijeliti") {
+      alert('Molimo unesite opremu.');
+      return;
     }
-  };
-  //kraj
+    //provjeri jel slobodno
+    if (true) {
+      try {
+        console.log(item.equipment);
+        // POCETAK KOMENTARA
+        fetch(`http://localhost:8080/api/v1/func/appointment/accept/${item.id}`, {
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}`,
+          },
+          mode: "cors",
+          method: "POST",
+          body: JSON.stringify({
+            equipmentName: item.equipment,
+          }),
+        })
+          .then((response) => {
+            if(response.status === 200){
+              alert('Uspješno prihvaćen termin!');
+              response.json();
+            }
+            else{
+              alert('Imate dogovoren termin u isto vrijeme.');
+              
+            }
+           })
+          .catch((error) => {
+            console.error("Error:", error)
+          });
+        //ZAVRSETAK KOMENTARA
+      }
+
+      catch (error) {
+        return Promise.reject("Invalidni zahtjev");
+        ;
+      }
+      setownItems((prevOwnItems) => [...prevOwnItems, item]);
+      setroomItems((prevRoomItems) => prevRoomItems.filter((roomItem) => roomItem.id !== item.id));
+    } else {
+      //ispisi datum kad moze
+      console.log(`Recommendation:`);
+    }
+
+  }
 
   const setEquipment = (item) => (event) => {
     const selectedEquipment = event.target.value;
@@ -305,23 +222,13 @@ const Employee = () => {
     );
   };
 
-
   const setDate = (item) => (selectedDate) => {
-    setInitialDate(true);
-    const updatedItem = {
-      ...item, appointmentTime: selectedDate
-    };
+    const updatedItem = { ...item, appointmentTime: selectedDate.toISOString() };
     setroomItems((prevRoomItems) =>
       prevRoomItems.map((roomItem) =>
         roomItem.id === item.id ? updatedItem : roomItem
       )
     );
-  };
-
-  const formatDate = (dateTimeString) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
-    return formattedDate;
   };
 
 
@@ -447,9 +354,9 @@ const Employee = () => {
               <tr key={item.id}>
                 <td>{item.user.firstname + " " + item.user.lastname}</td>
                 <td>{item.description}</td>
-                <td>{formatDate(item.appointmentTime)}</td>
+                <td>{item.appointmentTime}</td>
                 <td> <Button variant="link"
-                  onClick={() => handleAccept(item)}
+                  onClick={() => handleAccept(item)} //tu nesto??
                 > Odaberi zahtjev </Button> </td>
 
               </tr>
@@ -512,18 +419,17 @@ const Employee = () => {
                       required
                       onChange={setEquipment(item)}
                       aria-label="Default select example"
+
                     >
                       <option>Odaberi</option>
-                      {eq.map((equipmentOption) => (
-                        <option key={equipmentOption} value={equipmentOption}>
-                          {equipmentOption}
-                        </option>
-                      ))}
+                      <option value="Laser">Laser</option>
+                      <option value="Štake">Štake</option>
+                      <option value="Traka">Traka</option>
+                      <option value="oprema 1">Oprema 1</option>
                     </Form.Select>
                   </td>
                   <td>
                     <DateTimePicker
-                      minDate={new Date()}
                       value={item.appointmentTime}
                       onChange={setDate(item)}
                       clearIcon={null}
@@ -602,13 +508,13 @@ const Employee = () => {
                 <tr key={item.id}>
                   <td>{item.user.firstname + " " + item.user.lastname}</td>
                   <td>{item.description}</td>
-
-                  <td>{item.equipment.name}</td>
-
+                  <td>
+                    {item.equipment}
+                  </td>
                   <td>
                     {item.room.name}
                   </td>
-                  <td>{formatDate(item.appointmentTime)}</td>
+                  <td>{item.appointmentTime}</td>
 
                   <td> <Button variant="link"
                     onClick={() => handleQuit(item)}

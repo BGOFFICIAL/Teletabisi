@@ -13,4 +13,5 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AppointmentDateTimeRequest {
     private LocalDateTime newAppointmentDateTime;
+    private String equipmentName;
 }
