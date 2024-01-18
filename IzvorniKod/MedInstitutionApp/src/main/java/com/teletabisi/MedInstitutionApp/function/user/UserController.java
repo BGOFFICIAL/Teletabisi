@@ -39,7 +39,7 @@ public class UserController {
 
     /**
      * Korisnik šalje opis problema, datum i vrijeme kada želi termin. Sustav omogućava slanje zahtjeva jednom u
-     * minuti - spriječavanje spam-a
+     * 10 sekundi - spriječavanje spam-a
      * @param user
      * @return
      */
@@ -61,7 +61,7 @@ public class UserController {
                 long lastRequestedTime = userLastRequestTime.get(userId);
                 long currentTime = System.currentTimeMillis();
 
-                long requestLimitInterval = 60 * 1000;
+                long requestLimitInterval = 10000;
                 if (currentTime - lastRequestedTime < requestLimitInterval) {
                     return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Pričekajte " + requestLimitInterval / 1000 + " sekundi.");
                 }
