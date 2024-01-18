@@ -15,7 +15,7 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import Navigacija from "../../services/navigate";
 
 
-const Employee = () => {
+const AdminEmployee = () => {
 
   const [jwt, setJwt] = useLocalState("", "jwt");
   Navigacija(jwt);
@@ -208,6 +208,19 @@ const Employee = () => {
   const handleReload = () => {
     window.location.reload()
   };
+
+  const handleAddRoom = () => {
+    window.location.href = "/AddRooms"
+  };
+  const handleAddEquipment = () => {
+    window.location.href = "/AddEquipment"
+  };
+
+  const handlePromote = () => {
+    // window.location.href = "/?"
+  };
+
+
   //pocetak
   const handleCheck = async (item) => {
     try {
@@ -383,7 +396,7 @@ const Employee = () => {
           <Col xs={8}>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
-              <Navbar.Brand className="pageName">Djelatnik</Navbar.Brand>
+              <Navbar.Brand className="pageName">Djelatnik (Admin)</Navbar.Brand>
             </Navbar.Collapse>
           </Col>
           <Col xs={1}>
@@ -420,6 +433,23 @@ const Employee = () => {
             onClick={() => handleReload()}>
             Osvježi
           </Button></Col>
+          <Col><Button
+            variant='success'
+            onClick={() => handleAddEquipment()}>
+            Dodaj opremu
+          </Button></Col>
+          <Col><Button
+            variant='success'
+            onClick={() => handleAddRoom()}>
+            Dodaj prostoriju
+          </Button></Col>
+          {/*
+          <Col><Button
+            variant='success'
+            onClick={() => handlePromote()}>
+            Promoviraj djelatnika
+          </Button></Col>
+          */ }
         </Row>
 
 
@@ -650,4 +680,4 @@ const Employee = () => {
     </Container>
   );
 }
-export default Employee;
+export default AdminEmployee;

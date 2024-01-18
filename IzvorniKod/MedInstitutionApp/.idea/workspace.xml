@@ -7,8 +7,6 @@
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cdd47665-67f6-4389-b427-dfd07902254f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/ServletInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/ServletInitializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/EmailRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/email/EmailRequest.class" afterDir="false" />
@@ -36,6 +34,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/EmployeeResponse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse$UserResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse$UserResponseBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/response/UserResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/EquipmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/EquipmentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/RoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/RoomService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/admin/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO$EmployeeDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO$EmployeeDTOBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/EmployeeDTO.class" afterDir="false" />
@@ -47,6 +47,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/dto/UserDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeAppointmentService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeControllerEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/employee/service/EmployeeControllerEmail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/user/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/user/service/UserAppointmentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/function/user/service/UserAppointmentService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/AppointmentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/AppointmentRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/EquipmentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/repository/EquipmentRepository.class" afterDir="false" />
@@ -72,8 +73,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/demo/DemoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/demo/DemoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Reactic/src/Sites/Admin/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reactic/src/Sites/Admin/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Reactic/src/Sites/Employee/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Reactic/src/Sites/Employee/employee.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,31 +102,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Zavrsetak&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/npral/OneDrive/Dokumenti/GitHub/Teletabisi/IzvorniKod/MedInstitutionApp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;b425be4903ed514164676f7c2c6cec7f&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.MedInstitutionApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Zavrsetak",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Win11/Desktop/FER/GitHub/Teletabisi/IzvorniKod/MedInstitutionApp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "b425be4903ed514164676f7c2c6cec7f",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src\main\resources" />
@@ -146,6 +148,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-ebaef533" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -214,8 +223,7 @@
       <workItem from="1705490144765" duration="8630000" />
       <workItem from="1705507734501" duration="6316000" />
       <workItem from="1705533297124" duration="7719000" />
-      <workItem from="1705589203266" duration="2275000" />
-      <workItem from="1705615817710" duration="1069000" />
+      <workItem from="1705590491988" duration="630000" />
     </task>
     <servers />
   </component>

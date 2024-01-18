@@ -75,12 +75,12 @@ const Search = () => {
             event.stopPropagation();
         }
         setValidated(true);
-    
+
         if (!ime || !prezime || !oib || !isValidOIB(oib)) {
             alert('Molimo ispunite sva polja ispravno.');
             return;
         }
-    
+
         fetch(`http://localhost:8080/api/v1/func/appointment/searchUser/${oib}`, {
             headers: {
                 "Authorization": `Bearer ${jwt}`,
@@ -89,31 +89,35 @@ const Search = () => {
             mode: "cors",
             method: "GET"
         })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.error('Error fetching searchUser:', response.status, response.statusText);
-                throw new Error('Error fetching searchUser');
-            }
-        })
-        .then((jsonData) => {
-            setData(jsonData); // Assuming jsonData is an array
-        })
-        .catch((error) => {
-            console.error('Error during fetch:', error);
-            // Handle the error as needed
-            return Promise.reject("Invalidni zahtjev");
-        });
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Error fetching searchUser:', response.status, response.statusText);
+                    throw new Error('Error fetching searchUser');
+                }
+            })
+            .then((jsonData) => {
+                if (jsonData.length === 0) {
+                    alert("Pretraženi korisnik je djelatnik");
+                    window.location.reload();
+                }
+                setData(jsonData);
+            })
+            .catch((error) => {
+                console.error('Error during fetch:', error);
+
+                return Promise.reject("Invalidni zahtjev");
+            });
     };
 
     const formatDate = (dateTimeString) => {
         const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
         const formattedDate = new Date(dateTimeString).toLocaleDateString('en-GB', options);
         return formattedDate;
-      };
-    
+    };
 
+    // console.log(currentItems);
     return (
         <Container>
 
@@ -290,6 +294,7 @@ const Search = () => {
                             ) : (
 
                                 currentItems.map((item) => (
+
                                     <tr key={item.id}>
                                         <td>{item.user.username}</td>
                                         <td>{formatDate(item.appointmentTime)}</td>
