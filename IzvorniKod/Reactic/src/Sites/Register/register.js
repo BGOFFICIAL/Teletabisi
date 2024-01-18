@@ -20,8 +20,6 @@ import { useLocalState } from "../../util/useLocalStorage";
 import { useState } from "react";
 import Navigacija from "../../services/navigate";
 import { useNavigate } from "react-router-dom";
-import ReCaptcha from "react-google-recaptcha";
-import axios from "axios";
 
 
 
@@ -36,48 +34,8 @@ const Register = () => {
   const [dob, setDob] = useState(null);
   const [oib, setOib] = useState("");
   const [spol, setSpol] = useState("");
-  const [captcha, setCaptcha] = useState(``);
 
   Navigacija(jwt);
-  const sitekey = "6Lf3cVUpAAAAAEOqT3LZsMAUDsgEGUDA1Br8bTh0";
-  const secretkey= "6Lf3cVUpAAAAAIuMysS0Bk1_6vU7C4vzcOGAQgWf";
-
-
-
-
-
-
-
-
-  const handleCaptchaSucess = (value) => {
-    const reqData = {
-      
-    secret: secretkey,
-    response: value,
-    
-    
-    
-    }
-
-
-    setCaptcha(value);
-    axios.post(` https://www.google.com/recaptcha/api/siteverify`,reqData)
-    .then((res) => {
-      if(res.data.success === true){
-        console.log("Uspješno ste prošli captcha test");
-
-    }else{
-      console.log("Niste prošli captcha test");
-    }
-  })
-  .catch(err => {
-    console.log(err);
-  });
-
-
-  };
-
-
 
 
 
@@ -178,7 +136,6 @@ const Register = () => {
             "Content-Type": "application/json",
           },
           method: "POST",
-          mode:"cors",
           body: jsonData,
         })
           .then((response) => {
@@ -467,16 +424,6 @@ const Register = () => {
           Već ste registrirani? Kliknite <a href="/login">ovdje.</a>
         </p>
       </Row>
-      <Row className="justify-content-md-center">
-        <Col xs={2}>
-          <ReCaptcha
-            sitekey={sitekey}
-            onChange={handleCaptchaSucess}
-          />
-        </Col>
-        
-        
-        </Row>
     </Container>
   );
 };

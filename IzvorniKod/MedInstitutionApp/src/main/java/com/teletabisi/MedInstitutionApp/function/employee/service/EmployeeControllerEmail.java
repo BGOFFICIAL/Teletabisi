@@ -23,16 +23,14 @@ public class EmployeeControllerEmail {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/send/{email}")
-    public String sendMail(@PathVariable String email, @RequestBody MailStructure mailStructure){
+    @PostMapping("/send/{id}")
+    public String sendMail(@PathVariable Long id, @RequestBody MailStructure mailStructure){
 
         String mail = null;
-        User user = userRepository.findFirstByEmail(email).orElse(null);
-        System.out.print(user);
+        User user = userRepository.findById(id).orElse(null);
         if(user!=null){
             mail = user.getEmail();
-            System.out.print(mail);
-            mailService.sendMail(mail, mailStructure);
+         //ZASAD   mailService.sendMail(mail, mailStructure);
             return "Successfully sent the mail !!!";
         }
         else{

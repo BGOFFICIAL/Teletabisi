@@ -2,8 +2,6 @@ package com.teletabisi.MedInstitutionApp.function.user;
 
 import com.teletabisi.MedInstitutionApp.entity.Appointment;
 import com.teletabisi.MedInstitutionApp.entity.User;
-import com.teletabisi.MedInstitutionApp.function.user.request.DemotiranjeRequest;
-import com.teletabisi.MedInstitutionApp.function.user.service.PomocService;
 import com.teletabisi.MedInstitutionApp.function.dto.UserAppointmentDTO;
 import com.teletabisi.MedInstitutionApp.function.user.service.UserAppointmentService;
 import com.teletabisi.MedInstitutionApp.repository.AppointmentRepository;
@@ -30,6 +28,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserController {
+
     @Autowired
     private UserAppointmentService userAppointmentService;
 
@@ -40,7 +39,7 @@ public class UserController {
 
     /**
      * Korisnik šalje opis problema, datum i vrijeme kada želi termin. Sustav omogućava slanje zahtjeva jednom u
-     * minuti - spriječavanje spam-a
+     * 10 sekundi - spriječavanje spam-a
      * @param user
      * @return
      */
@@ -62,7 +61,7 @@ public class UserController {
                 long lastRequestedTime = userLastRequestTime.get(userId);
                 long currentTime = System.currentTimeMillis();
 
-                long requestLimitInterval = 60 * 1000;
+                long requestLimitInterval = 10000;
                 if (currentTime - lastRequestedTime < requestLimitInterval) {
                     return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Pričekajte " + requestLimitInterval / 1000 + " sekundi.");
                 }
@@ -126,10 +125,4 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
-
-
-
 }

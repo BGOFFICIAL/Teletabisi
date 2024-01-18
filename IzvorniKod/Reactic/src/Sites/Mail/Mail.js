@@ -9,15 +9,13 @@ import {
   ToggleButtonGroup, NavbarText
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
 
 const Mail = () => {
 
   const navig = useNavigate();
   const [mail, setMail] = useState("");
   const [message, setMessage] = useState("");
-  const [subject, setSubject] = useState("");
-  const [jwt, setJwt] = useLocalState("", "jwt");
+  const [reason, setReason] = useState("");
 
 
   function sendMail() {
@@ -25,62 +23,23 @@ const Mail = () => {
 
     if (
       isValidEmailFormat &&
-       subject.length > 0 &&
-        message.length > 0
+      !reason.includes(' ') && reason.length > 0 &&
+      !message.includes(' ') && message.length > 0
     ) {
 
 
       const reqBody = {
         "mail": mail,
-        "subject": subject,
+        "reason": reason,
         "message": message
       };
 
       console.log(reqBody);
 
-      if (jwt) {
-        const decoded = jwtDecode(jwt);
-        const sub = decoded.sub;
-      
-        if (sub) {
-          localStorage.setItem("username", sub);
-          // console.log("username: " + username);
-        } else {
-          // console.log("No username found in token");
-          localStorage.setItem("username", "unknown"); // default value for username
-        }
-      } else {
-        localStorage.setItem("username", "unknown"); // default value for username
-      }
-
-
-
-
-      fetch(`http://localhost:8080/api/v1/func/employee/send/${mail}`, {
-        "headers": {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-        method: "POST",
-        mode:"cors",
-        body: JSON.stringify(reqBody)
-      })
-        .then((response) => {
-          if (response.status === 200) {
-
-          
-          alert("Poruka uspješno poslana")
-        } else {
-          alert('Pogrešan unos podataka.')
-        
-        }});
-        
-
       setMail("");
       setMessage("");
-      setSubject("");
-
-
+      setReason("");
+      alert("Poruka uspješno poslana");
     }
 
     else {
@@ -225,14 +184,13 @@ const Mail = () => {
                 placeholder="Upišite kratak opis"
                 required
 
-                value={subject}
-                onChange={(event) => setSubject(event.target.value)}
+                value={reason}
+                onChange={(event) => setReason(event.target.value)}
 
-                isValid={subject.trim && subject.length > 0}
-                isInvalid={subject.trim && subject.length === 0}
+                isValid={!reason.includes(' ') && reason.length > 0}
+                isInvalid={reason.includes(' ') && reason.length > 0}
               />
 
-              
               <Form.Control.Feedback type="invalid">
                 Molimo unesite ispravan opis.
               </Form.Control.Feedback>
@@ -253,8 +211,8 @@ const Mail = () => {
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
 
-                isValid={message.trim && message.length > 0}
-                isInvalid={message.trim && message.length === 0}
+                isValid={!message.includes(' ') && message.length > 0}
+                isInvalid={message.includes(' ') && message.length > 0}
               />
 
               <Form.Control.Feedback type="invalid">

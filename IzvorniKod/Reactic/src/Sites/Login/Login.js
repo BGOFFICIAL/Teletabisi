@@ -59,7 +59,6 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       method: "POST",
-      mode:"cors",
 
       body: JSON.stringify(reqBody),
     })
@@ -230,7 +229,7 @@ const Login = () => {
         </Row>
         <Row className="justify-content-md-center">
           <Col xs={3} className="d-flex justify-content-center">
-            <Button variant="link" href='/forgotpassword'>
+            <Button variant="link" href='#'>
               Zaboravio/la sam lozinku
             </Button>
           </Col>

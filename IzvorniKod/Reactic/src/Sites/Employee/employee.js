@@ -237,7 +237,7 @@ const handleCheck = async (item) => {
       mode: "cors",
       method: "POST",
       body: JSON.stringify({
-        equipmentName: item.equipment,
+        equipmentName: item.equipment
       }),
     });
 
@@ -247,7 +247,7 @@ const handleCheck = async (item) => {
       alert('Imate dogovoren termin u isto vrijeme.');
       return;
     } else {
-      alert('Odaberi dostupnu opremu.');
+      alert('Odaberi dostupnu opremu1.');
       return;
     }
 
@@ -268,7 +268,7 @@ const handleCheck = async (item) => {
     if (response2.status === 200) {
       alert('Uspješno ažuriran termin!');
     } else {
-      alert('Odaberi dostupnu opremu.');
+      alert('Odaberi dostupnu opremu2.');
     }
 
     // Nakon završetka oba fetch poziva, možete izvršiti dodatne radnje

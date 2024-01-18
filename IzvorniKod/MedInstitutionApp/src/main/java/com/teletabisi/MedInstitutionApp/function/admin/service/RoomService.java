@@ -45,8 +45,16 @@ public class RoomService {
                 existingRoom.setRoomStatus(newStatus);
                 if(Objects.equals(newStatus, "inactive")){
                     existingRoom.setCapacity(0);
+                    List<Equipment> sameRoomEquipment = equipmentRepo.findAllByRoom(existingRoom);
+                    for(Equipment equipment : sameRoomEquipment){
+                        equipment.setRoom(roomRepo.getRoomById(0));
+                        Room pendingRoom = roomRepo.getRoomById(0);
+                        pendingRoom.setCapacity(pendingRoom.getCapacity() + 1);
+                        equipmentRepo.save(equipment);
+                    }
                 } else if (Objects.equals(newStatus, "active")){
                     List<Equipment> sameRoomEquipment = equipmentRepo.findAllByRoom(existingRoom);
+                    // efektivno ce nakon nove implementacije uvijek biti 0
                     existingRoom.setCapacity(sameRoomEquipment.size());
                 }
                 return roomRepo.save(existingRoom);

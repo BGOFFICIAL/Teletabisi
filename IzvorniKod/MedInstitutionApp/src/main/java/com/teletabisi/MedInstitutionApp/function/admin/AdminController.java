@@ -21,7 +21,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 
 @RestController
@@ -50,10 +49,8 @@ public class AdminController {
      */
     @PostMapping("/add/employee")
     public ResponseEntity<PromotionResponse> promotion(@RequestBody PromotionRequest request) {
-        System.out.print(request.getShift() + "         " +request.getUsername());
-        if (request != null) {
+        if (request != null && request.getUsername() != null) {
             User promotedUser = promotionService.promoteUser(request.getUsername(), request.getShift());
-            System.out.print(promotedUser);
 
             if (promotedUser != null) {
                 PromotionResponse response = PromotionResponse.builder()
@@ -103,7 +100,6 @@ public class AdminController {
             EmployeeResponse response = EmployeeResponse.builder()
                     .employeeList(employeeList)
                     .build();
-
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -241,32 +237,15 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PostMapping("/change-room-status")
+    @PostMapping("change-room-status")
     public ResponseEntity<Object> changeRoomStatus(@RequestBody RoomRequest request){
         if(request != null){
             Room newRoom = roomService.changeRoomStatus(request.getName(), request.getStatus());
 
-
             if (newRoom != null){
-                if(Objects.equals(request.getStatus(), "active")){
-                    return ResponseEntity.status(HttpStatus.OK).body("active");}
-                else if(Objects.equals(request.getStatus(), "inactive")){
-
-                    return ResponseEntity.status(HttpStatus.OK).body("inactive");}
-                else{
-
                 return ResponseEntity.ok(newRoom);
-                }
             } else{
-
-                    if(Objects.equals(request.getStatus(), "active")){
-                        return ResponseEntity.status(HttpStatus.CONFLICT).body("active");}
-                    else if(Objects.equals(request.getStatus(), "inactive")){
-                        return ResponseEntity.status(HttpStatus.CONFLICT).body("inactive");}
-                    else{
-
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana soba ne postoji ILI je zadani status jednak trazenom");}
-
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana soba ne postoji ILI je zadani status jednak postojećem statusu.");
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -280,7 +259,7 @@ public class AdminController {
         return new ResponseEntity<>(allRooms, HttpStatus.OK);
     }
 
-    @PostMapping("/add/equipment")
+    @PostMapping("add/equipment")
     public ResponseEntity<Object> addNewEquipment(@RequestBody EquipmentRequest request){
         if(request != null){
             Equipment newEquipment = equipmentService.addNewEquipment(request.getDescription(), request.getName(), request.getStatus(), request.getRoomName());
@@ -293,7 +272,7 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PostMapping("/change-equipment-status/{equipmentId}")
+    @PostMapping("change-equipment-status/{equipmentId}")
     public ResponseEntity<Object> changeEquipmentStatus(@PathVariable Long equipmentId,
                                                            @RequestBody EquipmentStatusRequest request){
         if(request != null){
@@ -308,7 +287,7 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PostMapping("/change-equipment-room/{equipmentId}")
+    @PostMapping("change-equipment-room/{equipmentId}")
     public ResponseEntity<Object> changeEquipmentRoom(@PathVariable Long equipmentId,
                                                          @RequestBody EquipmentRoomNameRequest request){
         if(request != null){
@@ -317,7 +296,7 @@ public class AdminController {
             if (newEquipment != null){
                 return ResponseEntity.ok(newEquipment);
             } else{
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadana soba jednaka staroj sobi ILI zadana soba ne postoji ILI kapacitet sobe pun. ");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadana soba jednaka staroj sobi ILI zadana soba ne postoji ILI kapacitet sobe pun ILI status sobe inactive. ");
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
