@@ -296,7 +296,7 @@ public class AdminController {
             if (newEquipment != null){
                 return ResponseEntity.ok(newEquipment);
             } else{
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadana soba jednaka staroj sobi ILI zadana soba ne postoji ILI kapacitet sobe pun. ");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Zadana oprema ne postoji ILI zadana soba jednaka staroj sobi ILI zadana soba ne postoji ILI kapacitet sobe pun ILI status sobe inactive. ");
             }
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
