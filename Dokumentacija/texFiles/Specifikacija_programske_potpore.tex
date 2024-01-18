@@ -24,7 +24,7 @@
 	\begin{packed_enum}
 		
 		\item se registrirati u sustav kao pacijent te tako stvoriti novi korisnički račun za koji su mu potrebni ime, prezime, korisničko ime, e-mail adresa, OIB, lozinka, spol i datum rođenja.
-		\item pregledati naslovnu stranicu koja ga može uputiti na stranicu za registraciju
+		\item pregledati naslovnu stranicu koja ga može uputiti na stranicu za registraciju ili stranicu za prijavu
 		
 		
 	\end{packed_enum}
@@ -34,10 +34,10 @@
 	\begin{packed_enum}
 		
 		\item prijaviti se u sustav
-		\item odabrati željeni termin dolazaka, a ukoliko se radi o ponovljenoj terapiji i referencu na već obavljeni postupak terapije u ustanovi
-		\item navesti opis svog oboljenja te odabrati liječnika koji će ga liječiti
+		\item odabrati željeni termin dolazaka i opisati svoje zdravstvene poteškoće
 		\item otkazati zakazani termin u roku od 24 sata prije samoga termina te potvrditi ili odbiti pomaknuti termin zbog novonastale okolnosti
 		\item primati elektroničku poštu o zakazanom terminu i novonastalim okolnostima
+		\item pogledati popis svojih prihvaćenih termina te podatke vezane uz termin (doktor koji će ga liječiti, oprema koja će se koristiti, soba u kojoj će se termin odvijati i vrijeme termina)
 		
 	\end{packed_enum}
 	
@@ -47,12 +47,13 @@
 	\begin{packed_enum}
 		
 		\item prijaviti se u sustav
-		\item pregledavati prijave za vlastite termine
-		\item kontrolirati dostupnost termina
+		\item pregledavati nepotvrđene termine pacijenata u svojoj smjeni
+		\item pregledavati potvrđene termine koje on mora odraditi
 		\item direktno kontaktirati pacijenta putem elektroničke pošte u slučaju neočekivanih promjena (i predložiti im novi termin)
 		\item vidjeti sve pacijente (uključujući njihove osobne podatke) i sve tretmane koji su im dodijeljeni
-		\item nakon obavljenog postupka rehabilitacije registrirati dolazak pacijenta
-		\item nakon završenog ciklusa upisati postignute rezultate s pacijentom
+		\item otkazati zakazani termin u roku od 24 sata prije samoga termina te potvrditi ili odbiti pomaknuti termin zbog novonastale okolnosti
+		\item obrisati termin ako smatra da termin nije potrebno izvršit (čime taj termin postaje nevidljiv i ostalim zdravstvenim djelatnicima)
+		\item dodijeliti prilikom prihvaćanja termina opremu prikladnu opisu zdravstvenih poteškoća samoga pacijenta (oprema je vezana uz sobu)
 		
 		
 	\end{packed_enum}
@@ -65,8 +66,8 @@
 		\item verificirati podatke iz središnjeg informacijskog sustava zdravstvene zaštite
 		\item pristupiti popisu korisnika te njihovim osobnim podacima
 		\item stvoriti zdravstvenog djelatnika u sustavu
-		\item maknuti korisnika iz sustava
-		\item pregledavati statistiku sustava (npr. broj muških/ženskih pacijenata ili koliko dugo pojedini zdravstveni djelatnik radi u ustanovi)
+		\item maknuti korisnika iz sustava (i pacijenta i zdravstvenog djelatnika)
+		\item pregledavati korisnike (pacijente i zdravstvene djelatnike) i filtrirati ih po nekim parametrima (npr. po spolu)
 		
 	\end{packed_enum}
 	
@@ -77,6 +78,7 @@
 		\item pohraniti podatke o korisnicima i njihovim dopuštenjima
 		\item pohraniti podatke o terminima (slobodnim i zauzetim)
 		\item pohraniti podatke o opremama/uslugama (slobodnim i zauzetim)
+		\item pohraniti podatke o sobama (slobodnim i zauzetim)
 		
 	\end{packed_enum}
 \end{packed_enum}
