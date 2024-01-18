@@ -18,7 +18,7 @@ import AddEquipment from "./Sites/AddEquipment/AddEquipment";
 import AddRooms from "./Sites/AddRooms/AddRooms";
 import Search from "./Sites/Search/Search";
 import Mail from "./Sites/Mail/Mail";
-
+import AdminEmployee from "./Sites/AdminEmployee/adminemployee";
 function App() {
 
   const [jwt, setJwt] = useLocalState();
@@ -38,6 +38,7 @@ function App() {
         <Route path="/AddRooms" element={<AddRooms />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Mail" element={<Mail />} />
+        <Route path="/AdminEmployee" element={<AdminEmployee />} />
 
       </Route>
       <Route path="/welcome" element={<Welcome />} />
