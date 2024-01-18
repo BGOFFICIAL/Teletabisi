@@ -104,7 +104,7 @@
 		\item Korisnik odabire opciju za registriranje
 		\item Korisnik unosi potrebne podatke
 		\item Korisnik pritišće dugme da potvrdi registraciju
-		\item Korisnik prima obavijest o uspješnoj registraciji
+		\item Korisnik bude poslan na stranicu za prijavu u sustav
 	\end{packed_enum}
 	
 	\item  \textbf{Opis mogućih odstupanja:}
@@ -136,7 +136,7 @@
 		\item Korisnik odabire opciju za prijavu
 		\item Korisnik unosi korisničko ime i lozinku
 		\item Korisnik pritišće dugme da potvrdi prijavu
-		\item Korisnik pristupa uslugama za koje ima dopuštenje 
+		\item Korisnik pristupa uslugama za koje ima dopuštenje (što uključuje odlazak na određenu stranicu - ili za pacijente ili za zdravstvene djelatnike ili za administratore)
 	\end{packed_enum}
 	
 	\item  \textbf{Opis mogućih odstupanja:}
@@ -154,10 +154,43 @@
 	\end{packed_item}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC3 - Upravljanje terminima}}\\
-Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termina, UC3.3. Pregled termina i UC3.4 Potvrđivanje novih termina.\\
+\noindent \underbar{\textbf{UC3 - Promjena korisničkih podataka}}
+\begin{packed_item}
+	
+	\item \textbf{Glavni sudionici: }Pacijent, Zdravstveni djelatnik, Administrator
+	\item  \textbf{Cilj:} Promijeniti određene korisničke podatke
+	\item  \textbf{Sudionici:} Baza podataka
+	\item  \textbf{Preduvjet:} Registracija u sustav
+	\item  \textbf{Opis osnovnog tijeka:}
+	
+	\item[] \begin{packed_enum}
+		
+		\item Korisnik odabire opciju za promjenu podataka
+		\item Korisnik unosi podatak ili podatke koje želi promijeniti (email ili korisničko ime ili lozinku)
+		\item Korisnik pritišće dugme da potvrdi promjenu podataka
+		\item Korisnik pristupa uslugama za koje ima dopuštenje ali s novim podatcima pri čemu stari podatci budu obrisani
+	\end{packed_enum}
+	
+	\item  \textbf{Opis mogućih odstupanja:}
+	
+	\item[] \begin{packed_item}
+		
+		\item[2.a] Neispravan oblik email-a ili neispravan oblik lozinke
+		\item[] \begin{packed_enum}
+			
+			\item Korisnik dobiva obavijest o neuspješnoj promijeni podataka te bude vraćen na stranicu za promjenu podataka
+			\item Korisnik mijenja krivo unešene podatke ili odustaje od promjene podataka (vraća se na određenu stranicu)
+			
+		\end{packed_enum}
+		
+	\end{packed_item}
+\end{packed_item}
 
-\noindent \underbar{\textbf{UC3.1. - Zakazivanje termina}}
+
+\noindent \underbar{\textbf{UC4 - Upravljanje terminima}}\\
+Uključuje obrasce uporabe UC4.1 Zakazivanje termina, UC4.2 Otkazivanje termina i UC4.3 Pregled termina.\\
+
+\noindent \underbar{\textbf{UC4.1 - Zakazivanje termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Pacijent
@@ -170,28 +203,43 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 		
 		\item Pacijent odabire opciju za zakazivanje termina
 		\item Pacijent na prikazanom kalendaru izabire poželjni slobodni termin
-		\item Pacijent navodi vrstu i opis oboljenja, zahtijevani postupak liječenja i liječnika koji ih je uputio
-		\item Ako se radi o ponovljenoj terapiji, pacijent odabire referencu na već obavljeni postupak terapije
+		\item Pacijent navodi vrstu i opis oboljenja
 		\item Pacijent pritišće dugme za potvrdu odabranog termina
-		\item Pacijent dobiva e-mail potvrdu o odabranom terminu
+		\item Pacijent dobiva potvrdu o uspješno poslanom zahjevu za termin te bude vraćen na stranicu za pacijente
 	\end{packed_enum}
 	
 	\item  \textbf{Opis mogućih odstupanja:}
 	
 	\item[] \begin{packed_item}
 		
-		\item[2.a] Pacijent se nije pojavio na zakazanom terminu
+		\item[2.a] Pacijent je unio termin koji ima identično vrijeme održavanja kao i neki već prethodno potvrđeni njegov termin
 		\item[] \begin{packed_enum}
 			
-			\item Pacijent dobiva e-mail poruku upozorenja da pripazi na dogovorene termine
+			\item Pacijent dobiva obavijest da unese drugi termin
 			
 		\end{packed_enum}
+		
+		
+		\item[2.b] Pacijent je unio termin u roku od 10 sekundi od prethodno poslanog termina
+		\item[] \begin{packed_enum}
+			
+			\item Pacijent dobiva obavijest da pričeka 10 sekundi
+			
+		\end{packed_enum}
+		
+		\item[3.a] Pacijent nije unio opis oboljenja a kliknuo je na potvrdu termina
+		\item[] \begin{packed_enum}
+			
+			\item Pacijent dobiva obavijest da unese opis oboljenja
+			
+		\end{packed_enum}
+		
 		
 		
 	\end{packed_item}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC3.2. - Otkazivanje termina}}
+\noindent \underbar{\textbf{UC4.2 - Otkazivanje termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Pacijent
@@ -202,28 +250,26 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	
 	\item[] \begin{packed_enum}
 		
-		\item Pacijent odabire opciju za otkazivanje termina
-		\item Pacijent na kalendaru odabire zakazani termin koji želi otkazati
+		\item Pacijent na popisu svojih termina odabire zakazani termin koji želi otkazati
 		\item Pacijent odabire opciju za otkazivanje odabranog termina
-		\item Pacijent pritišće dugme za potvrdu otkazivanja termina
-		\item Pacijent dobiva e-mail potvrdu o otkazanom terminu
+		\item Pacijent dobije obavijest o uspješno otkazanom terminu
 	\end{packed_enum}
 	
 	\item  \textbf{Opis mogućih odstupanja:}
 	
 	\item[] \begin{packed_item}
 		
-		\item[3.a] Pacijent prekasno pokušava otkazati termin (unutar 24 sata kada je zakazani termin)
+		\item[2.a] Pacijent prekasno pokušava otkazati termin (unutar 24 sata kada je zakazani termin)
 		\item[] \begin{packed_enum}
 			
-			\item Sustav onemogućuje pacijentu otkazivanje tog termina
+			\item Sustav onemogućuje pacijentu otkazivanje tog termina te pacijent dobiva obavijest o nemogućnosti otkazivanja termina
 			
 		\end{packed_enum}
 		
 	\end{packed_item}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC3.3. - Pregled termina}}
+\noindent \underbar{\textbf{UC4.3 - Pregled termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Pacijent
@@ -238,26 +284,8 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	\end{packed_enum}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC3.4. - Potvrđivanje novih termina}}
-\begin{packed_item}
-	
-	\item \textbf{Glavni sudionik: }Pacijent
-	\item  \textbf{Cilj:} Mogućnost prihvaćanja ili odbijanja novog termina (zbog novonastale okolnosti)
-	\item  \textbf{Sudionici:} Baza podataka
-	\item  \textbf{Preduvjet:} Korisnik prijavljen kao pacijent, zdravstveni djelatnik je predložio pomak termina iz raznih razloga (npr. nedostajanje opreme za tretman)
-	\item  \textbf{Opis osnovnog tijeka:}
-	
-	\item[] \begin{packed_enum}
-		
-		\item Pacijent dobiva e-mail obavijest o pomaku termina
-		\item Pacijent u posebnom prozoru dobiva uvid o kojem novom terminu se radi
-		\item Pacijent odabire prihvaća li ili ne novi navedeni termin
-		\item Pacijent pritišće dugme kako bi potvrdio svoju odluku
-		\item Pacijent dobiva e-mail potvrdu da je sustav zaprimio njegovu odluku (prihvaćanje ili odbijanje termina)
-	\end{packed_enum}
-\end{packed_item}
 
-\noindent \underbar{\textbf{UC4 - E-mail podsjetnik za termin}}
+\noindent \underbar{\textbf{UC5 - E-mail podsjetnik za termin}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }-
@@ -268,43 +296,61 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	
 	\item[] \begin{packed_enum}
 		
-		\item Pacijent dobiva e-mail obavijest o zakazanom terminu
+		\item Pacijent dobiva e-mail obavijest o zakazanom terminu (koji je potvrđen od strane određenog zdravstvenog djelatnika)
 	\end{packed_enum}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC5 - Kontrola slobodnih/zauzetih termina}}
+\noindent \underbar{\textbf{UC6: Pregled svih neprihvaćenih termina u djelatnikovoj smjeni}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-	\item  \textbf{Cilj:} Omogućiti na vrijeme odrediti koji termini su slobodni za fizikalnu terapiju i medicinsku rehabilitaciju (ovisi o količini dostupne opreme/usluge, kapacitetu prostorija i radnom vremenu ustanove)
+	\item  \textbf{Cilj:} Omogućiti pregled svih neprihvaćenih termina, ali isključivo u djelatnikovoj smjeni
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik bira opciju za uređivanje termina, odnosno postavljanje termina zauzetim ili dostupnim
-		\item Zdravstveni djelatnik pritiskom na dostupno dugme sprema novonastale promjene
+		\item Zdravstvenom djelatniku se na njegovoj stranici pokazuje tablica svih neprihvaćenih termina koje on ima pravo prihvatiti
+		\item Zdravstveni djelatnik pritiskom na dostupno dugme šalje taj termin u daljnju konfiguraciju
 	\end{packed_enum}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC6 - Pregled svojih rezerviranih termina}}
+\noindent \underbar{\textbf{UC7 - Pregled svojih rezerviranih termina}}\\
+Uključuje obrasce uporabe UC7.1 Odabir opreme, UC7.2 Pomicanje svojih rezerviranih termina, UC7.3 Otkazivanje rezerviranih termina i UC7.4 Brisanje rezerviranih termina\\
+
+\noindent \underbar{\textbf{UC7.1 - Odabir opreme}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku pregled termina koji su rezervirali isključivo njegovi pacijenti
+	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da odabere opremu koja je prigodna za korištenje s obzirom na opis zdravstvenih problema pacijenta
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik na kalendaru može vidjeti za pojedini dan koji su mu termini rezervirani
+		\item Zdravstveni djelatnik odabire opremu kojom će liječiti pacijenta
+		\item Oprema automatski bude povezana sa sobom 
+		\item Zdravstveni djelatnik pritiskom na dugme potvrđuje korištenje opreme u određenoj sobi za tretman
 	\end{packed_enum}
+	
+	\item  \textbf{Opis mogućih odstupanja:}
+	
+	\item[] \begin{packed_item}
+		
+		\item[1.a] Svaka instanca te opreme je u to vrijeme zauzeta
+		\item[] \begin{packed_enum}
+			
+			\item Zdravstveni djelatnik će morati ili premjestiti termin ili pokušati liječiti pacijenta nekom drugom opremom
+			
+		\end{packed_enum}
+	
+	\end{packed_item}
 \end{packed_item}
 
 
-\noindent \underbar{\textbf{UC6.1. - Pomicanje svojih rezerviranih termina}}
+\noindent \underbar{\textbf{UC7.2 - Pomicanje svojih rezerviranih termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
@@ -315,8 +361,8 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik na kalendaru odabire zakazani termin (ili zakazane termine) koje želi pomaknuti
-		\item Zdravstveni djelatnik bira opciju za otkazivanje tog termina (ili tih termina) i predlaže svakom pacijentu kojemu je otkazao termin novi termin
+		\item Zdravstveni djelatnik na kalendaru odabire zakazani termin koje želi pomaknuti
+		\item Zdravstveni djelatnik bira novo vrijeme kada želi održati taj termin
 		\item Zdravstveni djelatnik pritiskom na dugme potvrđuje novonastale promjene
 	\end{packed_enum}
 	
@@ -340,28 +386,30 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	\end{packed_item}
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC7 - Potvrda dolazaka pacijenata}}
+\noindent \underbar{\textbf{UC7.3 - Otkazivanje rezerviranih termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku potvrđivanje dolaska pacijenta nakon odrađenog termin
+	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku otkazivanje rezerviranih termina
 	\item  \textbf{Sudionici:} Baza podataka
-	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik i završen termin fizikalne terapije
+	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik u prozoru sa prikazanim završenim terminima potvrđuje dolazak pacijenta
+		\item Zdravstveni djelatnik na popisu svojih termina odabire zakazani termin koji želi otkazati
+		\item Zdravstveni djelatnik odabire opciju za otkazivanje odabranog termina
+		\item Zdravstveni djelatnik dobije obavijest o uspješno otkazanom terminu
 	\end{packed_enum}
 	
 	\item  \textbf{Opis mogućih odstupanja:}
 	
 	\item[] \begin{packed_item}
 		
-		\item[1.a] Pacijent nije došao na zakazani termin
+		\item[2.a] Zdravstveni djelatnik prekasno pokušava otkazati termin (unutar 24 sata kada je zakazani termin)
 		\item[] \begin{packed_enum}
 			
-			\item Zdravstveni djelatnik šalje e-mail pacijentu da sazna zbog čega nije došao na zakazani termin, ako pacijent nema opravdan razlog snosit će posljedice
+			\item Sustav onemogućuje zdravstvenom djelatniku otkazivanje tog termina (prisiljen je odraditi taj termin) te dobije obavijest o prekasno pokušaju otkazivanja termina
 			
 		\end{packed_enum}
 		
@@ -369,38 +417,58 @@ Uključuje obrasce uporabe UC3.1. Zakazivanje termina, UC3.2. Otkazivanje termin
 	
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC8 - Pregled osobnih podataka svojih pacijenata}}
+
+\noindent \underbar{\textbf{UC7.4 - Brisanje rezerviranih termina}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da pregleda osobne podatke svojih pacijenata (ime, prezime, e-mail adresu i OIB)
+	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku brisanje rezerviranih termina
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik u listi svojih pacijenata izabire određenog pacijenta
-		\item Zdravstveni djelatnik pored odabranog pacijenta izabere opciju "Osobni podatci"
-		\item Zdravstveni djelatnik ima uvid u osobne podatke pacijenta
+		\item Zdravstveni djelatnik na popisu svojih termina odabire zakazani termin koji želi obrisati (smatra da taj tretman nema smisla izvršiti niti on niti bilo koji drugi zdravstveni djelatnik)
+		\item Zdravstveni djelatnik odabire opciju za brisanje odabranog termina
+		\item Zdravstveni djelatnik dobije obavijest o uspješno obrisanom terminu
+	\end{packed_enum}
+	
+		
+	\end{packed_item}
+	
+
+\noindent \underbar{\textbf{UC8 - Pregled termina pacijenata}}
+\begin{packed_item}
+	
+	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
+	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da pregleda termina pacijenata
+	\item  \textbf{Sudionici:} Baza podataka
+	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
+	\item  \textbf{Opis osnovnog tijeka:}
+	
+	\item[] \begin{packed_enum}
+		
+		\item Zdravstveni djelatnik upisuje ime, prezime i OIB pacijenta
+		\item Zdravstveni djelatnik ima uvid u sve termine tog pacijenta (čak i one termine koji nisu pod njegovoj nadležnosti)
 	\end{packed_enum}
 	
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC9 - Upisivanje postignutih rezultata}}
+\noindent \underbar{\textbf{UC9 - Proizvoljno slanje emaila}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Zdravstveni djelatnik
-	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da upiše postignute rezultate u radu s pacijentom nakon završenog postupka fizikalne terapije i rehabilitacije
+	\item  \textbf{Cilj:} Omogućiti zdravstvenom djelatniku da komunicira s pacijentom preko elektroničke pošte
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik prijavljen kao zdravstveni djelatnik
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Zdravstveni djelatnik u listi svojih pacijenata izabire određenog pacijenta
-		\item Zdravstveni djelatnik pored odabranog pacijenta izabere opciju "Postignuti rezultati"
-		\item Zdravstveni djelatnik zapisuje napredak u radu s pacijentom
+		\item Zdravstveni djelatnik odabire opciju slanja emaila
+		\item Zdravstveni djelatnik upisuje email adresu određenog pacijenta
+		\item Zdravstveni djelatnik upisuje naslov i glavni dio teksta
 	\end{packed_enum}
 	
 \end{packed_item}
