@@ -192,28 +192,23 @@
 			
 		\section{Dijagram razreda}
 		
-			Na slici 4.6 prikazani su razredi kojima se predstavlja struktura baze podataka u našoj aplikaciji te su razredi User i Appointment entiteti u bazi podataka. Implementirane metode služe za komunikaciju s bazom podataka te po potrebi izvršavaju pisanje, brisanje ili dohvaćanje podataka iz same baze. Razred User predstavlja svakog korisnika aplikacije. Kako bi korisnik mogao upotrebljavati pogodnosti koje aplikacija nudi, on se najprije mora registrirati u sustav koristeći osobne podatke: ime, prezime, korisničko ime, lozinka, email, oib, spol te datum rođenja. Razred User također koristi i enumeraciju Role koja predstavlja ulogu korisnika u sustavu. Razred User također može zakazati i otkazati termin terapije, koju predstavlja razred Appointment. Razred Appointment sadrži podatke o samome terminu terapije te ga samo korisnici s pripadajućom ulogom EMPLOYEE mogu otkazati ili stvoriti.
+			Na slici 4.6 prikazani su razredi kojima se predstavlja struktura baze podataka u našoj aplikaciji te su razredi User, Appointment, Room, Schedule i Equipment entiteti u bazi podataka. Implementirane metode služe za komunikaciju s bazom podataka te po potrebi izvršavaju pisanje, brisanje ili dohvaćanje podataka iz same baze. Razred User predstavlja svakog korisnika aplikacije. Kako bi korisnik mogao upotrebljavati pogodnosti koje aplikacija nudi, on se najprije mora registrirati u sustav koristeći osobne podatke: ime, prezime, korisničko ime, lozinka, email, OIB, spol te datum rođenja. Razred User također koristi i enumeraciju Role koja predstavlja ulogu korisnika u sustavu. Razred User također može zakazati i otkazati termin terapije, koju predstavlja razred Appointment. Razred Appointment sadrži podatke o samome terminu terapije te ga samo korisnici s pripadajućom ulogom EMPLOYEE, ADMINEMPLOYEE mogu otkazati ili stvoriti. Entitet Schedule koristi se prilikom stvaranja, odnosno potvrde samoga termina. Svrha je zauzimanje termina po datumima i satima s pripadajućom prostorijom za pregled te opremom za pregled, što omogućava provjeru raspoloživosti određenog datuma, vremena, sobe te opreme. Entitet Room koristi se za spremanje podataka o svakoj prostoriji ustanove te njih u sustav dodaje korisnik s ulogom ADMIN. ADMIN također jedini barata funkcijama vezanim za uređivanje atributa prostorija. Entitet Equipment predstavlja opremu koja se koristi prilikom medicinske rehabilitacije. Oprema je vezana uz određenu prostoriju te ju također zadaje ADMIN.
 		
 			\begin{figure}[H]
-				\includegraphics[scale=0.5]{slike/modeli}
+				\includegraphics[scale=0.45]{slike/modeli_v2}
 				\centering
 				\caption{Dijagram razreda - Modeli}
 			\end{figure}
 			
 			\newpage
 			
-			Na slici 4.7 prikazani su razredi kojima se povezuje Backend i Frontend dio same aplikacije. Razred AuthenticationController bavi se adekvatnom provjerom informacija koje korisnik unosi te omogućava njegovu registraciju, autentikaciju, izmjenu osobnih podataka poput lozinke, korisničkog imena ili emaila ako ih je zaboravio. Također, taj razred omogućava Adminu da dodaje nove zaposlenike, uklanja ljude s kojima više nema radnog odnosa, dobiva popis svih zaposlenika te mogućnost njegove filtracije s određenim parametrima. Razred AppController služi za povezivanje s frontend dijelom aplikacije i prikazivanje odabranih stranica, npr. stranica za registraciju, stranica za prijavu te provjerava valjanost podataka prilikom prijave i registracije.
+			Na slici 4.7 prikazani su razredi kojima se povezuje Backend i Frontend dio same aplikacije. Razred AuthenticationController bavi se adekvatnom provjerom informacija koje korisnik unosi te omogućava njegovu registraciju, autentikaciju, izmjenu osobnih podataka poput lozinke, korisničkog imena ili emaila ako ih je zaboravio. Razred AdminController omogućava Adminu da dodaje nove zaposlenike, uklanja ljude s kojima više nema radnog odnosa, dobiva popis svih zaposlenika, dodaje i dohvaća prostorija, opreme te izmjena njihovih parametara. Razred AppController služi za povezivanje s frontend dijelom aplikacije i prikazivanje odabranih stranica, npr. stranica za registraciju, stranica za prijavu te provjerava valjanost podataka prilikom prijave i registracije. UserController se bavi korisnikom koji ima ulogu USER te omogućava dohvat svih korisnikovih zakazanih termina, dohvat prijašnjih opisa fizikalnih problema, te slanje i poništavanje zahtjeva za terminom. EmployeeController koriste korisnici s ulogama EMPLOYEE i ADMINEMPLOYEE te on služi za obradu zahtjeva za terminom - njihovo prihvaćanje, odbijanje, brisanje i izmjena određenih parametara.
 			
 			\begin{figure}[H]
-				\includegraphics[scale=0.5]{slike/kontroleri}
+				\includegraphics[scale=0.45]{slike/kontroleri_v2}
 				\centering
 				\caption{Dijagram razreda - Kontroleri}
 			\end{figure}
-			
-			
-			\textbf{\textit{dio 2. revizije}}\\			
-			
-			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
 			
 			
 			
@@ -222,22 +217,67 @@
 		\section{Dijagram stanja}
 			
 			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
-			
-			
-			\eject 
+		\begin{figure}[H]
+			\includegraphics[scale=0.4]{slike/DijagramStanja1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Dijagram stanja početne stranice}
+			\label{fig:promjene}
+		\end{figure}
 		
+			\begin{figure}[H]
+			\includegraphics[scale=0.4]{slike/DijagramStanja2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Složeno stanje "Stranica za pacijenta"}
+			\label{fig:promjene}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\includegraphics[scale=0.5]{slike/DijagramStanja3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Složeno stanje "Stranica za zdravstvenog djelatnika"}
+			\label{fig:promjene}
+		\end{figure}
+		
+		Složeno stanje "Stranica za adminemployee" je vrlo slična složenom stanju "Stranica za zdravstvenog djelatnika" uz još dodatnu mogućnost dodavanje opreme i soba. Iz tog razloga smatramo da nije potrebno postaviti i taj dijagram stanja (jer je to kombinacija stanja iz složenog stanja "Stranica za zdravstvenog djelatnika" i "Stranica za administratora").
+			
+				\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/DijagramStanja4.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Složeno stanje "Stranica za administratora"}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\eject
+			
 		\section{Dijagram aktivnosti}
 			
-			\textbf{\textit{dio 2. revizije}}\\
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{slike/DijagramAktivnosti1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Prikaz dijagrama aktivnosti pri zahtjevu za novi termin}
+				\label{fig:promjene}
+			\end{figure}
 			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{slike/DijagramAktivnosti2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Prikaz dijagrama aktivnosti pri potvrđivanju/odbijanju termina}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{slike/DijagramAktivnosti3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Prikaz dijagrama aktivnosti pri dodavanju soba/opreme}
+				\label{fig:promjene}
+			\end{figure}
 			
 			\eject
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.52]{slike/DijagramKomponenti.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Prikaz dijagrama komponenti naše web aplikacije}
+				\label{fig:promjene}
+			\end{figure}
