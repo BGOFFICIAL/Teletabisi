@@ -23,13 +23,16 @@ public class PromotionService {
      */
     public User promoteUser(String username, int shift) {
         if (username != null) {
+            System.err.print("1");
             User user = this.repo.findFirstByUsername(username).orElse(null);
 
             if (user != null) {
+                System.err.print("2");
                 if (user.getRole() == Role.USER || user.getRole() == Role.INACTIVE) {
                     user.setStartDate(LocalDate.now());
                     user.setRole(Role.EMPLOYEE);
                     user.setShift(shift);
+                    System.err.print("3");
                     return this.repo.save(user);
                 }
             }
@@ -100,3 +103,4 @@ public class PromotionService {
         return null;
     }
 }
+

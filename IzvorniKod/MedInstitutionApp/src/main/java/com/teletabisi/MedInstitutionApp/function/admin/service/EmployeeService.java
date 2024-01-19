@@ -30,7 +30,8 @@ public class EmployeeService {
     public List<EmployeeDTO> findAllEmployees() {
         List<EmployeeDTO> employees = repo.findAll().stream()
                 .filter(employee -> employee.getRole() == Role.EMPLOYEE || employee.getRole() == Role.ADMINEMPLOYEE)
-                .map(employee -> new EmployeeDTO(employee.getFirstname(), employee.getLastname(), employee.getEmail(), employee.getDateOfBirth(), employee.getStartDate()))
+                .map(employee -> new EmployeeDTO(employee.getId(),
+                        employee.getUsername(), employee.getFirstname(), employee.getLastname(), employee.getEmail(), employee.getDateOfBirth(), employee.getStartDate(), employee.getShift(),employee.getRole(), employee.getGender() ))
                 .toList();
         if (employees.isEmpty()) {
             return null;
@@ -79,11 +80,12 @@ public class EmployeeService {
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
                             && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -93,11 +95,12 @@ public class EmployeeService {
                             (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth)))
                             && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -105,11 +108,12 @@ public class EmployeeService {
             List<EmployeeDTO> filteredEmployees = repo.findAll().stream()
                     .filter(employee -> (employee.getGender().equals(gender)) && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -119,11 +123,12 @@ public class EmployeeService {
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
                             && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -132,11 +137,12 @@ public class EmployeeService {
                     .filter(employee -> (formatDateString(employee.getDateOfBirth()).equals(formatDateString(dayOfBirth))) && ((employee.getRole() == Role.EMPLOYEE)
                             || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -146,11 +152,12 @@ public class EmployeeService {
                             formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
                             && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
@@ -159,11 +166,12 @@ public class EmployeeService {
                     .filter(employee -> formatLocalDateString(employee.getStartDate()).equals(formatLocalDateString(startDate))
                             && ((employee.getRole() == Role.EMPLOYEE) || (employee.getRole() == Role.ADMINEMPLOYEE)))
                     .map(employee -> new EmployeeDTO(
-                            employee.getFirstname(),
-                            employee.getLastname(),
-                            employee.getEmail(),
-                            employee.getDateOfBirth(),
-                            employee.getStartDate()))
+                            employee.getId(),
+                            employee.getUsername(),
+                            employee.getFirstname(), employee.getLastname(),
+                            employee.getEmail(), employee.getDateOfBirth(),
+                            employee.getStartDate(), employee.getShift(),
+                            employee.getRole(), employee.getGender()))
                     .toList();
             return filteredEmployees.isEmpty() ? null : filteredEmployees;
         }
