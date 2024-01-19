@@ -5,57 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/ServletInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/DateFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Gender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/RegisterRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/service/AppService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/service/AppService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/demo/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/demo/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Adminic/adminic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Adminic/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Employee/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Loginic/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/PrivateRoutes/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Register/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Settings/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/User/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Welcome/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/Welcome/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/services/LogOut.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/services/fetchGenerator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/services/validatetoken.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../web/src/util/useLocalStorage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,8 +46,10 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.MedInstitutionApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Zavrsetak",
+    "git-widget-placeholder": "Predzadnji-web",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/benja/OneDrive/Desktop/progi/19.1. progi/MedInstitutionApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -128,6 +83,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-ebaef533" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -200,6 +162,7 @@
       <workItem from="1705615817710" duration="1069000" />
       <workItem from="1705666848763" duration="1423000" />
       <workItem from="1705688991915" duration="6773000" />
+      <workItem from="1705702714087" duration="690000" />
     </task>
     <servers />
   </component>
