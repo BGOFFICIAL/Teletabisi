@@ -474,30 +474,31 @@ Uključuje obrasce uporabe UC7.1 Odabir opreme, UC7.2 Pomicanje svojih rezervira
 \end{packed_item}
 
 \noindent \underbar{\textbf{UC10 - Upravljanje korisnicima}}\\
-\textit{Uključuje obrasce uporabe UC10.1. Pregled korisnika, UC10.2. Dodavanje korisnika, UC10.3. Brisanje korisnika.}\\
+\textit{Uključuje obrasce uporabe UC10.1 Pregled zdravstvenih djelatnika, UC10.2 Promocija korisnika, UC10.3 Isključivanje korisnika iz sustava, UC10.4 Filtriranje zdravstvenih djelatnika}\\
 
-\noindent \underbar{\textbf{UC10.1. - Pregled korisnika}}
+\noindent \underbar{\textbf{UC10.1 - Pregled zdravstvenih djelatnika}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Administrator
-	\item  \textbf{Cilj:} Pregledati registrirane korisnike (pacijente i zdravstvene djelatnike)
+	\item  \textbf{Cilj:} Pregledati registrirane zdravstvene djelatnike
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Korisnik koji je dobio ulogu administratora odabire opciju pregledavanja korisnika
-		\item Administratoru se prikazuje lista svih registriranih korisnika sa njihovim osobnim podatcima (posebno odvojeni pacijenti od zdravstvenih djelatnika)
+		\item Korisnik koji je dobio ulogu administratora odabire opciju pregledavanja zdravstvenih djelatnika
+		\item Administratoru se prikazuje lista svih registriranih zdravstvenih djelatnika sa njihovim osobnim podatcima
+		\item Administrator ima dodatnu mogućnost mijenjanja smjene zdravstvenog djelatnika (postoji smjena neparni datumi prijepodne i parni datumi poslijepodne)
 	\end{packed_enum}
 	
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC10.2. - Dodavanje zdravstvenih djelatnika}}
+\noindent \underbar{\textbf{UC10.2 - Promocija korisnika}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Administrator
-	\item  \textbf{Cilj:} Omogućiti administratoru stvaranje posebno privilegiranog aktora naše aplikacije - zdravstvenog djelatnika
+	\item  \textbf{Cilj:} Omogućiti administratoru promociju korisnika iz hijerarhijski podređenog do hijerarhijski nadređenog korisnika
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora
 	\item  \textbf{Opis osnovnog tijeka:}
@@ -505,32 +506,19 @@ Uključuje obrasce uporabe UC7.1 Odabir opreme, UC7.2 Pomicanje svojih rezervira
 	\item[] \begin{packed_enum}
 		
 		\item Korisnik koji je dobio ulogu administratora odabire opciju za dodavanje zdravstvenog djelatnika
-		\item Administrator u određenim poljima upisuje podatke o novom zdravstvenom djelatniku
-		\item Administrator pritiskom na dugme sprema novounesene promjene
+		\item Administrator u određenom polju upisuje korisničko ime korisnika koji je do tada imao ulogu pacijenta
+		\item Administrator pritiskom na dugme sprema novounesene promjene (pacijent postaje zdravstveni djelatnik)
 	\end{packed_enum}
 	
-	\item  \textbf{Opis mogućih odstupanja:}
-	
-	\item[] \begin{packed_item}
-		
-		\item[2.a] Administrator upisuje zabranjeni format e-maila, već zauzeti e-mail ili općenito unosi podatke u nedopuštenom formatu
-		\item[] \begin{packed_enum}
-			
-			\item Sustav upozorava administratora o neuspjelom unosu i vraća ga na stranicu za upisivanje novih zdravstvenih djelatnika
-			\item Administrator ponovno unosi podatke o zdravstvenom djelatniku (ovaj put u ispravnom formatu) ili odustaje od tog čina
-			
-		\end{packed_enum}
-		
-	\end{packed_item}
 	
 \end{packed_item}
 
 
-\noindent \underbar{\textbf{UC10.3. - Brisanje korisnika}}
+\noindent \underbar{\textbf{UC10.3 - Isključivanje korisnika iz sustava}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Administrator
-	\item  \textbf{Cilj:} Omogućiti administratoru brisanje korisnika (pacijenta ili zdravstvenog djelatnika)
+	\item  \textbf{Cilj:} Omogućiti administratoru brisanje korisnika
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora i u bazi podataka imamo barem jednog korisnika
 	\item  \textbf{Opis osnovnog tijeka:}
@@ -545,36 +533,60 @@ Uključuje obrasce uporabe UC7.1 Odabir opreme, UC7.2 Pomicanje svojih rezervira
 	
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC11 - Verifikacija podataka}}
+\noindent \underbar{\textbf{UC10.4 - Filtriranje zdravstvenih djelatnika}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Administrator
-	\item  \textbf{Cilj:} Omogućiti administratoru verificiranje unesenih podataka od strane pacijenata
+	\item  \textbf{Cilj:} Omogućiti administratoru pregled zdravstvenih djelatnika prema nekom svojstvu (npr. spolu)
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora i u bazi podataka se određeni korisnik prijavio kao pacijent
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Administrator dobiva obavijest o registraciji novog korisnika
-		\item Administrator verificira podatke iz središnjeg informacijskog sustava zdravstvene zaštite
+		\item Administrator odabire opciju filtriranja zdravstvenih djelatnika
+		\item Administrator bira po kojem svojstvu želi filtrirati zdravstvene djelatnike (npr. po spolu ili po smjeni)
+		\item Administrator dobiva popis zdravstvenih djelatnika koji zadovoljavaju određeno svojstvo
 	\end{packed_enum}
 	
 \end{packed_item}
 
-\noindent \underbar{\textbf{UC12 - Pregled statistike}}
+\noindent \underbar{\textbf{UC11 - Dodavanje soba}}
 \begin{packed_item}
 	
 	\item \textbf{Glavni sudionik: }Administrator
-	\item  \textbf{Cilj:} Omogućiti administratoru pregledati statistiku (npr. koji je postotak u sustavu pacijenata, a koji zdravstvenih djelatnika)
+	\item  \textbf{Cilj:} Omogućiti administratoru dodavanje soba
 	\item  \textbf{Sudionici:} Baza podataka
 	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora
 	\item  \textbf{Opis osnovnog tijeka:}
 	
 	\item[] \begin{packed_enum}
 		
-		\item Administrator odabire opciju "Statistika"
-		\item Administrator se prikazuju razni statistički podatci (postotak pacijenata u sustavu, postotak zdravstvenih djelatnika u sustavu, postotak pacijenata kojemu treba određena oprema/usluga...)
+		\item Administrator odabire opciju "Dodaj sobu"
+		\item Administrator vidi na novoj stranici popis trenutačnih soba
+		\item Administrator upisuje potrebne podatke za novu sobu
+		\item Administrator klikom na dugme potvrđuje novonastale promjene
+		\item Administratoru se osvježava popis soba
+	\end{packed_enum}
+	
+\end{packed_item}
+
+\noindent \underbar{\textbf{UC12 - Dodavanje opreme}}
+\begin{packed_item}
+	
+	\item \textbf{Glavni sudionik: }Administrator
+	\item  \textbf{Cilj:} Omogućiti administratoru dodavanje opreme
+	\item  \textbf{Sudionici:} Baza podataka
+	\item  \textbf{Preduvjet:} Korisnik je registriran i ima prava administratora
+	\item  \textbf{Opis osnovnog tijeka:}
+	
+	\item[] \begin{packed_enum}
+		
+		\item Administrator odabire opciju "Dodaj opremu"
+		\item Administrator vidi na novoj stranici popis trenutačnih oprema
+		\item Administrator upisuje potrebne podatke za novu opremu
+		\item Administrator klikom na dugme potvrđuje novonastale promjene
+		\item Administratoru se osvježava popis oprema
 	\end{packed_enum}
 	
 \end{packed_item}
@@ -609,10 +621,10 @@ Uključuje obrasce uporabe UC7.1 Odabir opreme, UC7.2 Pomicanje svojih rezervira
 
 \textbf{\text{UC3.1. - Zakazivanje termina}}\\
 
-Korisnik, prijavljen kao pacijent, želi odabrati novi slobodni termin. Poslužitelj dohvaća trenutne termine te korisniku prikazuje kalendar. Pacijent navodi informacije o oboljenju, zahtijevanom postupku liječenja i liječnika koji ga je uputio te poslužitelj provjerava je li to ponovljena terapija i ako jest, prikazuje to korisniku. Pacijent odabire referencu na ponovljenu terapiju te potvrđuje odabrani termin. Poslužitelj zaprima korisnikovu potvrdu i provjerava pacijentov status. Ako je njegov status u redu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina, osvježava kalendar i šalje e-mail potvrdu pacijentu. Ako se pacijent nije pojavio na zakazanom terminu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina te šalje odgovarajuću poruku.\newline Ako je pacijent unio podatke o novoj terapiji, poslužitelj te informacije sprema u bazu podataka. Pacijent potvrđuje odabrani termin te dolazi do provjere statusa pacijenta. Ako je sve u redu sa statusom pacijenta, poslužitelj upisuje novi termin u bazu podataka i nakon potvrde o uspješnom upisu, osvježava kalendar i šalje e-mail potvrdu pacijentu. Ako se pacijent nije pojavio na zakazanom terminu, poslužitelj upisuje novi termin u bazu podataka, vraća potvrdu o uspješnom upisivanju termina te šalje odgovarajuću poruku.
+Korisnik, prijavljen kao pacijent, želi odabrati novi slobodni termin. Poslužitelj dohvaća trenutne termine te korisniku prikazuje kalendar. Pacijent navodi datum i vrijeme kada želi zakazati termin te od strane poslužitelja dobiva pregled svih vlastitih opisa zdravstvenih problema koje je unosio u prošlosti (ako ih ima). Pacijent odabire referencu na ponovljeni opis problema te potvrđuje odabrani termin. Termin se tada sprema u bazu podataka kao nepotvrđeni zahtjev za terminom. Djelatnik dohvaća sve zahtjeve koji odgovaraju njegovoj smjeni te odabire termin koji želi potvrditi. Djelatnik navodi opremu koja mu je potrebna za opisani zdravstveni problem te se vrši provjera dostupnosti opreme. Ako je oprema slobodna, termin se sprema u bazu podataka, djelatnik dobiva potvrdu o spremanju te se pacijentu šalje e-mail o uspješno zakazanom terminu. Ako nema slobodne opreme, djelatnik dobiva listu slobodnih termina u sljedećih tjedan dana te odabire neki od ponuđenih termina, nakon čega se termin sprema u bazu podataka, a djelatnik i pacijent dobivaju prikladnu obavijest.\newline Ako je pacijent unio podatke o novom zdravstvenom problemu, poslužitelj te informacije sprema u bazu podataka. Pacijent potvrđuje odabrani termin te se on sprema kao nepotvrđeni zahtjev za terminom. Postupak je dalje jednak kao i u prijašnjem slučaju - Djelatnik dohvaća sve zahtjeve koji odgovaraju njegovoj smjeni te odabire termin koji želi potvrditi. Djelatnik navodi opremu koja mu je potrebna za opisani zdravstveni problem te se vrši provjera dostupnosti opreme. Ako je oprema slobodna, termin se sprema u bazu podataka, djelatnik dobiva potvrdu o spremanju te se pacijentu šalje e-mail o uspješno zakazanom terminu. Ako nema slobodne opreme, djelatnik dobiva listu slobodnih termina u sljedećih tjedan dana te odabire neki od ponuđenih termina, nakon čega se termin sprema u bazu podataka, a djelatnik i pacijent dobivaju prikladnu obavijest.
 
 \begin{figure}[H]
-	\includegraphics[scale=0.45]{slike/UC3.1_Zakazivanje_termina}
+	\includegraphics[scale=0.33]{slike/zakazivanjeTerminaUC3.1}
 	\centering
 	\caption{Sekvencijski dijagram za UC3.1.}
 \end{figure}
