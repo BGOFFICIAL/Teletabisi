@@ -13,28 +13,86 @@
 	
 		\section{Ispitivanje programskog rješenja}
 			
-			\textbf{\textit{dio 2. revizije}}\\
 			
-			 \textit{U ovom poglavlju je potrebno opisati provedbu ispitivanja implementiranih funkcionalnosti na razini komponenti i na razini cijelog sustava s prikazom odabranih ispitnih slučajeva. Studenti trebaju ispitati temeljnu funkcionalnost i rubne uvjete.}
-	
+			TESTIRANJE SUSTAVA
+			\newline \newline
+			Testiranje sustava se provodi sa "Chrome-om" proširenjem „Selenium IDE“. „Selenium IDE“ je aplikacija koja nam omogućava snimanje akcija korisnika u raznim slučajevima. U nastavku su prikazani rezultati testova odabranih slučajeva koji dovode funkcionalnost našeg sustava u pitanje. 
+			\newline \newline
+			Testirati ćemo sustav na sljedećim testovima:
+			\begin{packed_item}
+				\item \textit{Logiranje u aplikaciju u slučaju da je sve ispravno napravljeno}
+				\item \textit{Logiranje u aplikaciju u slučaju da je email adresa kriva}
+				\item \textit{Logiranje u aplikaciju u slučaju da je lozinka kriva}
+				\item \textit{Logiranje u aplikaciju u slučaju da su email i lozinka krivi}
+				\item \textit{Registracija korisnika u slučaju da je sve ispravno napravljeno}
+				\item \textit{Registracija već registriranog korisnika}
+				\item \textit{Registracija korisnika u slučaju da je email zadan u krivom formatu}
+			\end{packed_item}
 			
-			\subsection{Ispitivanje komponenti}
-			\textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
+			
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Registracija korisnika u slučaju da je email zadan u krivom formatu}
+				\label{fig:promjene}
+			\end{figure}
 			
 			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Registracija“ nakon čega nam se otvorio novi prozor za registraciju. Upisali smo email adresu bez simbola „@“ što taj email čini nevažećim tj. krivoga formata. Sve ostale informacije su bile tehnički korektne. Rezultat jest nemogućnost registriranja zbog krivog formata email adrese.
 			
-			\subsection{Ispitivanje sustava}
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Registracija već registriranog korisnika}
+				\label{fig:promjene}
+			\end{figure}
 			
-			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir Selenium\footnote{\url{https://www.seleniumhq.org/}}. Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
-			 
-			 \textit{Izradu ispitnih slučajeva pomoću radnog okvira Selenium moguće je provesti pomoću jednog od sljedeća dva alata:}
-			 \begin{itemize}
-			 	\item \textit{dodatak za preglednik \textbf{Selenium IDE} - snimanje korisnikovih akcija radi automatskog ponavljanja ispita	}
-			 	\item \textit{\textbf{Selenium WebDriver} - podrška za pisanje ispita u jezicima Java, C\#, PHP koristeći posebno programsko sučelje.}
-			 \end{itemize}
-		 	\textit{Detalji o korištenju alata Selenium bit će prikazani na posebnom predavanju tijekom semestra.}
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Registracija“ nakon čega nam se otvorio novi prozor za registraciju. Upisali smo valjane podatke „stvarne osobe“ koja je već registrirana u našoj bazi podataka. Rezultat je nemogućnost ponovnog registriranja.
 			
-			\eject 
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit3.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Registracija korisnika u slučaju da je sve ispravno napravljeno}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Registracija“ nakon čega nam se otvorio novi prozor za registraciju. Upisali smo željene podatke „stvarne osobe“ koja još nije registrirana u našoj bazi podataka te smo se uspješno registrirali u sustav te dobili pristup stranici „Prijava“.
+			
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit4.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logiranje u aplikaciju u slučaju da su korisničko ime i lozinka krivi}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Prijava“ nakon čega nam se otvorio novi prozor za prijavu u sustav. Upisali smo podatke izmišljenog računa – korisničko ime i lozinku koji ne postoje. Rezultat je nemogućnost prijave u sustav. 
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit5.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logiranje u aplikaciju u slučaju da je lozinka kriva}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Prijava“ nakon čega nam se otvorio novi prozor za prijavu u sustav. Upisali smo postojeće korisničko ime ali krivu lozinku koja nije povezana s tim korisničkim imenom. Rezultat je nemogućnost prijave u sustav. 
+ 
+				\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit6.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logiranje u aplikaciju u slučaju da je korisničko ime krivo}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Prijava“ nakon čega nam se otvorio novi prozor za prijavu u sustav. Upisali smo lozinku koja se nalazi u sustavu ali korisničko ime se ne podudara onim povezanim sa lozinkom. Rezultat je nemogućnost prijave u sustav. 
+			
+			\begin{figure}[H]
+				\includegraphics[scale=1]{slike/Ispit7.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logiranje u aplikaciju u slučaju da je sve ispravno napravljeno}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Tijek testa: Ušli smo na pravu web adresu i kliknuli na tipku „Prijava“ nakon čega nam se otvorio novi prozor za prijavu u sustav. Upisali smo potrebne podatke – postojeće korisničko ime i pripadnu lozinku. Rezultat je uspješna prijava u sustav i preusmjeravanje na novu stranicu „Pacijent“ (uloga ovog korisnika je „Pacijent“, da se prijavio korisnik sa ulogom „Admin“ bio bi preusmjeren na novu stranicu „Admin“).
+				\eject
 		
 		
 		\section{Dijagram razmještaja}
@@ -57,12 +115,29 @@
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+			Mi smo se odlučili dovršenu aplikaciju pokrenuti na Amazon AWS-u.
+			\newline
 			
+	\textbf{Amazon RDS  (Relational Database Service) }
+	\newline
+	
+	       Amazon RDS (Relational Database Service) je usluga upravljanja relacijskim bazama podataka koju pruža Amazon Web Services (AWS). Ova usluga omogućuje korisnicima lako postavljanje, upravljanje i skaliranje relacijskih baza podataka u oblaku bez potrebe za kompleksnim administrativnim zadacima.
+	       
+	       Nakon upisivanja potrebnih podataka (instance identifier, master username, password, port, initial database name) napravit će se naša baza podataka koja će se vrtit na javnom poslužitelju. Zatim treba SpringBoot aplikaciju povezati s tom bazom podataka.
 			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/Deploy1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Stvorena instanca baze podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+				\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/Deploy2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Podatci naše nove baze podataka}
+				\label{fig:promjene}
+			\end{figure}
 			
 			
 			\eject 

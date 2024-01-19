@@ -29,5 +29,15 @@
 \contentsline {figure}{\numberline {4.14}{\ignorespaces Prikaz dijagrama aktivnosti pri dodavanju soba/opreme}}{46}{figure.4.14}%
 \contentsline {figure}{\numberline {4.15}{\ignorespaces Prikaz dijagrama komponenti naše web aplikacije}}{47}{figure.4.15}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Specifikacijski dijagram razmještaja}}{50}{figure.5.1}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Registracija korisnika u slučaju da je email zadan u krivom formatu}}{49}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Registracija već registriranog korisnika}}{50}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Registracija korisnika u slučaju da je sve ispravno napravljeno}}{50}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Logiranje u aplikaciju u slučaju da su korisničko ime i lozinka krivi}}{51}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Logiranje u aplikaciju u slučaju da je lozinka kriva}}{51}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Logiranje u aplikaciju u slučaju da je korisničko ime krivo}}{52}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Logiranje u aplikaciju u slučaju da je sve ispravno napravljeno}}{52}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Specifikacijski dijagram razmještaja}}{53}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Stvorena instanca baze podataka}}{54}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Podatci naše nove baze podataka}}{54}{figure.5.10}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Dijagram pregleda promjena}}{63}{figure.6.1}%
