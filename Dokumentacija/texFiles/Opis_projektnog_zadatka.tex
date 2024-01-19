@@ -17,7 +17,7 @@ Između ostalog ova bi aplikacija omogućivala liječnicima praćenje poboljšan
 	\item \textit{datum rođenja}
 \end{packed_item}
 
-Administrator gornje podatke mora verificirati iz središnjeg informacijskog sustava zdravstvene zaštite. Pacijenti prilikom prijave moraju navesti vrstu i opis svojih oboljenja, zahtijevani postupak liječenja te liječnika koji ih je uputio na rehabilitaciju. Nakon toga moraju odabrati neki od dostupnih termina. Ako se ne radi o prvom dolasku u ustanovu zahtijeva se i prikaz reference na već obavljeni postupak u toj ustanovi. Zdravstveni djelatnici dodjeljuju termine tako da vode brigu o ukupnom kapacitetu opreme/uređaja, kapacitetu prostorija, osobnim mogućnostima te trajanju svakog zahvata. Nakon dobivenog termina pacijentu dolazi e-pošta sa terminom te ostalim dodatnim informacijama. U slučaju neočekivanih promjena djelatnik može kontaktirati bolesnika putem e-pošte. Radno vrijeme ustanove u kojoj se provodi rehabilitacija je svakim radnim danom od 8 do 20 sati. Ustanova ima pravo odrediti određene slobodne dane na temelju blagdana ili praznika.\\
+Administrator gornje podatke mora verificirati iz središnjeg informacijskog sustava zdravstvene zaštite. Pacijenti prilikom zakazivanja termina moraju navesti vrstu i opis svojih oboljenja, zahtijevani postupak liječenja te vrijeme koje bi im odgovaralo za termin. Ako se ne radi o prvom dolasku u ustanovu zahtijeva se i prikaz reference na već obavljeni postupak u toj ustanovi. Zdravstveni djelatnici dodjeljuju termine tako da vode brigu o ukupnom kapacitetu opreme/uređaja, kapacitetu prostorija, osobnim mogućnostima te trajanju svakog zahvata. Nakon dobivenog termina pacijentu dolazi e-pošta sa terminom te ostalim dodatnim informacijama. U slučaju neočekivanih promjena djelatnik može kontaktirati bolesnika putem e-pošte. Radno vrijeme ustanove u kojoj se provodi rehabilitacija je svakim radnim danom od 8 do 20 sati. Ustanova ima pravo odrediti određene slobodne dane na temelju blagdana ili praznika.\\
 
 \textbf{\textit{Primjer sličnog rješenja}}\\
 
@@ -69,7 +69,7 @@ Korisnici sustava su:
 	\item \textit{administrator}
 \end{packed_item}
 
-Svaki od te tri skupine korisnika ima različita dopuštenja. Djelatnici ustanove mogu vidjeti sve bolesnike i tretmane koji su im dodijeljeni. Nakon svakog obavljenog postupka djelatnik u sustav registrira pacijenta, a nakon završenog ciklusa zapisuje postignute rezultate. Pacijenti mogu vidjeti samo svoje tretmane. Administrator upravlja čitavim sustavom. Njemu su dostupni svi podaci i može definirati sve što je potrebno za ispravan rad sustava.
+Svaki od te tri skupine korisnika ima različita dopuštenja. Djelatnici ustanove mogu vidjeti sve bolesnike i tretmane koji su im dodijeljeni. Nakon svakog obavljenog postupka djelatnik u sustav registrira pacijenta, a nakon završenog ciklusa oslobađa opremu. Pacijenti mogu vidjeti samo svoje tretmane. Administrator upravlja čitavim sustavom. Njemu su dostupni svi podaci i može definirati sve što je potrebno za ispravan rad sustava.
 
 Za unesene podatke prilikom registracije u aplikaciju osigurat ćemo provjeru konzistentnosti s podacima iz baze podataka. Nakon toga korisnik postaje pacijent, izabire datum te ima mogućnost otkazati termin 1 dan prije početka tog termina.
 
@@ -77,7 +77,7 @@ Opreme, odnosno uređaji koje posjeduje ustanova se kategoriziraju. Spomenuli sm
 
 Korisnik se u sustav prijavljuje upisivanjem korisničkog imena te svoje lozinke koja mora zadovoljavati određena pravila. Lozinka mora imati minimalno 8 znakova, od čega mora biti minimalno jedno veliko slovo te jedna znamenka. Ako korisnik prilikom registracije i smišljanja lozinke nije zadovoljio navedena pravila, dobit će upozorenje što mu nedostaje za ispravnu lozinku.
 
-Aplikacija će imati 7 stranica koje ćemo sada nabrojati. Na početku sve korisnike (i registrirane i neregistrirane) će dočekati početna naslovna stranica koja će omogućiti korisnicima odlazak na stranicu za registraciju ili prijavu. Neregistrirani korisnici prvo moraju otići na stranicu za registraciju kako bi se mogli prijaviti putem stranice za prijavu. Također ubaciti ćemo stranicu za promjenu lozinke u slučaju da je korisnik zaboravio svoju lozinku. Imati ćemo posebno stranicu za pacijente nakon prijave, stranicu za zdravstvene djelatnike nakon prijave i stranicu za administratore nakon prijave. Pacijenti će na svojoj stranici imati svoje funkcionalnosti poput zakazivanja termina, zdravstveni djelatnici svoje poput potvrde termina, a administratori svoje poput pregleda statistike ili osobnih podataka ostalih korisnika. \\
+Aplikacija će imati obavezno početnu stranicu u kojoj će moći odabrati želi li se prijaviti ili registrirati u sustav. Zatim stranicu za prijavu i stranicu za registraciju. Na kraju je omogućen odlazak (nakon prijave korisnika s određenom ulogom) na povlaštenu stranicu za pacijente, zdravstvene djelatnike ili za administratore. \\
 
 \textbf{\textit{Opseg projekta}}\\
 
