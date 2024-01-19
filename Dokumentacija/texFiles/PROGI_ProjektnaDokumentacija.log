@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.3)  18 JAN 2024 18:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.3)  19 JAN 2024 01:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1024,7 +1024,11 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
-) (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
+) (./Implementacija.aux
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
 \openout1 = `PROGI_ProjektnaDokumentacija.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 85.
@@ -2590,8 +2594,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
  (./Zakljucak.tex
 Poglavlje 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+Overfull \hbox (28.17368pt too wide) in paragraph at lines 3--7
+[]\OT1/jkp/m/n/12 Projektni za-da-tak na[]se grupe je bio iz-rada web apli-ka-c
+ije koja ko-ris-ni-cima omogu[]cuje
+ []
 
+
+Overfull \hbox (16.21523pt too wide) in paragraph at lines 8--12
+\OT1/jkp/m/n/12 do-brim tem-pom, ali se je ubrzo po-ka-zalo kako je ma-njak pra
+kti[]cnog is-kus-tva drasti[]cno
  []
 
 
@@ -2642,11 +2653,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-] (./PROGI_ProjektnaDokumentacija.lof)
-\tf@lof=\write5
-\openout5 = `PROGI_ProjektnaDokumentacija.lof'.
-
-
+] (./PROGI_ProjektnaDokumentacija.lof
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2659,7 +2666,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-]
+])
+\tf@lof=\write5
+\openout5 = `PROGI_ProjektnaDokumentacija.lof'.
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2794,10 +2805,10 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 dist/fonts/type1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/
 type1/public/kpfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public
 /kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (59 pages, 2331705 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (59 pages, 2332874 bytes).
 PDF statistics:
- 783 PDF objects out of 1000 (max. 8388607)
- 653 compressed objects within 7 object streams
+ 784 PDF objects out of 1000 (max. 8388607)
+ 654 compressed objects within 7 object streams
  235 named destinations out of 1000 (max. 500000)
  339 words of extra memory for PDF output out of 10000 (max. 10000000)
 
