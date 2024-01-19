@@ -4,7 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="" />
+    <list default="true" id="4ef475c7-c63b-4c7e-8414-1718ea11e982" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/MedInstitutionApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/DateFormat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Gender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/service/AppService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/register/service/AppService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/auth/serivce/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/demo/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/demo/DemoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/java/com/teletabisi/MedInstitutionApp/security/jwt/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../IzvorniKod/MedInstitutionApp/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Adminic/adminic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Adminic/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Employee/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Loginic/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/PrivateRoutes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Register/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Settings/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/User/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Welcome/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/Welcome/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/services/LogOut.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/services/fetchGenerator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/services/validatetoken.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web/src/util/useLocalStorage.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +65,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -40,14 +93,14 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v2dev",
-    "last_opened_file_path": "C:/Users/npral/OneDrive/Radna površina/Spring/Kod/MedInstitutionApp",
+    "git-widget-placeholder": "Zavrsetak",
+    "last_opened_file_path": "C:/Users/benja/OneDrive/Desktop/progi/19.1. progi/MedInstitutionApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "spring.configuration.checksum": "b425be4903ed514164676f7c2c6cec7f",
     "vue.rearranger.settings.migration": "true"
   },
@@ -58,6 +111,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src\main\resources" />
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src\main\java\com\teletabisi\MedInstitutionApp\reading" />
+      <recent name="C:\Users\npral\OneDrive\Dokumenti\GitHub\Teletabisi\IzvorniKod\MedInstitutionApp\src" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.teletabisi.MedInstitutionApp.security.config" />
     </key>
@@ -92,10 +150,84 @@
       <workItem from="1700310351211" duration="212000" />
       <workItem from="1700316451518" duration="1841000" />
       <workItem from="1700318460736" duration="10782000" />
+      <workItem from="1701858296256" duration="294000" />
+      <workItem from="1701958242879" duration="3849000" />
+      <workItem from="1701975406645" duration="683000" />
+      <workItem from="1701992653321" duration="873000" />
+      <workItem from="1702046243021" duration="8093000" />
+      <workItem from="1702165753875" duration="3576000" />
+      <workItem from="1702229376654" duration="5016000" />
+      <workItem from="1702235485227" duration="1680000" />
+      <workItem from="1702241789527" duration="279000" />
+      <workItem from="1702242130707" duration="5803000" />
+      <workItem from="1702944465357" duration="967000" />
+      <workItem from="1702986295437" duration="2093000" />
+      <workItem from="1702996435700" duration="3416000" />
+      <workItem from="1703004639416" duration="1975000" />
+      <workItem from="1703023169253" duration="2044000" />
+      <workItem from="1704370356810" duration="3513000" />
+      <workItem from="1704558802993" duration="2100000" />
+      <workItem from="1704561053454" duration="364000" />
+      <workItem from="1704565794849" duration="1537000" />
+      <workItem from="1704567358245" duration="136000" />
+      <workItem from="1704570533134" duration="1198000" />
+      <workItem from="1704670348644" duration="1842000" />
+      <workItem from="1704716635613" duration="976000" />
+      <workItem from="1704749178595" duration="10704000" />
+      <workItem from="1704762522701" duration="615000" />
+      <workItem from="1704763165829" duration="412000" />
+      <workItem from="1704807467646" duration="1575000" />
+      <workItem from="1704809123223" duration="145000" />
+      <workItem from="1704815792305" duration="13418000" />
+      <workItem from="1704836994537" duration="5259000" />
+      <workItem from="1704877912157" duration="5281000" />
+      <workItem from="1704883722251" duration="36000" />
+      <workItem from="1704888430781" duration="6804000" />
+      <workItem from="1705351596163" duration="15316000" />
+      <workItem from="1705369076642" duration="932000" />
+      <workItem from="1705370334495" duration="713000" />
+      <workItem from="1705410172431" duration="93000" />
+      <workItem from="1705410300516" duration="24000" />
+      <workItem from="1705410332656" duration="5687000" />
+      <workItem from="1705422299910" duration="1962000" />
+      <workItem from="1705436480768" duration="8000000" />
+      <workItem from="1705448564956" duration="7202000" />
+      <workItem from="1705484223484" duration="787000" />
+      <workItem from="1705490144765" duration="8630000" />
+      <workItem from="1705507734501" duration="6316000" />
+      <workItem from="1705533297124" duration="7719000" />
+      <workItem from="1705589203266" duration="2275000" />
+      <workItem from="1705615817710" duration="1069000" />
+      <workItem from="1705666848763" duration="1423000" />
+      <workItem from="1705688991915" duration="5740000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.security.core.userdetails.UsernameNotFoundException" package="org.springframework.security.core.userdetails" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.PropertyValueException" package="org.hibernate" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.teletabisi.MedInstitutionApp.entity.Equipment" memberName="room" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="equipments.get(3)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
