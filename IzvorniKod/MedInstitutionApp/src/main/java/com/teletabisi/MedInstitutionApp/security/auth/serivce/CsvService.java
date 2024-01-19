@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class CsvService {
 
-    public List<RegisterDTO> getAllPersons(){
+    public List<RegisterDTO> getAllPersons() {
         List<RegisterDTO> persons = new ArrayList<>();
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("ime,prezime,oib.csv");
@@ -21,7 +21,7 @@ public class CsvService {
         List<String> lines = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))
                 .lines()
                 .toList();
-        for (int i = (!lines.isEmpty() && lines.get(0).startsWith("firstname,lastname,oib")) ? 1 : 0; i < lines.size(); i++){
+        for (int i = (!lines.isEmpty() && lines.get(0).startsWith("firstname,lastname,oib")) ? 1 : 0; i < lines.size(); i++) {
             String[] fields = lines.get(i).split(",");
 
             if (fields.length >= 3) {
@@ -31,45 +31,45 @@ public class CsvService {
 
                 RegisterDTO registerDTO = new RegisterDTO(firstname, lastname, oib);
                 persons.add(registerDTO);
-            }else{
+            } else {
                 System.err.println("Skipping invalid line: " + lines.get(i));
             }
         }
         return persons;
     }
 
-    public RegisterDTO getPersonByOib(String oib){
+    public RegisterDTO getPersonByOib(String oib) {
         List<RegisterDTO> persons = getAllPersons();
-        if (persons != null){
+        if (persons != null) {
             return persons.stream()
                     .filter(person -> oib.equals(person.getOib()))
                     .findFirst()
                     .orElse(null);
-        }else{
+        } else {
             throw new IllegalStateException("List of persons is null");
         }
     }
 
-    public RegisterDTO getPersonByFirstname(String name){
+    public RegisterDTO getPersonByFirstname(String name) {
         List<RegisterDTO> persons = getAllPersons();
-        if (persons != null){
+        if (persons != null) {
             return persons.stream()
                     .filter(person -> name.equals(person.getFirstname()))
                     .findFirst()
                     .orElse(null);
-        }else{
+        } else {
             throw new IllegalStateException("List of persons is null");
         }
     }
 
-    public RegisterDTO getPersonByLastname(String surname){
+    public RegisterDTO getPersonByLastname(String surname) {
         List<RegisterDTO> persons = getAllPersons();
-        if (persons != null){
+        if (persons != null) {
             return persons.stream()
                     .filter(person -> surname.equals(person.getLastname()))
                     .findFirst()
                     .orElse(null);
-        }else{
+        } else {
             throw new IllegalStateException("List of persons is null");
         }
     }

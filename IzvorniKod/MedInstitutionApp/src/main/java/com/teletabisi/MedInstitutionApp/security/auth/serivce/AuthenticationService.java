@@ -42,36 +42,32 @@ public class AuthenticationService {
                 .StartDate(LocalDate.now())
                 .build();
 
-
         repository.save(user);
 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
-
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),request.getPassword()
-                        )
+                        request.getUsername(), request.getPassword()
+                )
         );
         var user = repository.findFirstByUsername(request.getUsername()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
-
     }
 
-    public AuthenticationResponse update(UpdateRequest request){
-
+    public AuthenticationResponse update(UpdateRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.print(authentication);
-        if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)){
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
             throw new IllegalStateException("User not authenticated");
         }
+
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        if(!(userDetails instanceof User)){
+        if (!(userDetails instanceof User)) {
             throw new IllegalStateException("User details are not of type User");
         }
 

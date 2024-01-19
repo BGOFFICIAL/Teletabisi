@@ -14,7 +14,7 @@ public class AppService {
         this.repo = repo;
     }
 
-    public User registerUser(String username, String name, String surname, String gender, Date dateOfBirth, String password, String email, String OIB){
+    public User registerUser(String username, String name, String surname, String gender, Date dateOfBirth, String password, String email, String OIB) {
         if (password != null && username != null) {
             if (this.repo.findFirstByUsername(username).isPresent()) {
                 System.out.println("Korisnik sa korisničkim imenom: " + username + " već postoji");
@@ -25,14 +25,13 @@ public class AppService {
             if (this.repo.findFirstByOIB(OIB).isPresent()) {
                 System.out.println("Korisnik sa OIB-om: " + OIB + " već postoji");
             }
-            if(OIB.length()!=11){
+            if (OIB.length() != 11) {
                 System.out.println("OIB mora imati 11 znamenki;");
             }
-            if(this.repo.findFirstByUsername(username).isPresent() || this.repo.findFirstByEmail(email).isPresent() ||
-                    this.repo.findFirstByOIB(OIB).isPresent() || OIB.length()!=11) {
+            if (this.repo.findFirstByUsername(username).isPresent() || this.repo.findFirstByEmail(email).isPresent() ||
+                    this.repo.findFirstByOIB(OIB).isPresent() || OIB.length() != 11) {
                 return null;
-            }
-            else {
+            } else {
                 User user = new User();
                 user.setUsername(username);
                 user.setFirstname(name);
@@ -42,14 +41,16 @@ public class AppService {
                 user.setPassword(password);
                 user.setEmail(email);
                 user.setOIB(OIB);
+                user.setShift(0);
 
-                return (User)this.repo.save(user);
+                return (User) this.repo.save(user);
             }
         } else {
             return null;
         }
     }
+
     public User authenticate(String username, String password) {
-        return (User)this.repo.findByUsernameAndPassword(username, password).orElse((User) null);
+        return (User) this.repo.findByUsernameAndPassword(username, password).orElse((User) null);
     }
 }

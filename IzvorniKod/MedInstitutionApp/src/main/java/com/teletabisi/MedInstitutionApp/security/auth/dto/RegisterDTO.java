@@ -1,6 +1,5 @@
 package com.teletabisi.MedInstitutionApp.security.auth.dto;
 
-
 import com.opencsv.bean.CsvBindByName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
